@@ -20,9 +20,13 @@ function TodosPage() {
   return (
     <>
       <h2>Todos</h2>
-      <button className="btn btn-primary">
-        Add Todo
-      </button>
+      <div className="btn-toolbar" role="toolbar" aria-label="Todo toolbar">
+        <div className="btn-group" role="group" aria-label="Todo control group">
+          <button type="button" className="btn btn-primary">
+            Add Todo
+          </button>
+        </div>
+      </div>
       <TodoList todos={todos} />
     </>
   );

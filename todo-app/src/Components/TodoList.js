@@ -5,7 +5,7 @@ import Todo from "./Todo";
 
 function TodoList(props) {
   return (
-    <ul>
+    <ul className="list-group">
       {props.todos.map(todo => {
         return (<Todo todo={todo} key={todo.title} />);
       })}

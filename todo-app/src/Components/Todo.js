@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 
 function Todo(props) {
   return (
-    <li>
-      <input type="checkbox" />
-      {props.todo.title}
+    <li className="list-group-item">
+      <form>
+        <div className="form-check">
+          <input type="checkbox" className="form-check-input" id={props.todo.id} />
+          <label className="form-check-label" htmlFor={props.todo.id}>{props.todo.title}</label>
+        </div>
+      </form>
     </li>
   );
 }
