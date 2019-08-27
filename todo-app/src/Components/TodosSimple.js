@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TodoSimple from "./TodoSimple";
+import TodoSmart from "./TodoSmart";
 //import { Link } from "react-router-dom";
 
 function TodosSimple(props) {
   return (
     <ul className="list-group">
       {props.todos.map(todo => {
-        return (<TodoSimple todo={todo} key={todo.title} />);
+        return (<TodoSmart todo={todo} key={todo.title} />);
       })}
     </ul>
   );
