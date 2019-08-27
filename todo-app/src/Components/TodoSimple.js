@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Todo(props) {
+function TodoSimple(props) {
   return (
     <li className="list-group-item">
       <form>
@@ -16,7 +16,7 @@ function Todo(props) {
   );
 }
 
-Todo.propTypes = {
+TodoSimple.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
@@ -24,4 +24,4 @@ Todo.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default Todo;
+export default TodoSimple;

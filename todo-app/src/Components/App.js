@@ -1,5 +1,5 @@
 import React from "react";
-import TodosPage from "./TodosPage"
+import TodosSmart from "./TodosSmart"
 // import HomePage from "./HomePage";
 // import AboutPage from "./AboutPage";
 // import Header from "./common/Header";
@@ -13,7 +13,7 @@ import TodosPage from "./TodosPage"
 function App() {
   return (
     <div className="container-fluid">
-      <TodosPage/>
+      <TodosSmart/>
     </div>
   );
 }

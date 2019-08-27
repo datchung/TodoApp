@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 //import courseStore from "../stores/courseStore";
-import TodoList from "./TodoList";
+import TodosSimple from "./TodosSimple";
 //import { Link } from "react-router-dom";
 //import { loadCourses, deleteCourse } from "../actions/courseActions";
 
-function TodosPage() {
+function TodosSmart() {
   const [todos, setTodos] = useState([ { id: "1", title: "1" }, { id: "2", title: "2" } ]);
 
   //useEffect(() => {
@@ -23,9 +23,9 @@ function TodosPage() {
       <button type="button" className="btn btn-primary">
         Add Todo
       </button>
-      <TodoList todos={todos} />
+      <TodosSimple todos={todos} />
     </>
   );
 }
 
-export default TodosPage;
+export default TodosSmart;

@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Todo from "./Todo";
+import TodoSimple from "./TodoSimple";
 //import { Link } from "react-router-dom";
 
-function TodoList(props) {
+function TodosSimple(props) {
   return (
     <ul className="list-group">
       {props.todos.map(todo => {
-        return (<Todo todo={todo} key={todo.title} />);
+        return (<TodoSimple todo={todo} key={todo.title} />);
       })}
     </ul>
   );
 }
 
-TodoList.propTypes = {
+TodosSimple.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -22,4 +22,4 @@ TodoList.propTypes = {
   ).isRequired
 };
 
-export default TodoList;
+export default TodosSimple;
