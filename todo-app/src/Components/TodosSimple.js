@@ -6,6 +6,7 @@ import TodoSmart from "./TodoSmart";
 function TodosSimple(props) {
   return (
     <ul className="list-group">
+      <TodoSmart todo={{id: "", title: ""}} key="addTodo" isAdd={true} />
       {props.todos.map(todo => {
         return (<TodoSmart todo={todo} key={todo.title} />);
       })}

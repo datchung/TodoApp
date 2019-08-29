@@ -19,7 +19,7 @@ function TodoSmart(props) {
   }
 
   return (
-    <TodoSimple todo={todo} onChange={handleChange} />
+    <TodoSimple todo={todo} isAdd={props.isAdd} onChange={handleChange} />
   );
 }
 

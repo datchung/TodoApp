@@ -20,9 +20,6 @@ function TodosSmart() {
   return (
     <>
       <h2>Todos</h2>
-      <button type="button" className="btn btn-primary">
-        Add Todo
-      </button>
       <TodosSimple todos={todos} />
     </>
   );
