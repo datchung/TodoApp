@@ -17,10 +17,14 @@ function TodosSmart() {
     //setCourses(courseStore.getCourses());
   //}
 
+  function handleSubmit(todo) {
+    setTodos([...todos, todo]);
+  }
+
   return (
     <>
       <h2>Todos</h2>
-      <TodosSimple todos={todos} />
+      <TodosSimple todos={todos} onSubmit={handleSubmit} />
     </>
   );
 }

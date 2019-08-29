@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function TodoSimple(props) {
   return (
     <li className="list-group-item">
-      <form>
+      <form onSubmit={props.onSubmit}>
         <div className="form-check">
           <input type="checkbox" className="form-check-input" />
           <input type="text" className="form-control" name="title" value={props.todo.title} onChange={props.onChange} />
@@ -22,6 +22,7 @@ TodoSimple.propTypes = {
     title: PropTypes.string.isRequired
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   isAdd: PropTypes.bool
 };
 

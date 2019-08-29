@@ -18,8 +18,13 @@ function TodoSmart(props) {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    props.onSubmit(todo);
+  }
+
   return (
-    <TodoSimple todo={todo} isAdd={props.isAdd} onChange={handleChange} />
+    <TodoSimple todo={todo} isAdd={props.isAdd} onChange={handleChange} onSubmit={handleSubmit} />
   );
 }
 
