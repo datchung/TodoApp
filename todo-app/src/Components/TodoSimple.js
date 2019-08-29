@@ -7,9 +7,7 @@ function TodoSimple(props) {
       <form>
         <div className="form-check">
           <input type="checkbox" className="form-check-input" />
-          <input type="text" className="form-control" value={props.todo.title} onChange={props.handleChange} />
-          {/* <input type="checkbox" className="form-check-input" id={props.todo.id} /> */}
-          {/* <label className="form-check-label" htmlFor={props.todo.id}>{props.todo.title}</label> */}
+          <input type="text" className="form-control" name="title" value={props.todo.title} onChange={props.onChange} />
         </div>
       </form>
     </li>
@@ -21,7 +19,7 @@ TodoSimple.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
   }).isRequired,
-  handleChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired
 };
 
 export default TodoSimple;

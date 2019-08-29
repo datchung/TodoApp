@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TodoSimple from "./TodoSimple";
 
 function TodoSmart(props) {
@@ -7,16 +7,19 @@ function TodoSmart(props) {
     title: "",
   });
 
-  function onChange({ target }) {
-    console.debug("target " + target);
+  useEffect(() => {
+    setTodo(props.todo);
+  }, [props.todo]);
+
+  function handleChange({ target }) {
     setTodo({
       ...todo,
-      [target.title]: target.value
+      [target.name]: target.value
     });
   }
 
   return (
-    <TodoSimple todo={props.todo} handleChange={onChange} />
+    <TodoSimple todo={todo} onChange={handleChange} />
   );
 }
 
