@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 //import courseStore from "../stores/courseStore";
 import TodosSimple from "./TodosSimple";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 //import { loadCourses, deleteCourse } from "../actions/courseActions";
 
 function TodosSmart() {
-  const [todos, setTodos] = useState([ { id: "1", title: "1" }, { id: "2", title: "2" } ]);
+  const [todos, setTodos] = useState([
+    { id: "1", title: "1", isComplete: false },
+    { id: "2", title: "2", isComplete: false } 
+  ]);
 
   //useEffect(() => {
     //courseStore.addChangeListener(onChange);
@@ -24,6 +27,9 @@ function TodosSmart() {
   return (
     <>
       <h2>Todos</h2>
+      <Link className="btn btn-primary" to="/todo">
+        Add
+      </Link>
       <TodosSimple todos={todos} onSubmit={handleSubmit} />
     </>
   );

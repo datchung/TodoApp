@@ -1,18 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function TodoSimple(props) {
   return (
-    <li className="list-group-item">
-      <form onSubmit={props.onSubmit}>
-        <div className="form-check">
-          <input type="checkbox" className="form-check-input" />
-          <input type="text" className="form-control" name="title" value={props.todo.title} onChange={props.onChange} />
-        </div>
-
-        {props.isAdd && (<input type="submit" value="Add" className="btn btn-primary" />)}
-      </form>
-    </li>
+    <tr>
+      <td>
+        {props.todo.isComplete 
+          ? <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => props.onCheck()}
+              >
+                Checked
+              </button>
+          : <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => props.onCheck()}
+              >
+              !Checked
+            </button>
+          }
+      </td>
+      <td>
+        <Link to={"/todo/" + props.todo.id}>{props.todo.title}</Link>
+      </td>
+    </tr>
   );
 }
 
@@ -21,6 +35,7 @@ TodoSimple.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
   }).isRequired,
+  onCheck: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,
   isAdd: PropTypes.bool

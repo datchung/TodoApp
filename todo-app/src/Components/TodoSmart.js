@@ -5,11 +5,19 @@ function TodoSmart(props) {
   const [todo, setTodo] = useState({
     id: "",
     title: "",
+    isComplete: false
   });
 
   useEffect(() => {
     setTodo(props.todo);
   }, [props.todo]);
+
+  function handleCheck() {
+    setTodo({
+      ...todo,
+      isComplete: !todo.isComplete
+    });
+  }
 
   function handleChange({ target }) {
     setTodo({
@@ -24,7 +32,7 @@ function TodoSmart(props) {
   }
 
   return (
-    <TodoSimple todo={todo} isAdd={props.isAdd} onChange={handleChange} onSubmit={handleSubmit} />
+    <TodoSimple todo={todo} isAdd={props.isAdd} onCheck={handleCheck} onChange={handleChange} onSubmit={handleSubmit} />
   );
 }
 

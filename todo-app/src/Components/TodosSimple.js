@@ -5,12 +5,13 @@ import TodoSmart from "./TodoSmart";
 
 function TodosSimple(props) {
   return (
-    <ul className="list-group">
-      <TodoSmart todo={{id: "", title: ""}} key="addTodo" isAdd={true} onSubmit={props.onSubmit} />
-      {props.todos.map(todo => {
-        return (<TodoSmart todo={todo} key={todo.title} />);
-      })}
-    </ul>
+    <table className="table">
+      <tbody>
+        {props.todos.map(todo => {
+          return (<TodoSmart todo={todo} key={todo.title} />);
+        })}
+      </tbody>
+    </table>
   );
 }
 
@@ -18,7 +19,8 @@ TodosSimple.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
+      isComplete: PropTypes.bool.isRequired
     })
   ).isRequired
 };
