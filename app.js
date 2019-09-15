@@ -31,9 +31,13 @@ var LikeButton = function (_React$Component) {
         return 'You liked this.';
       }
 
-      return e('button', { onClick: function onClick() {
-          return _this2.setState({ liked: true });
-        } }, 'Like');
+      return React.createElement(
+        'button',
+        { onClick: function onClick() {
+            return _this2.setState({ liked: true });
+          } },
+        'Like'
+      );
     }
   }]);
 
