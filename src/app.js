@@ -1,25 +1,17 @@
 'use strict';
 
-const e = React.createElement;
+const Router = ReactRouterDOM.BrowserRouter;
+const Route = ReactRouterDOM.Route;
 
-class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
-  }
-
-  render() {
-    if (this.state.liked) {
-      return 'You liked this.';
-    }
-
-    return (
-      <button onClick={() => this.setState({ liked: true })}>
-        Like
-      </button>
-    );
-  }
+function App() {
+  return (
+    <h1>Todo App</h1>
+  );
 }
 
-const domContainer = document.querySelector('#appContainer');
-ReactDOM.render(e(LikeButton), domContainer);
+ReactDOM.render(
+  <Router>
+    <Route path="/" component={App} />
+  </Router>,
+  document.getElementById("appContainer")
+);
