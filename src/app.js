@@ -14,9 +14,15 @@ function App() {
         <Route path="/" exact component={TodoListPage} />
         <Route path="/todo/add" component={AddTodoPage} />
         <Route path="/todo/:slug/edit" component={EditTodoPage} />
-        {/* <Route component={NotFoundPage} /> */}
+        <Route component={NotFoundPage} />
       </Switch>
     </React.Fragment>
+  );
+}
+
+function NotFoundPage() {
+  return (
+    <p>Not found</p>
   );
 }
 

@@ -21,8 +21,17 @@ function App() {
       null,
       React.createElement(Route, { path: "/", exact: true, component: TodoListPage }),
       React.createElement(Route, { path: "/todo/add", component: AddTodoPage }),
-      React.createElement(Route, { path: "/todo/:slug/edit", component: EditTodoPage })
+      React.createElement(Route, { path: "/todo/:slug/edit", component: EditTodoPage }),
+      React.createElement(Route, { component: NotFoundPage })
     )
+  );
+}
+
+function NotFoundPage() {
+  return React.createElement(
+    "p",
+    null,
+    "Not found"
   );
 }
 
