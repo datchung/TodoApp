@@ -2,11 +2,19 @@
 
 const Router = ReactRouterDOM.BrowserRouter;
 const Route = ReactRouterDOM.Route;
+const Link = ReactRouterDOM.Link;
+const Switch = ReactRouterDOM.Switch;
 
 function App() {
   return (
     <React.Fragment>
       <h1>Todo App</h1>
+      <Switch>
+        <Route path="/" exact component={TodoListPage} />
+        <Route path="/todo/add" component={AddTodoPage} />
+        <Route path="/todo/:slug/edit" component={EditTodoPage} />
+        {/* <Route component={NotFoundPage} /> */}
+      </Switch>
       <TodoListPage></TodoListPage>
     </React.Fragment>
   );
@@ -17,6 +25,9 @@ function TodoListPage() {
   return (
     <React.Fragment>
       <p>TodoListPage</p>
+      <Link to="./todo/add">
+        <button>Add</button>
+      </Link>
       <TodoList></TodoList>
     </React.Fragment>
   );
@@ -53,11 +64,47 @@ function TodoSimple() {
   );
 }
 
-// Add/Edit/Delete Todo page
+// Add Todo page
+function AddTodoPage() {
+  return (
+    <p>AddTodoPage</p>
+  );
+}
 
-// Add/Edit/Delete Todo smart
+// Add Todo smart
+function AddTodo() {
+  return (
+    <p>AddTodo</p>
+  );
+}
 
-// Add/Edit/Delete Todo simple
+// Add Todo simple
+function AddTodoSimple() {
+  return (
+    <p>AddTodoSimple</p>
+  );
+}
+
+// Edit/Delete Todo page
+function EditTodoPage() {
+  return (
+    <p>EditTodoPage</p>
+  );
+}
+
+// Edit/Delete Todo smart
+function EditTodo() {
+  return (
+    <p>EditTodo</p>
+  );
+}
+
+// Edit/Delete Todo simple
+function EditTodoSimple() {
+  return (
+    <p>EditTodoSimple</p>
+  );
+}
 
 
 ReactDOM.render(
