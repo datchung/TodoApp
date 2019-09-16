@@ -1,6 +1,7 @@
 'use strict';
 
-const Router = ReactRouterDOM.BrowserRouter;
+//const Router = ReactRouterDOM.BrowserRouter;
+const Router = ReactRouterDOM.HashRouter;
 const Route = ReactRouterDOM.Route;
 const Link = ReactRouterDOM.Link;
 const Switch = ReactRouterDOM.Switch;
@@ -15,7 +16,6 @@ function App() {
         <Route path="/todo/:slug/edit" component={EditTodoPage} />
         {/* <Route component={NotFoundPage} /> */}
       </Switch>
-      <TodoListPage></TodoListPage>
     </React.Fragment>
   );
 }
@@ -67,14 +67,17 @@ function TodoSimple() {
 // Add Todo page
 function AddTodoPage() {
   return (
-    <p>AddTodoPage</p>
+    <React.Fragment>
+      <p>AddTodoPage</p>
+      <AddTodo></AddTodo>
+    </React.Fragment>
   );
 }
 
 // Add Todo smart
 function AddTodo() {
   return (
-    <p>AddTodo</p>
+    <AddTodoSimple></AddTodoSimple>
   );
 }
 
@@ -88,14 +91,17 @@ function AddTodoSimple() {
 // Edit/Delete Todo page
 function EditTodoPage() {
   return (
-    <p>EditTodoPage</p>
+    <React.Fragment>
+      <p>EditTodoPage</p>
+      <EditTodo></EditTodo>
+    </React.Fragment>
   );
 }
 
 // Edit/Delete Todo smart
 function EditTodo() {
   return (
-    <p>EditTodo</p>
+    <EditTodoSimple></EditTodoSimple>
   );
 }
 
@@ -105,7 +111,6 @@ function EditTodoSimple() {
     <p>EditTodoSimple</p>
   );
 }
-
 
 ReactDOM.render(
   <Router>

@@ -1,6 +1,8 @@
 'use strict';
 
-var Router = ReactRouterDOM.BrowserRouter;
+//const Router = ReactRouterDOM.BrowserRouter;
+
+var Router = ReactRouterDOM.HashRouter;
 var Route = ReactRouterDOM.Route;
 var Link = ReactRouterDOM.Link;
 var Switch = ReactRouterDOM.Switch;
@@ -20,8 +22,7 @@ function App() {
       React.createElement(Route, { path: "/", exact: true, component: TodoListPage }),
       React.createElement(Route, { path: "/todo/add", component: AddTodoPage }),
       React.createElement(Route, { path: "/todo/:slug/edit", component: EditTodoPage })
-    ),
-    React.createElement(TodoListPage, null)
+    )
   );
 }
 
@@ -84,19 +85,20 @@ function TodoSimple() {
 // Add Todo page
 function AddTodoPage() {
   return React.createElement(
-    "p",
+    React.Fragment,
     null,
-    "AddTodoPage"
+    React.createElement(
+      "p",
+      null,
+      "AddTodoPage"
+    ),
+    React.createElement(AddTodo, null)
   );
 }
 
 // Add Todo smart
 function AddTodo() {
-  return React.createElement(
-    "p",
-    null,
-    "AddTodo"
-  );
+  return React.createElement(AddTodoSimple, null);
 }
 
 // Add Todo simple
@@ -111,19 +113,20 @@ function AddTodoSimple() {
 // Edit/Delete Todo page
 function EditTodoPage() {
   return React.createElement(
-    "p",
+    React.Fragment,
     null,
-    "EditTodoPage"
+    React.createElement(
+      "p",
+      null,
+      "EditTodoPage"
+    ),
+    React.createElement(EditTodo, null)
   );
 }
 
 // Edit/Delete Todo smart
 function EditTodo() {
-  return React.createElement(
-    "p",
-    null,
-    "EditTodo"
-  );
+  return React.createElement(EditTodoSimple, null);
 }
 
 // Edit/Delete Todo simple
