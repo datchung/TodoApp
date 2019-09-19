@@ -2,9 +2,7 @@
 
 //const Router = ReactRouterDOM.BrowserRouter;
 const Router = ReactRouterDOM.HashRouter;
-const Route = ReactRouterDOM.Route;
-const Link = ReactRouterDOM.Link;
-const Switch = ReactRouterDOM.Switch;
+const { Route, Link, Switch } = ReactRouterDOM;
 
 function App() {
   return (

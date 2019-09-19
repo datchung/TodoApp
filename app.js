@@ -3,9 +3,11 @@
 //const Router = ReactRouterDOM.BrowserRouter;
 
 var Router = ReactRouterDOM.HashRouter;
-var Route = ReactRouterDOM.Route;
-var Link = ReactRouterDOM.Link;
-var Switch = ReactRouterDOM.Switch;
+var _ReactRouterDOM = ReactRouterDOM,
+    Route = _ReactRouterDOM.Route,
+    Link = _ReactRouterDOM.Link,
+    Switch = _ReactRouterDOM.Switch;
+
 
 function App() {
   return React.createElement(
