@@ -41251,8 +41251,8 @@ var _TodoSimple2 = _interopRequireDefault(_TodoSimple);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Todo() {
-  return _react2.default.createElement(_TodoSimple2.default, null);
+function Todo(props) {
+  return _react2.default.createElement(_TodoSimple2.default, { todo: props.todo });
 }
 
 exports.default = Todo;
@@ -41274,8 +41274,8 @@ var _TodoListSimple2 = _interopRequireDefault(_TodoListSimple);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function TodoList() {
-  return _react2.default.createElement(_TodoListSimple2.default, null);
+function TodoList(props) {
+  return _react2.default.createElement(_TodoListSimple2.default, { todos: props.todos });
 }
 
 exports.default = TodoList;
@@ -41297,7 +41297,8 @@ var _Todo2 = _interopRequireDefault(_Todo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function TodoListSimple() {
+function TodoListSimple(props) {
+  console.info(props);
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -41306,30 +41307,45 @@ function TodoListSimple() {
       null,
       'TodoListSimple'
     ),
-    _react2.default.createElement(_Todo2.default, null)
+    _react2.default.createElement(
+      'ul',
+      null,
+      props.todos.map(function (todo) {
+        _react2.default.createElement(
+          'li',
+          { key: todo.id },
+          _react2.default.createElement(_Todo2.default, { todo: todo })
+        );
+      })
+    )
   );
 }
 
 exports.default = TodoListSimple;
 
 },{"./Todo":69,"react":50}],72:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function TodoSimple() {
+function TodoSimple(props) {
   return _react2.default.createElement(
-    'p',
+    _react2.default.Fragment,
     null,
-    'TodoSimple'
+    _react2.default.createElement("input", { type: "checkbox", value: props.todo.isComplete }),
+    _react2.default.createElement(
+      "label",
+      null,
+      props.todo.text
+    )
   );
 }
 
@@ -41366,19 +41382,95 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../data/TodoStore":76,"../pages/AppPage":78,"flux/utils":19}],74:[function(require,module,exports){
+},{"../data/TodoStore":79,"../pages/AppPage":81,"flux/utils":19}],74:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _counter = 1;
+
+/**
+ * This is a simple counter for providing unique ids.
+ */
+var Counter = {
+  increment: function increment() {
+    return 'id-' + String(_counter++);
+  }
+};
+
+exports.default = Counter;
+
+},{}],75:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _immutable = require('immutable');
+
+var _immutable2 = _interopRequireDefault(_immutable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Todo = _immutable2.default.Record({
+  id: '',
+  isComplete: false,
+  text: ''
+});
+
+exports.default = Todo;
+
+},{"immutable":25}],76:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var ActionTypes = {
-  ADD_TODO: 'ADD_TODO'
+  ADD_TODO: 'ADD_TODO',
+  DELETE_COMPLETED_TODOS: 'DELETE_COMPLETED_TODOS',
+  DELETE_TODO: 'DELETE_TODO',
+  EDIT_TODO: 'EDIT_TODO',
+  START_EDITING_TODO: 'START_EDITING_TODO',
+  STOP_EDITING_TODO: 'STOP_EDITING_TODO',
+  TOGGLE_ALL_TODOS: 'TOGGLE_ALL_TODOS',
+  TOGGLE_TODO: 'TOGGLE_TODO',
+  UPDATE_DRAFT: 'UPDATE_DRAFT'
 };
 
 exports.default = ActionTypes;
 
-},{}],75:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _TodoActionTypes = require('./TodoActionTypes');
+
+var _TodoActionTypes2 = _interopRequireDefault(_TodoActionTypes);
+
+var _TodoDispatcher = require('./TodoDispatcher');
+
+var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Actions = {
+  addTodo: function addTodo(text) {
+    _TodoDispatcher2.default.dispatch({
+      type: _TodoActionTypes2.default.ADD_TODO,
+      text: text
+    });
+  }
+};
+
+exports.default = Actions;
+
+},{"./TodoActionTypes":76,"./TodoDispatcher":78}],78:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41389,7 +41481,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":10}],76:[function(require,module,exports){
+},{"flux":10}],79:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41411,6 +41503,14 @@ var _TodoActionTypes2 = _interopRequireDefault(_TodoActionTypes);
 var _TodoDispatcher = require('./TodoDispatcher');
 
 var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
+
+var _Counter = require('./Counter');
+
+var _Counter2 = _interopRequireDefault(_Counter);
+
+var _Todo = require('./Todo');
+
+var _Todo2 = _interopRequireDefault(_Todo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41439,8 +41539,16 @@ var TodoStore = function (_ReduceStore) {
     value: function reduce(state, action) {
       switch (action.type) {
         case _TodoActionTypes2.default.ADD_TODO:
-          // Do nothing for now, we will add logic here soon!
-          return state;
+          // Don't add todos with no text.
+          if (!action.text) {
+            return state;
+          }
+          var id = _Counter2.default.increment();
+          return state.set(id, new _Todo2.default({
+            id: id,
+            text: action.text,
+            isComplete: false
+          }));
 
         default:
           return state;
@@ -41453,7 +41561,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./TodoActionTypes":74,"./TodoDispatcher":75,"flux/utils":19,"immutable":25}],77:[function(require,module,exports){
+},{"./Counter":74,"./Todo":75,"./TodoActionTypes":76,"./TodoDispatcher":78,"flux/utils":19,"immutable":25}],80:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41485,7 +41593,7 @@ function AddTodoPage() {
 
 exports.default = AddTodoPage;
 
-},{"../components/AddTodo":65,"react":50}],78:[function(require,module,exports){
+},{"../components/AddTodo":65,"react":50}],81:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41516,7 +41624,9 @@ var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function AppPage() {
+function AppPage(props) {
+  console.info('AppPage');
+  console.info(props);
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -41528,7 +41638,9 @@ function AppPage() {
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/', exact: true, component: _TodoListPage2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/', exact: true, render: function render() {
+          return _react2.default.createElement(_TodoListPage2.default, props);
+        } }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/add', component: _AddTodoPage2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/:slug/edit', component: _EditTodoPage2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { component: _NotFoundPage2.default })
@@ -41538,7 +41650,7 @@ function AppPage() {
 
 exports.default = AppPage;
 
-},{"../pages/AddTodoPage":77,"../pages/EditTodoPage":79,"../pages/NotFoundPage":80,"../pages/TodoListPage":81,"react":50,"react-router-dom":44}],79:[function(require,module,exports){
+},{"../pages/AddTodoPage":80,"../pages/EditTodoPage":82,"../pages/NotFoundPage":83,"../pages/TodoListPage":84,"react":50,"react-router-dom":44}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41570,7 +41682,7 @@ function EditTodoPage() {
 
 exports.default = EditTodoPage;
 
-},{"../components/EditTodo":67,"react":50}],80:[function(require,module,exports){
+},{"../components/EditTodo":67,"react":50}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41593,7 +41705,7 @@ function NotFoundPage() {
 
 exports.default = NotFoundPage;
 
-},{"react":50}],81:[function(require,module,exports){
+},{"react":50}],84:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41612,7 +41724,9 @@ var _TodoList2 = _interopRequireDefault(_TodoList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function TodoListPage() {
+function TodoListPage(props) {
+  console.info('TodoListPage');
+  console.info(props);
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -41630,13 +41744,13 @@ function TodoListPage() {
         'Add'
       )
     ),
-    _react2.default.createElement(_TodoList2.default, null)
+    _react2.default.createElement(_TodoList2.default, { todos: props.todos })
   );
 }
 
 exports.default = TodoListPage;
 
-},{"../components/TodoList":70,"react":50,"react-router-dom":44}],82:[function(require,module,exports){
+},{"../components/TodoList":70,"react":50,"react-router-dom":44}],85:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -41651,6 +41765,10 @@ var _AppContainer = require('./containers/AppContainer');
 
 var _AppContainer2 = _interopRequireDefault(_AppContainer);
 
+var _TodoActions = require('./data/TodoActions');
+
+var _TodoActions2 = _interopRequireDefault(_TodoActions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -41659,4 +41777,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _AppContainer2.default })
 ), document.getElementById("appContainer"));
 
-},{"./containers/AppContainer":73,"react":50,"react-dom":38,"react-router-dom":44}]},{},[82]);
+_TodoActions2.default.addTodo('My first task');
+_TodoActions2.default.addTodo('Another task');
+_TodoActions2.default.addTodo('Finish this tutorial');
+
+},{"./containers/AppContainer":73,"./data/TodoActions":77,"react":50,"react-dom":38,"react-router-dom":44}]},{},[85]);

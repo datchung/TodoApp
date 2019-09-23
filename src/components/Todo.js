@@ -1,9 +1,9 @@
 import React from 'react';
 import TodoSimple from './TodoSimple';
 
-function Todo() {
+function Todo(props) {
   return (
-    <TodoSimple></TodoSimple>
+    <TodoSimple todo={props.todo} />
   );
 }
 

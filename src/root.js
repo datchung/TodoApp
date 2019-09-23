@@ -10,3 +10,9 @@ render(
   </Router>,
   document.getElementById("appContainer")
 );
+
+import TodoActions from './data/TodoActions';
+
+TodoActions.addTodo('My first task');
+TodoActions.addTodo('Another task');
+TodoActions.addTodo('Finish this tutorial');

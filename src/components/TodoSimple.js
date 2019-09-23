@@ -1,8 +1,11 @@
 import React from 'react';
 
-function TodoSimple() {
+function TodoSimple(props) {
   return (
-    <p>TodoSimple</p>
+    <React.Fragment>
+      <input type="checkbox" value={props.todo.isComplete}/>
+      <label>{props.todo.text}</label>
+    </React.Fragment>
   );
 }
 

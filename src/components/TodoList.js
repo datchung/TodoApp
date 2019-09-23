@@ -1,9 +1,9 @@
 import React from 'react';
 import TodoListSimple from './TodoListSimple';
 
-function TodoList() {
+function TodoList(props) {
   return (
-    <TodoListSimple></TodoListSimple>
+    <TodoListSimple todos={props.todos} />
   );
 }
 
