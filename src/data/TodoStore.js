@@ -3,7 +3,7 @@ import { ReduceStore } from 'flux/utils';
 import TodoActionTypes from './TodoActionTypes';
 import TodoDispatcher from './TodoDispatcher';
 import Counter from './Counter';
-import Todo from './Todo';
+import Todo from './TodoRecord';
 
 class TodoStore extends ReduceStore {
   constructor() {
