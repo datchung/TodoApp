@@ -41304,11 +41304,6 @@ function TodoListSimple(props) {
     _react2.default.Fragment,
     null,
     _react2.default.createElement(
-      'p',
-      null,
-      'TodoListSimple'
-    ),
-    _react2.default.createElement(
       'ul',
       null,
       [].concat(_toConsumableArray(props.todos.values())).reverse().map(function (todo) {
@@ -41727,11 +41722,6 @@ function TodoListPage(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement(
-      'p',
-      null,
-      'TodoListPage'
-    ),
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: './todo/add' },

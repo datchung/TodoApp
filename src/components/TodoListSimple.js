@@ -4,7 +4,6 @@ import Todo from './Todo';
 function TodoListSimple(props) {
   return (
     <React.Fragment>
-      <p>TodoListSimple</p>
       <ul>
         {[...props.todos.values()].reverse().map(todo => (
           <li key={todo.id}>

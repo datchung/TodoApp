@@ -5,7 +5,6 @@ import TodoList from '../components/TodoList';
 function TodoListPage(props) {
   return (
     <React.Fragment>
-      <p>TodoListPage</p>
       <Link to="./todo/add">
         <button>Add</button>
       </Link>
