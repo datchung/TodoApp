@@ -6,11 +6,11 @@ function TodoListSimple(props) {
     <React.Fragment>
       <p>TodoListSimple</p>
       <ul>
-        {[...props.todos.values()].map(todo => {
+        {[...props.todos.values()].reverse().map(todo => (
           <li key={todo.id}>
             <Todo todo={todo} />
           </li>
-        })}
+        ))}
       </ul>
     </React.Fragment>
   );

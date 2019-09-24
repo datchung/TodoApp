@@ -41252,7 +41252,6 @@ var _TodoSimple2 = _interopRequireDefault(_TodoSimple);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Todo(props) {
-  console.info('Todo %o', props);
   return _react2.default.createElement(_TodoSimple2.default, { todo: props.todo });
 }
 
@@ -41301,7 +41300,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function TodoListSimple(props) {
-  console.info([].concat(_toConsumableArray(props.todos.values())));
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -41314,8 +41312,7 @@ function TodoListSimple(props) {
       'ul',
       null,
       [].concat(_toConsumableArray(props.todos.values())).reverse().map(function (todo) {
-        console.info('todo %o', todo);
-        _react2.default.createElement(
+        return _react2.default.createElement(
           'li',
           { key: todo.id },
           _react2.default.createElement(_Todo2.default, { todo: todo })
