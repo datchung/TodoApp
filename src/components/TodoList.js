@@ -3,7 +3,7 @@ import TodoListSimple from './TodoListSimple';
 
 function TodoList(props) {
   return (
-    <TodoListSimple todos={props.todos} />
+    <TodoListSimple {...props} />
   );
 }
 

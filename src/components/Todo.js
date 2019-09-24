@@ -3,7 +3,11 @@ import TodoSimple from './TodoSimple';
 
 function Todo(props) {
   return (
-    <TodoSimple todo={props.todo} />
+    <TodoSimple
+      todo={props.todo}
+      onToggleTodo={props.onToggleTodo}
+      onDeleteTodo={props.onDeleteTodo}
+      />
   );
 }
 

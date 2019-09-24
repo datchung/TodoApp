@@ -7,7 +7,11 @@ function TodoListSimple(props) {
       <ul>
         {[...props.todos.values()].reverse().map(todo => (
           <li key={todo.id}>
-            <Todo todo={todo} />
+            <Todo
+              todo={todo}
+              onToggleTodo={props.onToggleTodo}
+              onDeleteTodo={props.onDeleteTodo}
+              />
           </li>
         ))}
       </ul>

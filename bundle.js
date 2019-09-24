@@ -41252,7 +41252,11 @@ var _TodoSimple2 = _interopRequireDefault(_TodoSimple);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Todo(props) {
-  return _react2.default.createElement(_TodoSimple2.default, { todo: props.todo });
+  return _react2.default.createElement(_TodoSimple2.default, {
+    todo: props.todo,
+    onToggleTodo: props.onToggleTodo,
+    onDeleteTodo: props.onDeleteTodo
+  });
 }
 
 exports.default = Todo;
@@ -41275,7 +41279,7 @@ var _TodoListSimple2 = _interopRequireDefault(_TodoListSimple);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoList(props) {
-  return _react2.default.createElement(_TodoListSimple2.default, { todos: props.todos });
+  return _react2.default.createElement(_TodoListSimple2.default, props);
 }
 
 exports.default = TodoList;
@@ -41310,7 +41314,11 @@ function TodoListSimple(props) {
         return _react2.default.createElement(
           'li',
           { key: todo.id },
-          _react2.default.createElement(_Todo2.default, { todo: todo })
+          _react2.default.createElement(_Todo2.default, {
+            todo: todo,
+            onToggleTodo: props.onToggleTodo,
+            onDeleteTodo: props.onDeleteTodo
+          })
         );
       })
     )
@@ -41336,7 +41344,13 @@ function TodoSimple(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement("input", { type: "checkbox", value: props.todo.isComplete }),
+    _react2.default.createElement("input", {
+      type: "checkbox",
+      checked: props.todo.isComplete,
+      onChange: function onChange() {
+        return props.onToggleTodo(props.todo.id);
+      }
+    }),
     _react2.default.createElement(
       "label",
       null,
@@ -41364,6 +41378,10 @@ var _TodoStore = require('../data/TodoStore');
 
 var _TodoStore2 = _interopRequireDefault(_TodoStore);
 
+var _TodoActions = require('../data/TodoActions');
+
+var _TodoActions2 = _interopRequireDefault(_TodoActions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getStores() {
@@ -41372,13 +41390,15 @@ function getStores() {
 
 function getState() {
   return {
-    todos: _TodoStore2.default.getState()
+    todos: _TodoStore2.default.getState(),
+    onDeleteTodo: _TodoActions2.default.deleteTodo,
+    onToggleTodo: _TodoActions2.default.toggleTodo
   };
 }
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../data/TodoStore":79,"../pages/AppPage":81,"flux/utils":19}],74:[function(require,module,exports){
+},{"../data/TodoActions":76,"../data/TodoStore":79,"../pages/AppPage":81,"flux/utils":19}],74:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41405,14 +41425,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 var ActionTypes = {
   ADD_TODO: 'ADD_TODO',
-  DELETE_COMPLETED_TODOS: 'DELETE_COMPLETED_TODOS',
   DELETE_TODO: 'DELETE_TODO',
-  EDIT_TODO: 'EDIT_TODO',
-  START_EDITING_TODO: 'START_EDITING_TODO',
-  STOP_EDITING_TODO: 'STOP_EDITING_TODO',
-  TOGGLE_ALL_TODOS: 'TOGGLE_ALL_TODOS',
-  TOGGLE_TODO: 'TOGGLE_TODO',
-  UPDATE_DRAFT: 'UPDATE_DRAFT'
+  TOGGLE_TODO: 'TOGGLE_TODO'
 };
 
 exports.default = ActionTypes;
@@ -41439,6 +41453,18 @@ var Actions = {
     _TodoDispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.ADD_TODO,
       text: text
+    });
+  },
+  deleteTodo: function deleteTodo(id) {
+    _TodoDispatcher2.default.dispatch({
+      type: _TodoActionTypes2.default.DELETE_TODO,
+      id: id
+    });
+  },
+  toggleTodo: function toggleTodo(id) {
+    _TodoDispatcher2.default.dispatch({
+      type: _TodoActionTypes2.default.TOGGLE_TODO,
+      id: id
     });
   }
 };
@@ -41545,6 +41571,14 @@ var TodoStore = function (_ReduceStore) {
             text: action.text,
             isComplete: false
           }));
+
+        case _TodoActionTypes2.default.DELETE_TODO:
+          return state.delete(action.id);
+
+        case _TodoActionTypes2.default.TOGGLE_TODO:
+          return state.update(action.id, function (todo) {
+            return todo.set('isComplete', !todo.isComplete);
+          });
 
         default:
           return state;
