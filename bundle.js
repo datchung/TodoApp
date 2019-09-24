@@ -41297,8 +41297,9 @@ var _Todo2 = _interopRequireDefault(_Todo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function TodoListSimple(props) {
-  console.info(props);
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -41310,7 +41311,7 @@ function TodoListSimple(props) {
     _react2.default.createElement(
       'ul',
       null,
-      props.todos.map(function (todo) {
+      [].concat(_toConsumableArray(props.todos.values())).map(function (todo) {
         _react2.default.createElement(
           'li',
           { key: todo.id },
@@ -41725,8 +41726,6 @@ var _TodoList2 = _interopRequireDefault(_TodoList);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoListPage(props) {
-  console.info('TodoListPage');
-  console.info(props);
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -41744,7 +41743,7 @@ function TodoListPage(props) {
         'Add'
       )
     ),
-    _react2.default.createElement(_TodoList2.default, { todos: props.todos })
+    _react2.default.createElement(_TodoList2.default, props)
   );
 }
 
