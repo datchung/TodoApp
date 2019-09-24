@@ -9,6 +9,11 @@ function TodoSimple(props) {
         onChange={() => props.onToggleTodo(props.todo.id)}
         />
       <label>{props.todo.text}</label>
+      <button
+        onClick={() => props.onDeleteTodo(props.todo.id)}
+        >
+        Delete
+      </button>
     </React.Fragment>
   );
 }

@@ -41388,6 +41388,15 @@ function TodoSimple(props) {
       "label",
       null,
       props.todo.text
+    ),
+    _react2.default.createElement(
+      "button",
+      {
+        onClick: function onClick() {
+          return props.onDeleteTodo(props.todo.id);
+        }
+      },
+      "Delete"
     )
   );
 }
