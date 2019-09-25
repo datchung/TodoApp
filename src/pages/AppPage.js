@@ -6,7 +6,6 @@ import EditTodoPage from '../pages/EditTodoPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 function AppPage(props) {
-  console.info(props);
   return (
     <React.Fragment>
       <h1>Todo App</h1>

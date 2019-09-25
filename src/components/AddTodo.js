@@ -10,7 +10,6 @@ function AddTodo(props) {
   });
 
   function onChange({ target }) {
-    console.info(`onChange ${target.name}, ${target.value}`)
     setTodo({
       ...todo,
       [target.name]: target.value

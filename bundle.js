@@ -41183,7 +41183,6 @@ function AddTodo(props) {
   function onChange(_ref) {
     var target = _ref.target;
 
-    console.info('onChange ' + target.name + ', ' + target.value);
     setTodo(_extends({}, todo, _defineProperty({}, target.name, target.value)));
   }
 
@@ -41759,7 +41758,6 @@ var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function AppPage(props) {
-  console.info(props);
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
