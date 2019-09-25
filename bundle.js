@@ -41419,15 +41419,17 @@ function TodoListSimple(props) {
 exports.default = TodoListSimple;
 
 },{"./Todo":69,"react":50}],73:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require('react-router-dom');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41435,33 +41437,37 @@ function TodoSimple(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement("input", {
-      type: "checkbox",
+    _react2.default.createElement('input', {
+      type: 'checkbox',
       checked: props.todo.isComplete,
       onChange: function onChange() {
         return props.onToggleTodo(props.todo.id);
       }
     }),
     _react2.default.createElement(
-      "label",
-      null,
-      props.todo.text
+      _reactRouterDom.Link,
+      { to: './todo/:id/edit' },
+      _react2.default.createElement(
+        'label',
+        null,
+        props.todo.text
+      )
     ),
     _react2.default.createElement(
-      "button",
+      'button',
       {
         onClick: function onClick() {
           return props.onDeleteTodo(props.todo.id);
         }
       },
-      "Delete"
+      'Delete'
     )
   );
 }
 
 exports.default = TodoSimple;
 
-},{"react":50}],74:[function(require,module,exports){
+},{"react":50,"react-router-dom":44}],74:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41492,6 +41498,7 @@ function getState() {
   return {
     todos: _TodoStore2.default.getState(),
     onAddTodo: _TodoActions2.default.addTodo,
+    onUpdateTodo: _TodoActions2.default.updateTodo,
     onDeleteTodo: _TodoActions2.default.deleteTodo,
     onToggleTodo: _TodoActions2.default.toggleTodo
   };
@@ -41526,6 +41533,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var ActionTypes = {
   ADD_TODO: 'ADD_TODO',
+  UPDATE_TODO: 'UPDATE_TODO',
   DELETE_TODO: 'DELETE_TODO',
   TOGGLE_TODO: 'TOGGLE_TODO'
 };
@@ -41554,6 +41562,12 @@ var Actions = {
     _TodoDispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.ADD_TODO,
       text: text
+    });
+  },
+  updateTodo: function updateTodo(todo) {
+    _TodoDispatcher2.default.dispatch({
+      type: _TodoActionTypes2.default.UPDATE_TODO,
+      todo: todo
     });
   },
   deleteTodo: function deleteTodo(id) {
@@ -41673,6 +41687,12 @@ var TodoStore = function (_ReduceStore) {
             isComplete: false
           }));
 
+        case _TodoActionTypes2.default.UPDATE_TODO:
+          return state.update(action.id, function (todo) {
+            todo.set('text', action.text);
+            todo.set('isComplete', action.isComplete);
+          });
+
         case _TodoActionTypes2.default.DELETE_TODO:
           return state.delete(action.id);
 
@@ -41775,7 +41795,7 @@ function AppPage(props) {
       _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/add', render: function render() {
           return _react2.default.createElement(_AddTodoPage2.default, props);
         } }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/:slug/edit', component: _EditTodoPage2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/:id/edit', component: _EditTodoPage2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { component: _NotFoundPage2.default })
     )
   );

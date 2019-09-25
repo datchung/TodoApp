@@ -8,6 +8,12 @@ const Actions = {
       text,
     });
   },
+  updateTodo(todo) {
+    TodoDispatcher.dispatch({
+      type: TodoActionTypes.UPDATE_TODO,
+      todo,
+    });
+  },
   deleteTodo(id) {
     TodoDispatcher.dispatch({
       type: TodoActionTypes.DELETE_TODO,
