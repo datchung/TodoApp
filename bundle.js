@@ -41149,6 +41149,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -41159,30 +41163,85 @@ var _AddTodoSimple2 = _interopRequireDefault(_AddTodoSimple);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function AddTodo() {
-  return _react2.default.createElement(_AddTodoSimple2.default, null);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function AddTodo(props) {
+  var _useState = (0, _react.useState)({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      errors = _useState2[0],
+      setErrors = _useState2[1];
+
+  var _useState3 = (0, _react.useState)({
+    id: null,
+    text: "",
+    isComplete: false
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      todo = _useState4[0],
+      setTodo = _useState4[1];
+
+  function onChange(_ref) {
+    var target = _ref.target;
+
+    console.info('onChange ' + target.name + ', ' + target.value);
+    setTodo(_extends({}, todo, _defineProperty({}, target.name, target.value)));
+  }
+
+  function formIsValid() {
+    var _errors = {};
+
+    if (!todo.text) _errors.text = "Text is required";
+    setErrors(_errors);
+
+    return Object.keys(_errors).length === 0;
+  }
+
+  function onSubmit(event) {
+    event.preventDefault();
+    if (!formIsValid()) return;
+
+    props.onAddTodo(todo.text);
+    props.history.push("/");
+  }
+
+  return _react2.default.createElement(_AddTodoSimple2.default, {
+    errors: errors,
+    todo: todo,
+    onChange: onChange,
+    onSubmit: onSubmit
+  });
 }
 
 exports.default = AddTodo;
 
 },{"./AddTodoSimple":66,"react":50}],66:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function AddTodoSimple() {
+function AddTodoSimple(props) {
   return _react2.default.createElement(
-    'p',
-    null,
-    'AddTodoSimple'
+    "form",
+    { onSubmit: props.onSubmit },
+    _react2.default.createElement("input", {
+      type: "Text",
+      name: "text",
+      value: props.todo.text || "",
+      onChange: props.onChange
+    }),
+    _react2.default.createElement(
+      "button",
+      { type: "submit" },
+      "Add"
+    )
   );
 }
 
@@ -41433,6 +41492,7 @@ function getStores() {
 function getState() {
   return {
     todos: _TodoStore2.default.getState(),
+    onAddTodo: _TodoActions2.default.addTodo,
     onDeleteTodo: _TodoActions2.default.deleteTodo,
     onToggleTodo: _TodoActions2.default.toggleTodo
   };
@@ -41644,28 +41704,30 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = require('react-router-dom');
+
 var _AddTodo = require('../components/AddTodo');
 
 var _AddTodo2 = _interopRequireDefault(_AddTodo);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function AddTodoPage() {
+function AddTodoPage(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
     _react2.default.createElement(
       'p',
       null,
-      'AddTodoPage'
+      'Add Todo'
     ),
-    _react2.default.createElement(_AddTodo2.default, null)
+    _react2.default.createElement(_AddTodo2.default, props)
   );
 }
 
-exports.default = AddTodoPage;
+exports.default = (0, _reactRouterDom.withRouter)(AddTodoPage);
 
-},{"../components/AddTodo":65,"react":50}],82:[function(require,module,exports){
+},{"../components/AddTodo":65,"react":50,"react-router-dom":44}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41697,6 +41759,7 @@ var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function AppPage(props) {
+  console.info(props);
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -41711,7 +41774,9 @@ function AppPage(props) {
       _react2.default.createElement(_reactRouterDom.Route, { path: '/', exact: true, render: function render() {
           return _react2.default.createElement(_TodoListPage2.default, props);
         } }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/add', component: _AddTodoPage2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/add', render: function render() {
+          return _react2.default.createElement(_AddTodoPage2.default, props);
+        } }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/:slug/edit', component: _EditTodoPage2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { component: _NotFoundPage2.default })
     )

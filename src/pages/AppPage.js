@@ -6,12 +6,13 @@ import EditTodoPage from '../pages/EditTodoPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 function AppPage(props) {
+  console.info(props);
   return (
     <React.Fragment>
       <h1>Todo App</h1>
       <Switch>
         <Route path="/" exact render={() => <TodoListPage {...props} />} />
-        <Route path="/todo/add" component={AddTodoPage} />
+        <Route path="/todo/add" render={() => <AddTodoPage {...props} />} />
         <Route path="/todo/:slug/edit" component={EditTodoPage} />
         <Route component={NotFoundPage} />
       </Switch>

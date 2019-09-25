@@ -1,13 +1,14 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom'
 import AddTodo from '../components/AddTodo';
 
-function AddTodoPage() {
+function AddTodoPage(props) {
   return (
     <React.Fragment>
-      <p>AddTodoPage</p>
-      <AddTodo></AddTodo>
+      <p>Add Todo</p>
+      <AddTodo {...props} />
     </React.Fragment>
   );
 }
 
-export default AddTodoPage;
+export default withRouter(AddTodoPage);
