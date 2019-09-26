@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TodoList from '../smart/TodoList';
-import TodoCount from '../TodoCount';
+import TodoCount from '../smart/TodoCount';
 
 function TodoListPage(props) {
   return (

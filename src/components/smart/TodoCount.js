@@ -1,17 +1,19 @@
 import React from 'react';
+import TodoCountSimple from '../simple/TodoCountSimple';
 
 function TodoCount(props) {
   if (props.todos.size === 0) {
-    return (<p></p>);
+    return (
+      <TodoCountSimple phrase="You have no todos. Click button below to add." />
+    );
   }
 
-  console.info(props.todos);
   const remaining = props.todos.filter(todo => !todo.isComplete).size;
   const total = props.todos.size;
   const phrase = `${remaining}/${total} left`;
 
   return (
-    <p>{phrase}</p>
+    <TodoCountSimple phrase={phrase} />
   );
 }
 

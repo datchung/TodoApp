@@ -41153,40 +41153,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function TodoCount(props) {
-  if (props.todos.size === 0) {
-    return _react2.default.createElement('p', null);
-  }
-
-  console.info(props.todos);
-  var remaining = props.todos.filter(function (todo) {
-    return !todo.isComplete;
-  }).size;
-  var total = props.todos.size;
-  var phrase = remaining + '/' + total + ' left';
-
-  return _react2.default.createElement(
-    'p',
-    null,
-    phrase
-  );
-}
-
-exports.default = TodoCount;
-
-},{"react":50}],66:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
 var _reactRouterDom = require('react-router-dom');
 
 var _TodoListPage = require('./TodoListPage');
@@ -41231,7 +41197,7 @@ function AppPage(props) {
 
 exports.default = AppPage;
 
-},{"./ManageTodoPage":67,"./NotFoundPage":68,"./TodoListPage":69,"react":50,"react-router-dom":44}],67:[function(require,module,exports){
+},{"./ManageTodoPage":66,"./NotFoundPage":67,"./TodoListPage":68,"react":50,"react-router-dom":44}],66:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41265,7 +41231,7 @@ function ManageTodoPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageTodoPage);
 
-},{"../smart/ManageTodo":73,"react":50,"react-router-dom":44}],68:[function(require,module,exports){
+},{"../smart/ManageTodo":73,"react":50,"react-router-dom":44}],67:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41288,7 +41254,7 @@ function NotFoundPage() {
 
 exports.default = NotFoundPage;
 
-},{"react":50}],69:[function(require,module,exports){
+},{"react":50}],68:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41305,7 +41271,7 @@ var _TodoList = require('../smart/TodoList');
 
 var _TodoList2 = _interopRequireDefault(_TodoList);
 
-var _TodoCount = require('../TodoCount');
+var _TodoCount = require('../smart/TodoCount');
 
 var _TodoCount2 = _interopRequireDefault(_TodoCount);
 
@@ -41331,7 +41297,7 @@ function TodoListPage(props) {
 
 exports.default = TodoListPage;
 
-},{"../TodoCount":65,"../smart/TodoList":75,"react":50,"react-router-dom":44}],70:[function(require,module,exports){
+},{"../smart/TodoCount":75,"../smart/TodoList":76,"react":50,"react-router-dom":44}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41363,6 +41329,29 @@ function ManageTodoSimple(props) {
 }
 
 exports.default = ManageTodoSimple;
+
+},{"react":50}],70:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TodoCountSimple(props) {
+  return _react2.default.createElement(
+    'p',
+    null,
+    props.phrase
+  );
+}
+
+exports.default = TodoCountSimple;
 
 },{"react":50}],71:[function(require,module,exports){
 'use strict';
@@ -41548,7 +41537,7 @@ function ManageTodo(props) {
 
 exports.default = ManageTodo;
 
-},{"../simple/ManageTodoSimple":70,"react":50}],74:[function(require,module,exports){
+},{"../simple/ManageTodoSimple":69,"react":50}],74:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41586,6 +41575,39 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _TodoCountSimple = require('../simple/TodoCountSimple');
+
+var _TodoCountSimple2 = _interopRequireDefault(_TodoCountSimple);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TodoCount(props) {
+  if (props.todos.size === 0) {
+    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: 'You have no todos. Click button below to add.' });
+  }
+
+  var remaining = props.todos.filter(function (todo) {
+    return !todo.isComplete;
+  }).size;
+  var total = props.todos.size;
+  var phrase = remaining + '/' + total + ' left';
+
+  return _react2.default.createElement(_TodoCountSimple2.default, { phrase: phrase });
+}
+
+exports.default = TodoCount;
+
+},{"../simple/TodoCountSimple":70,"react":50}],76:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
 var _TodoListSimple = require('../simple/TodoListSimple');
 
 var _TodoListSimple2 = _interopRequireDefault(_TodoListSimple);
@@ -41598,7 +41620,7 @@ function TodoList(props) {
 
 exports.default = TodoList;
 
-},{"../simple/TodoListSimple":71,"react":50}],76:[function(require,module,exports){
+},{"../simple/TodoListSimple":71,"react":50}],77:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41637,7 +41659,7 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":66,"../data/TodoActions":79,"../data/TodoStore":82,"flux/utils":19}],77:[function(require,module,exports){
+},{"../components/pages/AppPage":65,"../data/TodoActions":80,"../data/TodoStore":83,"flux/utils":19}],78:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41656,7 +41678,7 @@ var Counter = {
 
 exports.default = Counter;
 
-},{}],78:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41671,7 +41693,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],79:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41717,7 +41739,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"./TodoActionTypes":78,"./TodoDispatcher":80}],80:[function(require,module,exports){
+},{"./TodoActionTypes":79,"./TodoDispatcher":81}],81:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41728,7 +41750,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":10}],81:[function(require,module,exports){
+},{"flux":10}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41749,7 +41771,7 @@ var TodoRecord = _immutable2.default.Record({
 
 exports.default = TodoRecord;
 
-},{"immutable":25}],82:[function(require,module,exports){
+},{"immutable":25}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41840,7 +41862,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./Counter":77,"./TodoActionTypes":78,"./TodoDispatcher":80,"./TodoRecord":81,"flux/utils":19,"immutable":25}],83:[function(require,module,exports){
+},{"./Counter":78,"./TodoActionTypes":79,"./TodoDispatcher":81,"./TodoRecord":82,"flux/utils":19,"immutable":25}],84:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -41871,4 +41893,4 @@ _TodoActions2.default.addTodo('My first task');
 _TodoActions2.default.addTodo('Another task');
 _TodoActions2.default.addTodo('Finish this tutorial');
 
-},{"./containers/AppContainer":76,"./data/TodoActions":79,"react":50,"react-dom":38,"react-router-dom":44}]},{},[83]);
+},{"./containers/AppContainer":77,"./data/TodoActions":80,"react":50,"react-dom":38,"react-router-dom":44}]},{},[84]);
