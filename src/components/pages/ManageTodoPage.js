@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom'
-import AddTodo from '../components/ManageTodo';
+import AddTodo from '../smart/ManageTodo';
 
 function ManageTodoPage(props) {
   return (

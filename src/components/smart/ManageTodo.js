@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AddTodoSimple from './ManageTodoSimple';
+import AddTodoSimple from '../simple/ManageTodoSimple';
 
 function ManageTodo(props) {
   const [errors, setErrors] = useState({});

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import TodoListPage from '../pages/TodoListPage';
+import TodoListPage from './TodoListPage';
 import ManageTodoPage from './ManageTodoPage';
-import NotFoundPage from '../pages/NotFoundPage';
+import NotFoundPage from './NotFoundPage';
 
 function AppPage(props) {
   return (

@@ -1,4 +1,4 @@
-import AppPage from '../pages/AppPage';
+import AppPage from '../components/pages/AppPage';
 import { Container } from 'flux/utils';
 import TodoStore from '../data/TodoStore';
 import TodoActions from '../data/TodoActions'

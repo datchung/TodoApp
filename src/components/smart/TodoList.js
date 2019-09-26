@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoListSimple from './TodoListSimple';
+import TodoListSimple from '../simple/TodoListSimple';
 
 function TodoList(props) {
   return (

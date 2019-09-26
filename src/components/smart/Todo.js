@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoSimple from './TodoSimple';
+import TodoSimple from '../simple/TodoSimple';
 
 function Todo(props) {
   return (
