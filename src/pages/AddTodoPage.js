@@ -5,7 +5,7 @@ import AddTodo from '../components/AddTodo';
 function AddTodoPage(props) {
   return (
     <React.Fragment>
-      <p>Add Todo</p>
+      <p>Todo Form</p>
       <AddTodo {...props} />
     </React.Fragment>
   );

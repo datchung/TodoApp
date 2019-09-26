@@ -41180,6 +41180,26 @@ function AddTodo(props) {
       todo = _useState4[0],
       setTodo = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isEdit = _useState6[0],
+      setIsEdit = _useState6[1];
+
+  (0, _react.useEffect)(function () {
+    var id = props.match.params.id;
+    var todoById = props.todos.find(function (t) {
+      return t.get('id') == id;
+    });
+    if (!todoById) return;
+
+    setIsEdit(true);
+    setTodo({
+      id: todoById.id,
+      text: todoById.text,
+      isComplete: todoById.isComplete
+    });
+  }, [props.match.params.id]);
+
   function onChange(_ref) {
     var target = _ref.target;
 
@@ -41199,7 +41219,8 @@ function AddTodo(props) {
     event.preventDefault();
     if (!formIsValid()) return;
 
-    props.onAddTodo(todo.text);
+    if (isEdit) props.onUpdateTodo(todo);else props.onAddTodo(todo.text);
+
     props.history.push("/");
   }
 
@@ -41239,7 +41260,7 @@ function AddTodoSimple(props) {
     _react2.default.createElement(
       "button",
       { type: "submit" },
-      "Add"
+      "Save"
     )
   );
 }
@@ -41337,6 +41358,7 @@ function TodoCount(props) {
     return _react2.default.createElement('p', null);
   }
 
+  console.info(props.todos);
   var remaining = props.todos.filter(function (todo) {
     return !todo.isComplete;
   }).size;
@@ -41446,7 +41468,7 @@ function TodoSimple(props) {
     }),
     _react2.default.createElement(
       _reactRouterDom.Link,
-      { to: './todo/:id/edit' },
+      { to: "./todo/" + props.todo.id },
       _react2.default.createElement(
         'label',
         null,
@@ -41688,10 +41710,7 @@ var TodoStore = function (_ReduceStore) {
           }));
 
         case _TodoActionTypes2.default.UPDATE_TODO:
-          return state.update(action.id, function (todo) {
-            todo.set('text', action.text);
-            todo.set('isComplete', action.isComplete);
-          });
+          return state.setIn([action.todo.id, 'text'], action.todo.text);
 
         case _TodoActionTypes2.default.DELETE_TODO:
           return state.delete(action.id);
@@ -41738,7 +41757,7 @@ function AddTodoPage(props) {
     _react2.default.createElement(
       'p',
       null,
-      'Add Todo'
+      'Todo Form'
     ),
     _react2.default.createElement(_AddTodo2.default, props)
   );
@@ -41795,7 +41814,9 @@ function AppPage(props) {
       _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/add', render: function render() {
           return _react2.default.createElement(_AddTodoPage2.default, props);
         } }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/:id/edit', component: _EditTodoPage2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/:id', render: function render() {
+          return _react2.default.createElement(_AddTodoPage2.default, props);
+        } }),
       _react2.default.createElement(_reactRouterDom.Route, { component: _NotFoundPage2.default })
     )
   );

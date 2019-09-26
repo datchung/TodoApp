@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddTodoSimple from './AddTodoSimple';
 
 function AddTodo(props) {
@@ -8,6 +8,20 @@ function AddTodo(props) {
     text: "",
     isComplete: false
   });
+  const [isEdit, setIsEdit] = useState(false);
+
+  useEffect(() => {
+    const id = props.match.params.id;
+    var todoById = props.todos.find(t => t.get('id') == id);
+    if(!todoById) return;
+
+    setIsEdit(true);
+    setTodo({
+      id: todoById.id,
+      text: todoById.text,
+      isComplete: todoById.isComplete
+    });
+  }, [props.match.params.id]);
 
   function onChange({ target }) {
     setTodo({
@@ -29,7 +43,11 @@ function AddTodo(props) {
     event.preventDefault();
     if (!formIsValid()) return;
 
-    props.onAddTodo(todo.text);
+    if(isEdit)
+      props.onUpdateTodo(todo);
+    else
+      props.onAddTodo(todo.text);
+
     props.history.push("/");
   }
 

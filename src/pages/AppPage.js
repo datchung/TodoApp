@@ -12,7 +12,7 @@ function AppPage(props) {
       <Switch>
         <Route path="/" exact render={() => <TodoListPage {...props} />} />
         <Route path="/todo/add" render={() => <AddTodoPage {...props} />} />
-        <Route path="/todo/:slug/edit" component={EditTodoPage} />
+        <Route path="/todo/:id" render={() => <AddTodoPage {...props} />} />
         <Route component={NotFoundPage} />
       </Switch>
     </React.Fragment>

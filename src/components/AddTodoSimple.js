@@ -10,7 +10,7 @@ function AddTodoSimple(props) {
         onChange={props.onChange}
         />
       <button type="submit">
-        Add
+        Save
       </button>
     </form>
   );

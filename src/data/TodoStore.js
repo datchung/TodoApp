@@ -29,13 +29,7 @@ class TodoStore extends ReduceStore {
         }));
       
       case TodoActionTypes.UPDATE_TODO:
-          return state.update(
-            action.id,
-            todo => {
-              todo.set('text', action.text);
-              todo.set('isComplete', action.isComplete);
-            },
-          );
+        return state.setIn([action.todo.id, 'text'], action.todo.text)
 
       case TodoActionTypes.DELETE_TODO:
         return state.delete(action.id);
