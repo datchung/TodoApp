@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddTodoSimple(props) {
+function ManageTodoSimple(props) {
   return (
     <form onSubmit={props.onSubmit}>
       <input 
@@ -16,4 +16,4 @@ function AddTodoSimple(props) {
   );
 }
 
-export default AddTodoSimple;
+export default ManageTodoSimple;

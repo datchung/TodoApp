@@ -1,8 +1,8 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom'
-import AddTodo from '../components/AddTodo';
+import AddTodo from '../components/ManageTodo';
 
-function AddTodoPage(props) {
+function ManageTodoPage(props) {
   return (
     <React.Fragment>
       <p>Todo Form</p>
@@ -11,4 +11,4 @@ function AddTodoPage(props) {
   );
 }
 
-export default withRouter(AddTodoPage);
+export default withRouter(ManageTodoPage);

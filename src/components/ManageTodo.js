@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import AddTodoSimple from './AddTodoSimple';
+import AddTodoSimple from './ManageTodoSimple';
 
-function AddTodo(props) {
+function ManageTodo(props) {
   const [errors, setErrors] = useState({});
   const [todo, setTodo] = useState({
     id: null,
@@ -61,4 +61,4 @@ function AddTodo(props) {
   );
 }
 
-export default AddTodo;
+export default ManageTodo;
