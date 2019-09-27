@@ -1,8 +1,7 @@
-import Immutable from 'immutable';
 import { ReduceStore } from 'flux/utils';
+import uuid from 'uuid';
 import TodoActionTypes from './TodoActionTypes';
 import TodoDispatcher from './TodoDispatcher';
-import Counter from './Counter';
 import Todo from './TodoRecord';
 
 class TodoStore extends ReduceStore {
@@ -10,8 +9,22 @@ class TodoStore extends ReduceStore {
     super(TodoDispatcher);
   }
 
+  getTodosStorageKey() {
+    return "TodoList_Todos";
+  }
+
   getInitialState() {
-    return Immutable.OrderedMap();
+    var defaultTodos = [];
+    // localStorage[this.getTodosStorageKey()]=null;
+    var todosString = localStorage[this.getTodosStorageKey()];
+    if(!todosString) return defaultTodos;
+
+    var todosObject = JSON.parse(todosString);
+    if(!todosObject) return defaultTodos;
+
+    return Array.isArray(todosObject)
+      ? todosObject
+      : defaultTodos;
   }
 
   reduce(state, action) {
@@ -21,24 +34,59 @@ class TodoStore extends ReduceStore {
         if (!action.text) {
           return state;
         }
-        const id = Counter.increment();
-        return state.set(id, new Todo({
-          id,
-          text: action.text,
-          isComplete: false,
-        }));
+        var modifiedState = [
+          ...state, 
+          new Todo({
+            id: uuid(),
+            text: action.text,
+            isComplete: false,
+          })
+        ];
+
+        localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+        return modifiedState;
       
       case TodoActionTypes.UPDATE_TODO:
-        return state.setIn([action.todo.id, 'text'], action.todo.text)
+          var todo = state.find(s => s.id === action.todo.id);
+          if(!todo) return state;
+  
+          var modifiedState = state.map(s => {
+            if(s.id !== action.todo.id) return s;
+            
+            return new Todo({
+              id: s.id,
+              text: action.todo.text,
+              isComplete: s.isComplete
+            });
+          });
+  
+          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          return modifiedState;
 
       case TodoActionTypes.DELETE_TODO:
-        return state.delete(action.id);
+        if(!state.find(s => s.id === action.id)) return state;
+
+        var modifiedState = state.filter(s => s.id != action.id);
+
+        localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+        return modifiedState;
 
       case TodoActionTypes.TOGGLE_TODO:
-        return state.update(
-          action.id,
-          todo => todo.set('isComplete', !todo.isComplete),
-        );
+        var todo = state.find(s => s.id === action.id);
+        if(!todo) return state;
+
+        var modifiedState = state.map(s => {
+          if(s.id !== action.id) return s;
+          
+          return new Todo({
+            id: s.id,
+            text: s.text,
+            isComplete: !s.isComplete
+          });
+        });
+
+        localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+        return modifiedState;
         
       default:
         return state;

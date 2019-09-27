@@ -12,7 +12,7 @@ function ManageTodo(props) {
 
   useEffect(() => {
     const id = props.match.params.id;
-    var todoById = props.todos.find(t => t.get('id') == id);
+    var todoById = props.todos.find(t => t.id === id);
     if(!todoById) return;
 
     setIsEdit(true);

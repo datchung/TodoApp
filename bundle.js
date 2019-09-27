@@ -2662,10 +2662,10 @@ exports.locationsAreEqual = locationsAreEqual;
 exports.parsePath = parsePath;
 exports.createPath = createPath;
 
-},{"resolve-pathname":53,"tiny-invariant":60,"tiny-warning":61,"value-equal":64}],22:[function(require,module,exports){
+},{"resolve-pathname":53,"tiny-invariant":60,"tiny-warning":61,"value-equal":69}],22:[function(require,module,exports){
 "use strict";function _interopDefault(t){return t&&"object"==typeof t&&"default"in t?t.default:t}Object.defineProperty(exports,"__esModule",{value:!0});var resolvePathname=_interopDefault(require("resolve-pathname")),valueEqual=_interopDefault(require("value-equal"));require("tiny-warning");var invariant=_interopDefault(require("tiny-invariant"));function _extends(){return(_extends=Object.assign||function(t){for(var n=1;n<arguments.length;n++){var e=arguments[n];for(var a in e)Object.prototype.hasOwnProperty.call(e,a)&&(t[a]=e[a])}return t}).apply(this,arguments)}function addLeadingSlash(t){return"/"===t.charAt(0)?t:"/"+t}function stripLeadingSlash(t){return"/"===t.charAt(0)?t.substr(1):t}function hasBasename(t,n){return 0===t.toLowerCase().indexOf(n.toLowerCase())&&-1!=="/?#".indexOf(t.charAt(n.length))}function stripBasename(t,n){return hasBasename(t,n)?t.substr(n.length):t}function stripTrailingSlash(t){return"/"===t.charAt(t.length-1)?t.slice(0,-1):t}function parsePath(t){var n=t||"/",e="",a="",r=n.indexOf("#");-1!==r&&(a=n.substr(r),n=n.substr(0,r));var o=n.indexOf("?");return-1!==o&&(e=n.substr(o),n=n.substr(0,o)),{pathname:n,search:"?"===e?"":e,hash:"#"===a?"":a}}function createPath(t){var n=t.pathname,e=t.search,a=t.hash,r=n||"/";return e&&"?"!==e&&(r+="?"===e.charAt(0)?e:"?"+e),a&&"#"!==a&&(r+="#"===a.charAt(0)?a:"#"+a),r}function createLocation(t,n,e,a){var r;"string"==typeof t?(r=parsePath(t)).state=n:(void 0===(r=_extends({},t)).pathname&&(r.pathname=""),r.search?"?"!==r.search.charAt(0)&&(r.search="?"+r.search):r.search="",r.hash?"#"!==r.hash.charAt(0)&&(r.hash="#"+r.hash):r.hash="",void 0!==n&&void 0===r.state&&(r.state=n));try{r.pathname=decodeURI(r.pathname)}catch(t){throw t instanceof URIError?new URIError('Pathname "'+r.pathname+'" could not be decoded. This is likely caused by an invalid percent-encoding.'):t}return e&&(r.key=e),a?r.pathname?"/"!==r.pathname.charAt(0)&&(r.pathname=resolvePathname(r.pathname,a.pathname)):r.pathname=a.pathname:r.pathname||(r.pathname="/"),r}function locationsAreEqual(t,n){return t.pathname===n.pathname&&t.search===n.search&&t.hash===n.hash&&t.key===n.key&&valueEqual(t.state,n.state)}function createTransitionManager(){var o=null;var a=[];return{setPrompt:function(t){return o=t,function(){o===t&&(o=null)}},confirmTransitionTo:function(t,n,e,a){if(null!=o){var r="function"==typeof o?o(t,n):o;"string"==typeof r?"function"==typeof e?e(r,a):a(!0):a(!1!==r)}else a(!0)},appendListener:function(t){var n=!0;function e(){n&&t.apply(void 0,arguments)}return a.push(e),function(){n=!1,a=a.filter(function(t){return t!==e})}},notifyListeners:function(){for(var t=arguments.length,n=new Array(t),e=0;e<t;e++)n[e]=arguments[e];a.forEach(function(t){return t.apply(void 0,n)})}}}var canUseDOM=!("undefined"==typeof window||!window.document||!window.document.createElement);function getConfirmation(t,n){n(window.confirm(t))}function supportsHistory(){var t=window.navigator.userAgent;return(-1===t.indexOf("Android 2.")&&-1===t.indexOf("Android 4.0")||-1===t.indexOf("Mobile Safari")||-1!==t.indexOf("Chrome")||-1!==t.indexOf("Windows Phone"))&&(window.history&&"pushState"in window.history)}function supportsPopStateOnHashChange(){return-1===window.navigator.userAgent.indexOf("Trident")}function supportsGoWithoutReloadUsingHash(){return-1===window.navigator.userAgent.indexOf("Firefox")}function isExtraneousPopstateEvent(t){return void 0===t.state&&-1===navigator.userAgent.indexOf("CriOS")}var PopStateEvent="popstate",HashChangeEvent="hashchange";function getHistoryState(){try{return window.history.state||{}}catch(t){return{}}}function createBrowserHistory(t){void 0===t&&(t={}),canUseDOM||invariant(!1);var s=window.history,c=supportsHistory(),n=!supportsPopStateOnHashChange(),e=t,a=e.forceRefresh,h=void 0!==a&&a,r=e.getUserConfirmation,u=void 0===r?getConfirmation:r,o=e.keyLength,i=void 0===o?6:o,f=t.basename?stripTrailingSlash(addLeadingSlash(t.basename)):"";function l(t){var n=t||{},e=n.key,a=n.state,r=window.location,o=r.pathname+r.search+r.hash;return f&&(o=stripBasename(o,f)),createLocation(o,a,e)}function d(){return Math.random().toString(36).substr(2,i)}var v=createTransitionManager();function p(t){_extends(T,t),T.length=s.length,v.notifyListeners(T.location,T.action)}function g(t){isExtraneousPopstateEvent(t)||w(l(t.state))}function P(){w(l(getHistoryState()))}var m=!1;function w(n){if(m)m=!1,p();else{v.confirmTransitionTo(n,"POP",u,function(t){t?p({action:"POP",location:n}):function(t){var n=T.location,e=H.indexOf(n.key);-1===e&&(e=0);var a=H.indexOf(t.key);-1===a&&(a=0);var r=e-a;r&&(m=!0,L(r))}(n)})}}var y=l(getHistoryState()),H=[y.key];function x(t){return f+createPath(t)}function L(t){s.go(t)}var O=0;function E(t){1===(O+=t)&&1===t?(window.addEventListener(PopStateEvent,g),n&&window.addEventListener(HashChangeEvent,P)):0===O&&(window.removeEventListener(PopStateEvent,g),n&&window.removeEventListener(HashChangeEvent,P))}var S=!1;var T={length:s.length,action:"POP",location:y,createHref:x,push:function(t,n){var i=createLocation(t,n,d(),T.location);v.confirmTransitionTo(i,"PUSH",u,function(t){if(t){var n=x(i),e=i.key,a=i.state;if(c)if(s.pushState({key:e,state:a},null,n),h)window.location.href=n;else{var r=H.indexOf(T.location.key),o=H.slice(0,r+1);o.push(i.key),H=o,p({action:"PUSH",location:i})}else window.location.href=n}})},replace:function(t,n){var o="REPLACE",i=createLocation(t,n,d(),T.location);v.confirmTransitionTo(i,o,u,function(t){if(t){var n=x(i),e=i.key,a=i.state;if(c)if(s.replaceState({key:e,state:a},null,n),h)window.location.replace(n);else{var r=H.indexOf(T.location.key);-1!==r&&(H[r]=i.key),p({action:o,location:i})}else window.location.replace(n)}})},go:L,goBack:function(){L(-1)},goForward:function(){L(1)},block:function(t){void 0===t&&(t=!1);var n=v.setPrompt(t);return S||(E(1),S=!0),function(){return S&&(S=!1,E(-1)),n()}},listen:function(t){var n=v.appendListener(t);return E(1),function(){E(-1),n()}}};return T}var HashChangeEvent$1="hashchange",HashPathCoders={hashbang:{encodePath:function(t){return"!"===t.charAt(0)?t:"!/"+stripLeadingSlash(t)},decodePath:function(t){return"!"===t.charAt(0)?t.substr(1):t}},noslash:{encodePath:stripLeadingSlash,decodePath:addLeadingSlash},slash:{encodePath:addLeadingSlash,decodePath:addLeadingSlash}};function stripHash(t){var n=t.indexOf("#");return-1===n?t:t.slice(0,n)}function getHashPath(){var t=window.location.href,n=t.indexOf("#");return-1===n?"":t.substring(n+1)}function pushHashPath(t){window.location.hash=t}function replaceHashPath(t){window.location.replace(stripHash(window.location.href)+"#"+t)}function createHashHistory(t){void 0===t&&(t={}),canUseDOM||invariant(!1);var n=window.history,e=(supportsGoWithoutReloadUsingHash(),t),a=e.getUserConfirmation,i=void 0===a?getConfirmation:a,r=e.hashType,o=void 0===r?"slash":r,s=t.basename?stripTrailingSlash(addLeadingSlash(t.basename)):"",c=HashPathCoders[o],h=c.encodePath,u=c.decodePath;function f(){var t=u(getHashPath());return s&&(t=stripBasename(t,s)),createLocation(t)}var l=createTransitionManager();function d(t){_extends(E,t),E.length=n.length,l.notifyListeners(E.location,E.action)}var v=!1,p=null;function g(){var t=getHashPath(),n=h(t);if(t!==n)replaceHashPath(n);else{var e=f(),a=E.location;if(!v&&function(t,n){return t.pathname===n.pathname&&t.search===n.search&&t.hash===n.hash}(a,e))return;if(p===createPath(e))return;p=null,function(n){if(v)v=!1,d();else{l.confirmTransitionTo(n,"POP",i,function(t){t?d({action:"POP",location:n}):function(t){var n=E.location,e=y.lastIndexOf(createPath(n));-1===e&&(e=0);var a=y.lastIndexOf(createPath(t));-1===a&&(a=0);var r=e-a;r&&(v=!0,H(r))}(n)})}}(e)}}var P=getHashPath(),m=h(P);P!==m&&replaceHashPath(m);var w=f(),y=[createPath(w)];function H(t){n.go(t)}var x=0;function L(t){1===(x+=t)&&1===t?window.addEventListener(HashChangeEvent$1,g):0===x&&window.removeEventListener(HashChangeEvent$1,g)}var O=!1;var E={length:n.length,action:"POP",location:w,createHref:function(t){var n=document.querySelector("base"),e="";return n&&n.getAttribute("href")&&(e=stripHash(window.location.href)),e+"#"+h(s+createPath(t))},push:function(t,n){var o=createLocation(t,void 0,void 0,E.location);l.confirmTransitionTo(o,"PUSH",i,function(t){if(t){var n=createPath(o),e=h(s+n);if(getHashPath()!==e){p=n,pushHashPath(e);var a=y.lastIndexOf(createPath(E.location)),r=y.slice(0,a+1);r.push(n),y=r,d({action:"PUSH",location:o})}else d()}})},replace:function(t,n){var r="REPLACE",o=createLocation(t,void 0,void 0,E.location);l.confirmTransitionTo(o,r,i,function(t){if(t){var n=createPath(o),e=h(s+n);getHashPath()!==e&&(p=n,replaceHashPath(e));var a=y.indexOf(createPath(E.location));-1!==a&&(y[a]=n),d({action:r,location:o})}})},go:H,goBack:function(){H(-1)},goForward:function(){H(1)},block:function(t){void 0===t&&(t=!1);var n=l.setPrompt(t);return O||(L(1),O=!0),function(){return O&&(O=!1,L(-1)),n()}},listen:function(t){var n=l.appendListener(t);return L(1),function(){L(-1),n()}}};return E}function clamp(t,n,e){return Math.min(Math.max(t,n),e)}function createMemoryHistory(t){void 0===t&&(t={});var n=t,r=n.getUserConfirmation,e=n.initialEntries,a=void 0===e?["/"]:e,o=n.initialIndex,i=void 0===o?0:o,s=n.keyLength,c=void 0===s?6:s,h=createTransitionManager();function u(t){_extends(g,t),g.length=g.entries.length,h.notifyListeners(g.location,g.action)}function f(){return Math.random().toString(36).substr(2,c)}var l=clamp(i,0,a.length-1),d=a.map(function(t){return createLocation(t,void 0,"string"==typeof t?f():t.key||f())}),v=createPath;function p(t){var n=clamp(g.index+t,0,g.entries.length-1),e=g.entries[n];h.confirmTransitionTo(e,"POP",r,function(t){t?u({action:"POP",location:e,index:n}):u()})}var g={length:d.length,action:"POP",location:d[l],index:l,entries:d,createHref:v,push:function(t,n){var a=createLocation(t,n,f(),g.location);h.confirmTransitionTo(a,"PUSH",r,function(t){if(t){var n=g.index+1,e=g.entries.slice(0);e.length>n?e.splice(n,e.length-n,a):e.push(a),u({action:"PUSH",location:a,index:n,entries:e})}})},replace:function(t,n){var e="REPLACE",a=createLocation(t,n,f(),g.location);h.confirmTransitionTo(a,e,r,function(t){t&&(g.entries[g.index]=a,u({action:e,location:a}))})},go:p,goBack:function(){p(-1)},goForward:function(){p(1)},canGo:function(t){var n=g.index+t;return 0<=n&&n<g.entries.length},block:function(t){return void 0===t&&(t=!1),h.setPrompt(t)},listen:function(t){return h.appendListener(t)}};return g}exports.createBrowserHistory=createBrowserHistory,exports.createHashHistory=createHashHistory,exports.createMemoryHistory=createMemoryHistory,exports.createLocation=createLocation,exports.locationsAreEqual=locationsAreEqual,exports.parsePath=parsePath,exports.createPath=createPath;
 
-},{"resolve-pathname":53,"tiny-invariant":60,"tiny-warning":61,"value-equal":64}],23:[function(require,module,exports){
+},{"resolve-pathname":53,"tiny-invariant":60,"tiny-warning":61,"value-equal":69}],23:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -41089,6 +41089,220 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 },{"_process":30}],62:[function(require,module,exports){
+var v1 = require('./v1');
+var v4 = require('./v4');
+
+var uuid = v4;
+uuid.v1 = v1;
+uuid.v4 = v4;
+
+module.exports = uuid;
+
+},{"./v1":65,"./v4":66}],63:[function(require,module,exports){
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+var byteToHex = [];
+for (var i = 0; i < 256; ++i) {
+  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+}
+
+function bytesToUuid(buf, offset) {
+  var i = offset || 0;
+  var bth = byteToHex;
+  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+  return ([bth[buf[i++]], bth[buf[i++]], 
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]], '-',
+	bth[buf[i++]], bth[buf[i++]],
+	bth[buf[i++]], bth[buf[i++]],
+	bth[buf[i++]], bth[buf[i++]]]).join('');
+}
+
+module.exports = bytesToUuid;
+
+},{}],64:[function(require,module,exports){
+// Unique ID creation requires a high quality random # generator.  In the
+// browser this is a little complicated due to unknown quality of Math.random()
+// and inconsistent support for the `crypto` API.  We do the best we can via
+// feature-detection
+
+// getRandomValues needs to be invoked in a context where "this" is a Crypto
+// implementation. Also, find the complete implementation of crypto on IE11.
+var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
+                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
+
+if (getRandomValues) {
+  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
+
+  module.exports = function whatwgRNG() {
+    getRandomValues(rnds8);
+    return rnds8;
+  };
+} else {
+  // Math.random()-based (RNG)
+  //
+  // If all else fails, use Math.random().  It's fast, but is of unspecified
+  // quality.
+  var rnds = new Array(16);
+
+  module.exports = function mathRNG() {
+    for (var i = 0, r; i < 16; i++) {
+      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+    }
+
+    return rnds;
+  };
+}
+
+},{}],65:[function(require,module,exports){
+var rng = require('./lib/rng');
+var bytesToUuid = require('./lib/bytesToUuid');
+
+// **`v1()` - Generate time-based UUID**
+//
+// Inspired by https://github.com/LiosK/UUID.js
+// and http://docs.python.org/library/uuid.html
+
+var _nodeId;
+var _clockseq;
+
+// Previous uuid creation time
+var _lastMSecs = 0;
+var _lastNSecs = 0;
+
+// See https://github.com/broofa/node-uuid for API details
+function v1(options, buf, offset) {
+  var i = buf && offset || 0;
+  var b = buf || [];
+
+  options = options || {};
+  var node = options.node || _nodeId;
+  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq;
+
+  // node and clockseq need to be initialized to random values if they're not
+  // specified.  We do this lazily to minimize issues related to insufficient
+  // system entropy.  See #189
+  if (node == null || clockseq == null) {
+    var seedBytes = rng();
+    if (node == null) {
+      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
+      node = _nodeId = [
+        seedBytes[0] | 0x01,
+        seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]
+      ];
+    }
+    if (clockseq == null) {
+      // Per 4.2.2, randomize (14 bit) clockseq
+      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
+    }
+  }
+
+  // UUID timestamps are 100 nano-second units since the Gregorian epoch,
+  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
+  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
+  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
+  var msecs = options.msecs !== undefined ? options.msecs : new Date().getTime();
+
+  // Per 4.2.1.2, use count of uuid's generated during the current clock
+  // cycle to simulate higher resolution clock
+  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
+
+  // Time since last uuid creation (in msecs)
+  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
+
+  // Per 4.2.1.2, Bump clockseq on clock regression
+  if (dt < 0 && options.clockseq === undefined) {
+    clockseq = clockseq + 1 & 0x3fff;
+  }
+
+  // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+  // time interval
+  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
+    nsecs = 0;
+  }
+
+  // Per 4.2.1.2 Throw error if too many uuids are requested
+  if (nsecs >= 10000) {
+    throw new Error('uuid.v1(): Can\'t create more than 10M uuids/sec');
+  }
+
+  _lastMSecs = msecs;
+  _lastNSecs = nsecs;
+  _clockseq = clockseq;
+
+  // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
+  msecs += 12219292800000;
+
+  // `time_low`
+  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
+  b[i++] = tl >>> 24 & 0xff;
+  b[i++] = tl >>> 16 & 0xff;
+  b[i++] = tl >>> 8 & 0xff;
+  b[i++] = tl & 0xff;
+
+  // `time_mid`
+  var tmh = (msecs / 0x100000000 * 10000) & 0xfffffff;
+  b[i++] = tmh >>> 8 & 0xff;
+  b[i++] = tmh & 0xff;
+
+  // `time_high_and_version`
+  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
+  b[i++] = tmh >>> 16 & 0xff;
+
+  // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
+  b[i++] = clockseq >>> 8 | 0x80;
+
+  // `clock_seq_low`
+  b[i++] = clockseq & 0xff;
+
+  // `node`
+  for (var n = 0; n < 6; ++n) {
+    b[i + n] = node[n];
+  }
+
+  return buf ? buf : bytesToUuid(b);
+}
+
+module.exports = v1;
+
+},{"./lib/bytesToUuid":63,"./lib/rng":64}],66:[function(require,module,exports){
+var rng = require('./lib/rng');
+var bytesToUuid = require('./lib/bytesToUuid');
+
+function v4(options, buf, offset) {
+  var i = buf && offset || 0;
+
+  if (typeof(options) == 'string') {
+    buf = options === 'binary' ? new Array(16) : null;
+    options = null;
+  }
+  options = options || {};
+
+  var rnds = options.random || (options.rng || rng)();
+
+  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  rnds[6] = (rnds[6] & 0x0f) | 0x40;
+  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+
+  // Copy bytes to buffer, if provided
+  if (buf) {
+    for (var ii = 0; ii < 16; ++ii) {
+      buf[i + ii] = rnds[ii];
+    }
+  }
+
+  return buf || bytesToUuid(rnds);
+}
+
+module.exports = v4;
+
+},{"./lib/bytesToUuid":63,"./lib/rng":64}],67:[function(require,module,exports){
 'use strict';
 
 function valueOf(obj) {
@@ -41128,10 +41342,10 @@ function valueEqual(a, b) {
 
 module.exports = valueEqual;
 
-},{}],63:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 "use strict";function valueOf(e){return e.valueOf?e.valueOf():Object.prototype.valueOf.call(e)}function valueEqual(u,r){if(u===r)return!0;if(null==u||null==r)return!1;if(Array.isArray(u))return Array.isArray(r)&&u.length===r.length&&u.every(function(e,u){return valueEqual(e,r[u])});if("object"!=typeof u&&"object"!=typeof r)return!1;var e=valueOf(u),t=valueOf(r);return e!==u||t!==r?valueEqual(e,t):Object.keys(Object.assign({},u,r)).every(function(e){return valueEqual(u[e],r[e])})}module.exports=valueEqual;
 
-},{}],64:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -41142,7 +41356,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/value-equal.js":62,"./cjs/value-equal.min.js":63,"_process":30}],65:[function(require,module,exports){
+},{"./cjs/value-equal.js":67,"./cjs/value-equal.min.js":68,"_process":30}],70:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41197,7 +41411,7 @@ function AppPage(props) {
 
 exports.default = AppPage;
 
-},{"./ManageTodoPage":66,"./NotFoundPage":67,"./TodoListPage":68,"react":50,"react-router-dom":44}],66:[function(require,module,exports){
+},{"./ManageTodoPage":71,"./NotFoundPage":72,"./TodoListPage":73,"react":50,"react-router-dom":44}],71:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41231,7 +41445,7 @@ function ManageTodoPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageTodoPage);
 
-},{"../smart/ManageTodo":73,"react":50,"react-router-dom":44}],67:[function(require,module,exports){
+},{"../smart/ManageTodo":78,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41254,7 +41468,7 @@ function NotFoundPage() {
 
 exports.default = NotFoundPage;
 
-},{"react":50}],68:[function(require,module,exports){
+},{"react":50}],73:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41297,7 +41511,7 @@ function TodoListPage(props) {
 
 exports.default = TodoListPage;
 
-},{"../smart/TodoCount":75,"../smart/TodoList":76,"react":50,"react-router-dom":44}],69:[function(require,module,exports){
+},{"../smart/TodoCount":80,"../smart/TodoList":81,"react":50,"react-router-dom":44}],74:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41330,7 +41544,7 @@ function ManageTodoSimple(props) {
 
 exports.default = ManageTodoSimple;
 
-},{"react":50}],70:[function(require,module,exports){
+},{"react":50}],75:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41353,7 +41567,7 @@ function TodoCountSimple(props) {
 
 exports.default = TodoCountSimple;
 
-},{"react":50}],71:[function(require,module,exports){
+},{"react":50}],76:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41396,7 +41610,7 @@ function TodoListSimple(props) {
 
 exports.default = TodoListSimple;
 
-},{"../smart/Todo":74,"react":50}],72:[function(require,module,exports){
+},{"../smart/Todo":79,"react":50}],77:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41445,7 +41659,7 @@ function TodoSimple(props) {
 
 exports.default = TodoSimple;
 
-},{"react":50,"react-router-dom":44}],73:[function(require,module,exports){
+},{"react":50,"react-router-dom":44}],78:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41491,7 +41705,7 @@ function ManageTodo(props) {
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
     var todoById = props.todos.find(function (t) {
-      return t.get('id') == id;
+      return t.id === id;
     });
     if (!todoById) return;
 
@@ -41537,7 +41751,7 @@ function ManageTodo(props) {
 
 exports.default = ManageTodo;
 
-},{"../simple/ManageTodoSimple":69,"react":50}],74:[function(require,module,exports){
+},{"../simple/ManageTodoSimple":74,"react":50}],79:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41564,7 +41778,7 @@ function Todo(props) {
 
 exports.default = Todo;
 
-},{"../simple/TodoSimple":72,"react":50}],75:[function(require,module,exports){
+},{"../simple/TodoSimple":77,"react":50}],80:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41582,14 +41796,14 @@ var _TodoCountSimple2 = _interopRequireDefault(_TodoCountSimple);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoCount(props) {
-  if (props.todos.size === 0) {
+  if (props.todos.length === 0) {
     return _react2.default.createElement(_TodoCountSimple2.default, { phrase: 'You have no todos. Click button below to add.' });
   }
 
   var remaining = props.todos.filter(function (todo) {
     return !todo.isComplete;
-  }).size;
-  var total = props.todos.size;
+  }).length;
+  var total = props.todos.length;
   var phrase = remaining + '/' + total + ' left';
 
   return _react2.default.createElement(_TodoCountSimple2.default, { phrase: phrase });
@@ -41597,7 +41811,7 @@ function TodoCount(props) {
 
 exports.default = TodoCount;
 
-},{"../simple/TodoCountSimple":70,"react":50}],76:[function(require,module,exports){
+},{"../simple/TodoCountSimple":75,"react":50}],81:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41620,7 +41834,7 @@ function TodoList(props) {
 
 exports.default = TodoList;
 
-},{"../simple/TodoListSimple":71,"react":50}],77:[function(require,module,exports){
+},{"../simple/TodoListSimple":76,"react":50}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41659,26 +41873,7 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":65,"../data/TodoActions":80,"../data/TodoStore":83,"flux/utils":19}],78:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _counter = 1;
-
-/**
- * This is a simple counter for providing unique ids.
- */
-var Counter = {
-  increment: function increment() {
-    return 'id-' + String(_counter++);
-  }
-};
-
-exports.default = Counter;
-
-},{}],79:[function(require,module,exports){
+},{"../components/pages/AppPage":70,"../data/TodoActions":84,"../data/TodoStore":87,"flux/utils":19}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41693,7 +41888,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],80:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41739,7 +41934,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"./TodoActionTypes":79,"./TodoDispatcher":81}],81:[function(require,module,exports){
+},{"./TodoActionTypes":83,"./TodoDispatcher":85}],85:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41750,7 +41945,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":10}],82:[function(require,module,exports){
+},{"flux":10}],86:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41771,7 +41966,7 @@ var TodoRecord = _immutable2.default.Record({
 
 exports.default = TodoRecord;
 
-},{"immutable":25}],83:[function(require,module,exports){
+},{"immutable":25}],87:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41780,11 +41975,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _immutable = require('immutable');
-
-var _immutable2 = _interopRequireDefault(_immutable);
-
 var _utils = require('flux/utils');
+
+var _uuid = require('uuid');
+
+var _uuid2 = _interopRequireDefault(_uuid);
 
 var _TodoActionTypes = require('./TodoActionTypes');
 
@@ -41794,15 +41989,13 @@ var _TodoDispatcher = require('./TodoDispatcher');
 
 var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
 
-var _Counter = require('./Counter');
-
-var _Counter2 = _interopRequireDefault(_Counter);
-
 var _TodoRecord = require('./TodoRecord');
 
 var _TodoRecord2 = _interopRequireDefault(_TodoRecord);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -41820,9 +42013,22 @@ var TodoStore = function (_ReduceStore) {
   }
 
   _createClass(TodoStore, [{
+    key: 'getTodosStorageKey',
+    value: function getTodosStorageKey() {
+      return "TodoList_Todos";
+    }
+  }, {
     key: 'getInitialState',
     value: function getInitialState() {
-      return _immutable2.default.OrderedMap();
+      var defaultTodos = [];
+      // localStorage[this.getTodosStorageKey()]=null;
+      var todosString = localStorage[this.getTodosStorageKey()];
+      if (!todosString) return defaultTodos;
+
+      var todosObject = JSON.parse(todosString);
+      if (!todosObject) return defaultTodos;
+
+      return Array.isArray(todosObject) ? todosObject : defaultTodos;
     }
   }, {
     key: 'reduce',
@@ -41833,23 +42039,64 @@ var TodoStore = function (_ReduceStore) {
           if (!action.text) {
             return state;
           }
-          var id = _Counter2.default.increment();
-          return state.set(id, new _TodoRecord2.default({
-            id: id,
+          var modifiedState = [].concat(_toConsumableArray(state), [new _TodoRecord2.default({
+            id: (0, _uuid2.default)(),
             text: action.text,
             isComplete: false
-          }));
+          })]);
+
+          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          return modifiedState;
 
         case _TodoActionTypes2.default.UPDATE_TODO:
-          return state.setIn([action.todo.id, 'text'], action.todo.text);
+          var todo = state.find(function (s) {
+            return s.id === action.todo.id;
+          });
+          if (!todo) return state;
+
+          var modifiedState = state.map(function (s) {
+            if (s.id !== action.todo.id) return s;
+
+            return new _TodoRecord2.default({
+              id: s.id,
+              text: action.todo.text,
+              isComplete: s.isComplete
+            });
+          });
+
+          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          return modifiedState;
 
         case _TodoActionTypes2.default.DELETE_TODO:
-          return state.delete(action.id);
+          if (!state.find(function (s) {
+            return s.id === action.id;
+          })) return state;
+
+          var modifiedState = state.filter(function (s) {
+            return s.id != action.id;
+          });
+
+          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          return modifiedState;
 
         case _TodoActionTypes2.default.TOGGLE_TODO:
-          return state.update(action.id, function (todo) {
-            return todo.set('isComplete', !todo.isComplete);
+          var todo = state.find(function (s) {
+            return s.id === action.id;
           });
+          if (!todo) return state;
+
+          var modifiedState = state.map(function (s) {
+            if (s.id !== action.id) return s;
+
+            return new _TodoRecord2.default({
+              id: s.id,
+              text: s.text,
+              isComplete: !s.isComplete
+            });
+          });
+
+          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          return modifiedState;
 
         default:
           return state;
@@ -41862,7 +42109,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./Counter":78,"./TodoActionTypes":79,"./TodoDispatcher":81,"./TodoRecord":82,"flux/utils":19,"immutable":25}],84:[function(require,module,exports){
+},{"./TodoActionTypes":83,"./TodoDispatcher":85,"./TodoRecord":86,"flux/utils":19,"uuid":62}],88:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -41877,10 +42124,6 @@ var _AppContainer = require('./containers/AppContainer');
 
 var _AppContainer2 = _interopRequireDefault(_AppContainer);
 
-var _TodoActions = require('./data/TodoActions');
-
-var _TodoActions2 = _interopRequireDefault(_TodoActions);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -41889,8 +42132,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _AppContainer2.default })
 ), document.getElementById("appContainer"));
 
-_TodoActions2.default.addTodo('My first task');
-_TodoActions2.default.addTodo('Another task');
-_TodoActions2.default.addTodo('Finish this tutorial');
+// import TodoActions from './data/TodoActions';
 
-},{"./containers/AppContainer":77,"./data/TodoActions":80,"react":50,"react-dom":38,"react-router-dom":44}]},{},[84]);
+// TodoActions.addTodo('My first task');
+// TodoActions.addTodo('Another task');
+// TodoActions.addTodo('Finish this tutorial');
+
+},{"./containers/AppContainer":82,"react":50,"react-dom":38,"react-router-dom":44}]},{},[88]);
