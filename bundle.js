@@ -41961,6 +41961,8 @@ var TodoPersistence = function () {
   }
 
   function getSavedTodos() {
+    // if(typeof Android !== 'undefined') console.info('1');
+
     var defaultTodos = [];
 
     var todosString = localStorage[_getTodosStorageKey()];
@@ -42166,11 +42168,5 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   null,
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _AppContainer2.default })
 ), document.getElementById("appContainer"));
-
-// import TodoActions from './data/TodoActions';
-
-// TodoActions.addTodo('My first task');
-// TodoActions.addTodo('Another task');
-// TodoActions.addTodo('Finish this tutorial');
 
 },{"./containers/AppContainer":82,"react":50,"react-dom":38,"react-router-dom":44}]},{},[89]);

@@ -4,6 +4,8 @@ var TodoPersistence = (function() {
   }
 
   function getSavedTodos() {
+    // if(typeof Android !== 'undefined') console.info('1');
+
     var defaultTodos = [];
 
     var todosString = localStorage[_getTodosStorageKey()];
