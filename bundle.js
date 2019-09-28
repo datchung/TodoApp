@@ -41443,6 +41443,19 @@ function ManageTodoPage(props) {
         'Todo Form'
       )
     ),
+    _react2.default.createElement(
+      'div',
+      { className: 'content' },
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/' },
+        _react2.default.createElement(
+          'button',
+          { className: 'button' },
+          'Back'
+        )
+      )
+    ),
     _react2.default.createElement(_ManageTodo2.default, props)
   );
 }

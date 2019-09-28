@@ -1,6 +1,6 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom'
-import AddTodo from '../smart/ManageTodo';
+import {Link, withRouter} from 'react-router-dom'
+import ManageTodo from '../smart/ManageTodo';
 
 function ManageTodoPage(props) {
   return (
@@ -8,7 +8,12 @@ function ManageTodoPage(props) {
       <div className="content">
         <p>Todo Form</p>
       </div>
-      <AddTodo {...props} />
+      <div className="content">
+        <Link to="/">
+          <button className="button">Back</button>
+        </Link>
+      </div>
+      <ManageTodo {...props} />
     </React.Fragment>
   );
 }
