@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import TodoActionTypes from './TodoActionTypes';
 import TodoDispatcher from './TodoDispatcher';
 import Todo from './TodoRecord';
+import TodoPersistence from './TodoPersistence';
 
 class TodoStore extends ReduceStore {
   constructor() {
@@ -14,17 +15,7 @@ class TodoStore extends ReduceStore {
   }
 
   getInitialState() {
-    var defaultTodos = [];
-    // localStorage[this.getTodosStorageKey()]=null;
-    var todosString = localStorage[this.getTodosStorageKey()];
-    if(!todosString) return defaultTodos;
-
-    var todosObject = JSON.parse(todosString);
-    if(!todosObject) return defaultTodos;
-
-    return Array.isArray(todosObject)
-      ? todosObject
-      : defaultTodos;
+    return TodoPersistence.getSavedTodos();
   }
 
   reduce(state, action) {
@@ -43,7 +34,7 @@ class TodoStore extends ReduceStore {
           })
         ];
 
-        localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+        TodoPersistence.saveTodos(modifiedState);
         return modifiedState;
       
       case TodoActionTypes.UPDATE_TODO:
@@ -60,7 +51,7 @@ class TodoStore extends ReduceStore {
             });
           });
   
-          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          TodoPersistence.saveTodos(modifiedState);
           return modifiedState;
 
       case TodoActionTypes.DELETE_TODO:
@@ -68,7 +59,7 @@ class TodoStore extends ReduceStore {
 
         var modifiedState = state.filter(s => s.id != action.id);
 
-        localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+        TodoPersistence.saveTodos(modifiedState);
         return modifiedState;
 
       case TodoActionTypes.TOGGLE_TODO:
@@ -85,7 +76,7 @@ class TodoStore extends ReduceStore {
           });
         });
 
-        localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+        TodoPersistence.saveTodos(modifiedState);
         return modifiedState;
         
       default:

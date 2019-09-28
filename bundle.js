@@ -41877,7 +41877,7 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":70,"../data/TodoActions":84,"../data/TodoStore":87,"flux/utils":19}],83:[function(require,module,exports){
+},{"../components/pages/AppPage":70,"../data/TodoActions":84,"../data/TodoStore":88,"flux/utils":19}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41950,6 +41950,41 @@ var _flux = require('flux');
 exports.default = new _flux.Dispatcher();
 
 },{"flux":10}],86:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var TodoPersistence = function () {
+  function _getTodosStorageKey() {
+    return "TodoList_Todos";
+  }
+
+  function getSavedTodos() {
+    var defaultTodos = [];
+
+    var todosString = localStorage[_getTodosStorageKey()];
+    if (!todosString) return defaultTodos;
+
+    var todosObject = JSON.parse(todosString);
+    if (!todosObject) return defaultTodos;
+
+    return Array.isArray(todosObject) ? todosObject : defaultTodos;
+  }
+
+  function saveTodos(todos) {
+    localStorage[_getTodosStorageKey()] = JSON.stringify(todos);
+  }
+
+  return {
+    getSavedTodos: getSavedTodos,
+    saveTodos: saveTodos
+  };
+}();
+
+exports.default = TodoPersistence;
+
+},{}],87:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41970,7 +42005,7 @@ var TodoRecord = _immutable2.default.Record({
 
 exports.default = TodoRecord;
 
-},{"immutable":25}],87:[function(require,module,exports){
+},{"immutable":25}],88:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41996,6 +42031,10 @@ var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
 var _TodoRecord = require('./TodoRecord');
 
 var _TodoRecord2 = _interopRequireDefault(_TodoRecord);
+
+var _TodoPersistence = require('./TodoPersistence');
+
+var _TodoPersistence2 = _interopRequireDefault(_TodoPersistence);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42024,15 +42063,7 @@ var TodoStore = function (_ReduceStore) {
   }, {
     key: 'getInitialState',
     value: function getInitialState() {
-      var defaultTodos = [];
-      // localStorage[this.getTodosStorageKey()]=null;
-      var todosString = localStorage[this.getTodosStorageKey()];
-      if (!todosString) return defaultTodos;
-
-      var todosObject = JSON.parse(todosString);
-      if (!todosObject) return defaultTodos;
-
-      return Array.isArray(todosObject) ? todosObject : defaultTodos;
+      return _TodoPersistence2.default.getSavedTodos();
     }
   }, {
     key: 'reduce',
@@ -42049,7 +42080,7 @@ var TodoStore = function (_ReduceStore) {
             isComplete: false
           })]);
 
-          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          _TodoPersistence2.default.saveTodos(modifiedState);
           return modifiedState;
 
         case _TodoActionTypes2.default.UPDATE_TODO:
@@ -42068,7 +42099,7 @@ var TodoStore = function (_ReduceStore) {
             });
           });
 
-          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          _TodoPersistence2.default.saveTodos(modifiedState);
           return modifiedState;
 
         case _TodoActionTypes2.default.DELETE_TODO:
@@ -42080,7 +42111,7 @@ var TodoStore = function (_ReduceStore) {
             return s.id != action.id;
           });
 
-          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          _TodoPersistence2.default.saveTodos(modifiedState);
           return modifiedState;
 
         case _TodoActionTypes2.default.TOGGLE_TODO:
@@ -42099,7 +42130,7 @@ var TodoStore = function (_ReduceStore) {
             });
           });
 
-          localStorage[this.getTodosStorageKey()] = JSON.stringify(modifiedState);
+          _TodoPersistence2.default.saveTodos(modifiedState);
           return modifiedState;
 
         default:
@@ -42113,7 +42144,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./TodoActionTypes":83,"./TodoDispatcher":85,"./TodoRecord":86,"flux/utils":19,"uuid":62}],88:[function(require,module,exports){
+},{"./TodoActionTypes":83,"./TodoDispatcher":85,"./TodoPersistence":86,"./TodoRecord":87,"flux/utils":19,"uuid":62}],89:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -42142,4 +42173,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // TodoActions.addTodo('Another task');
 // TodoActions.addTodo('Finish this tutorial');
 
-},{"./containers/AppContainer":82,"react":50,"react-dom":38,"react-router-dom":44}]},{},[88]);
+},{"./containers/AppContainer":82,"react":50,"react-dom":38,"react-router-dom":44}]},{},[89]);
