@@ -7,7 +7,7 @@ import NotFoundPage from './NotFoundPage';
 function AppPage(props) {
   return (
     <React.Fragment>
-      <h1>Todo App</h1>
+      <h1 className="title is-1">Todo App</h1>
       <Switch>
         <Route path="/" exact render={() => <TodoListPage {...props} />} />
         <Route path="/todo/manage" render={() => <ManageTodoPage {...props} />} />

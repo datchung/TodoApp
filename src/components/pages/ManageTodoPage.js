@@ -5,7 +5,9 @@ import AddTodo from '../smart/ManageTodo';
 function ManageTodoPage(props) {
   return (
     <React.Fragment>
-      <p>Todo Form</p>
+      <div className="content">
+        <p>Todo Form</p>
+      </div>
       <AddTodo {...props} />
     </React.Fragment>
   );

@@ -2,7 +2,9 @@ import React from 'react';
 
 function TodoCountSimple(props) {
   return (
-    <p>{props.phrase}</p>
+    <div className="content">
+      <p>{props.phrase}</p>
+    </div>
   );
 }
 

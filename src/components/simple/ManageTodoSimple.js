@@ -3,15 +3,28 @@ import React from 'react';
 function ManageTodoSimple(props) {
   return (
     <form onSubmit={props.onSubmit}>
-      <input 
-        type="Text"
-        name="text"
-        value={props.todo.text || ""}
-        onChange={props.onChange}
-        />
-      <button type="submit">
-        Save
-      </button>
+      <div className="field">
+        <div className="control">
+          <input 
+            type="Text"
+            name="text"
+            value={props.todo.text || ""}
+            onChange={props.onChange}
+            className="input"
+            />
+        </div>
+      </div>
+      
+      <div className="field">
+        <div className="control">
+          <button
+            type="submit"
+            className="button is-primary"
+            >
+            Save
+          </button>
+        </div>
+      </div>
     </form>
   );
 }

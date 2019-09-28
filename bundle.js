@@ -41389,7 +41389,7 @@ function AppPage(props) {
     null,
     _react2.default.createElement(
       'h1',
-      null,
+      { className: 'title is-1' },
       'Todo App'
     ),
     _react2.default.createElement(
@@ -41435,9 +41435,13 @@ function ManageTodoPage(props) {
     _react2.default.Fragment,
     null,
     _react2.default.createElement(
-      'p',
-      null,
-      'Todo Form'
+      'div',
+      { className: 'content' },
+      _react2.default.createElement(
+        'p',
+        null,
+        'Todo Form'
+      )
     ),
     _react2.default.createElement(_ManageTodo2.default, props)
   );
@@ -41446,13 +41450,13 @@ function ManageTodoPage(props) {
 exports.default = (0, _reactRouterDom.withRouter)(ManageTodoPage);
 
 },{"../smart/ManageTodo":78,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -41460,9 +41464,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function NotFoundPage() {
   return _react2.default.createElement(
-    'p',
-    null,
-    'Not found'
+    "div",
+    { className: "content" },
+    _react2.default.createElement(
+      "p",
+      null,
+      "Not found"
+    )
   );
 }
 
@@ -41497,12 +41505,16 @@ function TodoListPage(props) {
     null,
     _react2.default.createElement(_TodoCount2.default, props),
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: './todo/manage' },
+      'div',
+      { className: 'content' },
       _react2.default.createElement(
-        'button',
-        null,
-        'Add'
+        _reactRouterDom.Link,
+        { to: './todo/manage' },
+        _react2.default.createElement(
+          'button',
+          { className: 'button is-primary' },
+          'Add'
+        )
       )
     ),
     _react2.default.createElement(_TodoList2.default, props)
@@ -41528,16 +41540,36 @@ function ManageTodoSimple(props) {
   return _react2.default.createElement(
     "form",
     { onSubmit: props.onSubmit },
-    _react2.default.createElement("input", {
-      type: "Text",
-      name: "text",
-      value: props.todo.text || "",
-      onChange: props.onChange
-    }),
     _react2.default.createElement(
-      "button",
-      { type: "submit" },
-      "Save"
+      "div",
+      { className: "field" },
+      _react2.default.createElement(
+        "div",
+        { className: "control" },
+        _react2.default.createElement("input", {
+          type: "Text",
+          name: "text",
+          value: props.todo.text || "",
+          onChange: props.onChange,
+          className: "input"
+        })
+      )
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "field" },
+      _react2.default.createElement(
+        "div",
+        { className: "control" },
+        _react2.default.createElement(
+          "button",
+          {
+            type: "submit",
+            className: "button is-primary"
+          },
+          "Save"
+        )
+      )
     )
   );
 }
@@ -41545,13 +41577,13 @@ function ManageTodoSimple(props) {
 exports.default = ManageTodoSimple;
 
 },{"react":50}],75:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -41559,9 +41591,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function TodoCountSimple(props) {
   return _react2.default.createElement(
-    'p',
-    null,
-    props.phrase
+    "div",
+    { className: "content" },
+    _react2.default.createElement(
+      "p",
+      null,
+      props.phrase
+    )
   );
 }
 
@@ -41588,23 +41624,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function TodoListSimple(props) {
   return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
-    _react2.default.createElement(
-      'ul',
-      null,
-      [].concat(_toConsumableArray(props.todos.values())).reverse().map(function (todo) {
-        return _react2.default.createElement(
-          'li',
-          { key: todo.id },
-          _react2.default.createElement(_Todo2.default, {
-            todo: todo,
-            onToggleTodo: props.onToggleTodo,
-            onDeleteTodo: props.onDeleteTodo
-          })
-        );
-      })
-    )
+    'div',
+    { className: 'content' },
+    [].concat(_toConsumableArray(props.todos.values())).reverse().map(function (todo) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'block', key: todo.id },
+        _react2.default.createElement(_Todo2.default, {
+          todo: todo,
+          onToggleTodo: props.onToggleTodo,
+          onDeleteTodo: props.onDeleteTodo
+        })
+      );
+    })
   );
 }
 
@@ -41629,30 +41661,31 @@ function TodoSimple(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement('input', {
-      type: 'checkbox',
-      checked: props.todo.isComplete,
-      onChange: function onChange() {
-        return props.onToggleTodo(props.todo.id);
-      }
-    }),
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: "./todo/" + props.todo.id },
-      _react2.default.createElement(
-        'label',
-        null,
-        props.todo.text
-      )
-    ),
-    _react2.default.createElement(
-      'button',
-      {
-        onClick: function onClick() {
-          return props.onDeleteTodo(props.todo.id);
+      'label',
+      { className: 'checkbox' },
+      _react2.default.createElement('input', {
+        type: 'checkbox',
+        checked: props.todo.isComplete,
+        onChange: function onChange() {
+          return props.onToggleTodo(props.todo.id);
         }
-      },
-      'Delete'
+      }),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: "./todo/" + props.todo.id },
+        props.todo.text
+      ),
+      _react2.default.createElement(
+        'button',
+        {
+          onClick: function onClick() {
+            return props.onDeleteTodo(props.todo.id);
+          },
+          className: 'button is-small'
+        },
+        'Delete'
+      )
     )
   );
 }
@@ -41738,11 +41771,7 @@ function ManageTodo(props) {
 
     if (isEdit) props.onUpdateTodo(todo);else props.onAddTodo(todo.text);
 
-    // console.info(props.startPageIndex);
-    // console.info(props.history.length);
-    // props.history.go(props.startPageIndex - props.history.length);
     props.history.push("/");
-    //window.location.href = "../TodoApp/index.htm";
   }
 
   return _react2.default.createElement(_ManageTodoSimple2.default, {
@@ -41801,14 +41830,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function TodoCount(props) {
   if (props.todos.length === 0) {
-    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: 'You have no todos. Click button below to add.' });
+    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: 'You have no todos. Click the button below to add.' });
   }
 
   var remaining = props.todos.filter(function (todo) {
     return !todo.isComplete;
   }).length;
   var total = props.todos.length;
-  var phrase = remaining + '/' + total + ' left';
+  var phrase = remaining + ' out of ' + total + ' todos remaining';
 
   return _react2.default.createElement(_TodoCountSimple2.default, { phrase: phrase });
 }

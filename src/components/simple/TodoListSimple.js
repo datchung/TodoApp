@@ -3,19 +3,19 @@ import Todo from '../smart/Todo';
 
 function TodoListSimple(props) {
   return (
-    <React.Fragment>
-      <ul>
+    <div className="content">
+      {/* <ul type=""> */}
         {[...props.todos.values()].reverse().map(todo => (
-          <li key={todo.id}>
+          <div className="block" key={todo.id}>
             <Todo
               todo={todo}
               onToggleTodo={props.onToggleTodo}
               onDeleteTodo={props.onDeleteTodo}
               />
-          </li>
+          </div>
         ))}
-      </ul>
-    </React.Fragment>
+      {/* </ul> */}
+    </div>
   );
 }
 
