@@ -41398,7 +41398,7 @@ function AppPage(props) {
       _react2.default.createElement(_reactRouterDom.Route, { path: '/', exact: true, render: function render() {
           return _react2.default.createElement(_TodoListPage2.default, props);
         } }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/add', render: function render() {
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/manage', render: function render() {
           return _react2.default.createElement(_ManageTodoPage2.default, props);
         } }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/todo/:id', render: function render() {
@@ -41498,7 +41498,7 @@ function TodoListPage(props) {
     _react2.default.createElement(_TodoCount2.default, props),
     _react2.default.createElement(
       _reactRouterDom.Link,
-      { to: './todo/add' },
+      { to: './todo/manage' },
       _react2.default.createElement(
         'button',
         null,
@@ -41738,7 +41738,11 @@ function ManageTodo(props) {
 
     if (isEdit) props.onUpdateTodo(todo);else props.onAddTodo(todo.text);
 
+    // console.info(props.startPageIndex);
+    // console.info(props.history.length);
+    // props.history.go(props.startPageIndex - props.history.length);
     props.history.push("/");
+    //window.location.href = "../TodoApp/index.htm";
   }
 
   return _react2.default.createElement(_ManageTodoSimple2.default, {

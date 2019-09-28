@@ -7,7 +7,7 @@ function TodoListPage(props) {
   return (
     <React.Fragment>
       <TodoCount {...props} />
-      <Link to="./todo/add">
+      <Link to="./todo/manage">
         <button>Add</button>
       </Link>
       <TodoList {...props} />

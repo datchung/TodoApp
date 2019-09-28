@@ -10,7 +10,7 @@ function AppPage(props) {
       <h1>Todo App</h1>
       <Switch>
         <Route path="/" exact render={() => <TodoListPage {...props} />} />
-        <Route path="/todo/add" render={() => <ManageTodoPage {...props} />} />
+        <Route path="/todo/manage" render={() => <ManageTodoPage {...props} />} />
         <Route path="/todo/:id" render={() => <ManageTodoPage {...props} />} />
         <Route component={NotFoundPage} />
       </Switch>
