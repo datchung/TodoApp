@@ -10,7 +10,8 @@ function TodoCount(props) {
 
   const remaining = props.todos.filter(todo => !todo.isComplete).length;
   const total = props.todos.length;
-  const phrase = `${remaining} of ${total} todos remaining`;
+  const todoPhrase = total > 1 ? 'todos' : 'todo';
+  const phrase = `${remaining} of ${total} ${todoPhrase} remaining`;
 
   return (
     <TodoCountSimple phrase={phrase} />

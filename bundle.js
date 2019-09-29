@@ -41396,7 +41396,7 @@ function AppPage(props) {
         _react2.default.createElement(
           'h1',
           { className: 'title is-1' },
-          'Todo App'
+          'Todo List'
         )
       )
     ),
@@ -41909,7 +41909,8 @@ function TodoCount(props) {
     return !todo.isComplete;
   }).length;
   var total = props.todos.length;
-  var phrase = remaining + ' of ' + total + ' todos remaining';
+  var todoPhrase = total > 1 ? 'todos' : 'todo';
+  var phrase = remaining + ' of ' + total + ' ' + todoPhrase + ' remaining';
 
   return _react2.default.createElement(_TodoCountSimple2.default, { phrase: phrase });
 }
