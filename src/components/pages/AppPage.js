@@ -9,7 +9,7 @@ function AppPage(props) {
     <React.Fragment>
       <div className="columns is-mobile">
         <div className="column">
-          <h1 className="title is-1">Todo App</h1>
+          <h1 className="title is-1">Todo List</h1>
         </div>
       </div>
       <Switch>
