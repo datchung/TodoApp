@@ -41388,9 +41388,17 @@ function AppPage(props) {
     _react2.default.Fragment,
     null,
     _react2.default.createElement(
-      'h1',
-      { className: 'title is-1' },
-      'Todo App'
+      'div',
+      { className: 'columns is-mobile' },
+      _react2.default.createElement(
+        'div',
+        { className: 'column' },
+        _react2.default.createElement(
+          'h1',
+          { className: 'title is-1' },
+          'Todo App'
+        )
+      )
     ),
     _react2.default.createElement(
       _reactRouterDom.Switch,
@@ -41451,23 +41459,31 @@ function ManageTodoPage(props) {
     null,
     _react2.default.createElement(
       'div',
-      { className: 'content' },
+      { className: 'columns is-mobile' },
       _react2.default.createElement(
-        'h2',
-        null,
-        subTitle
+        'div',
+        { className: 'column' },
+        _react2.default.createElement(
+          'h3',
+          { className: 'title is-3' },
+          subTitle
+        )
       )
     ),
     _react2.default.createElement(
       'div',
-      { className: 'content' },
+      { className: 'columns is-mobile' },
       _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: '/' },
+        'div',
+        { className: 'column' },
         _react2.default.createElement(
-          'button',
-          { className: 'button' },
-          'Back'
+          _reactRouterDom.Link,
+          { to: '/' },
+          _react2.default.createElement(
+            'button',
+            { className: 'button' },
+            'Back'
+          )
         )
       )
     ),
@@ -41534,14 +41550,18 @@ function TodoListPage(props) {
     _react2.default.createElement(_TodoCount2.default, props),
     _react2.default.createElement(
       'div',
-      { className: 'content' },
+      { className: 'columns is-mobile' },
       _react2.default.createElement(
-        _reactRouterDom.Link,
-        { to: './todo/manage' },
+        'div',
+        { className: 'column content' },
         _react2.default.createElement(
-          'button',
-          { className: 'button is-primary' },
-          'Add'
+          _reactRouterDom.Link,
+          { to: './todo/manage' },
+          _react2.default.createElement(
+            'button',
+            { className: 'button is-primary' },
+            'Add'
+          )
         )
       )
     ),
@@ -41566,36 +41586,44 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function ManageTodoSimple(props) {
   return _react2.default.createElement(
-    "form",
-    { onSubmit: props.onSubmit },
+    "div",
+    { className: "columns is-mobile" },
     _react2.default.createElement(
       "div",
-      { className: "field" },
+      { className: "column" },
       _react2.default.createElement(
-        "div",
-        { className: "control" },
-        _react2.default.createElement("input", {
-          type: "Text",
-          name: "text",
-          value: props.todo.text || "",
-          onChange: props.onChange,
-          className: "input"
-        })
-      )
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "field" },
-      _react2.default.createElement(
-        "div",
-        { className: "control" },
+        "form",
+        { onSubmit: props.onSubmit },
         _react2.default.createElement(
-          "button",
-          {
-            type: "submit",
-            className: "button is-primary"
-          },
-          "Save"
+          "div",
+          { className: "field" },
+          _react2.default.createElement(
+            "div",
+            { className: "control" },
+            _react2.default.createElement("input", {
+              type: "Text",
+              name: "text",
+              value: props.todo.text || "",
+              onChange: props.onChange,
+              className: "input"
+            })
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "field" },
+          _react2.default.createElement(
+            "div",
+            { className: "control" },
+            _react2.default.createElement(
+              "button",
+              {
+                type: "submit",
+                className: "button is-primary"
+              },
+              "Save"
+            )
+          )
         )
       )
     )
@@ -41620,11 +41648,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function TodoCountSimple(props) {
   return _react2.default.createElement(
     "div",
-    { className: "content" },
+    { className: "columns is-mobile" },
     _react2.default.createElement(
-      "p",
-      null,
-      props.phrase
+      "div",
+      { className: "column content" },
+      _react2.default.createElement(
+        "p",
+        null,
+        props.phrase
+      )
     )
   );
 }
@@ -41652,12 +41684,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function TodoListSimple(props) {
   return _react2.default.createElement(
-    'div',
-    { className: 'content' },
+    _react2.default.Fragment,
+    null,
     [].concat(_toConsumableArray(props.todos.values())).reverse().map(function (todo) {
       return _react2.default.createElement(
         'div',
-        { className: 'block', key: todo.id },
+        { key: todo.id },
         _react2.default.createElement(_Todo2.default, {
           todo: todo,
           onToggleTodo: props.onToggleTodo,
@@ -41687,23 +41719,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function TodoSimple(props) {
   return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
+    'div',
+    { className: 'columns is-mobile' },
     _react2.default.createElement(
-      'label',
-      { className: 'checkbox' },
+      'div',
+      { className: 'column is-narrow' },
       _react2.default.createElement('input', {
         type: 'checkbox',
         checked: props.todo.isComplete,
         onChange: function onChange() {
           return props.onToggleTodo(props.todo.id);
         }
-      }),
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
       _react2.default.createElement(
         _reactRouterDom.Link,
         { to: "./todo/" + props.todo.id },
-        props.todo.text
-      ),
+        _react2.default.createElement(
+          'p',
+          null,
+          props.todo.text
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'column is-narrow' },
       _react2.default.createElement(
         'button',
         {
@@ -41865,7 +41909,7 @@ function TodoCount(props) {
     return !todo.isComplete;
   }).length;
   var total = props.todos.length;
-  var phrase = remaining + ' out of ' + total + ' todos remaining';
+  var phrase = remaining + ' of ' + total + ' todos remaining';
 
   return _react2.default.createElement(_TodoCountSimple2.default, { phrase: phrase });
 }

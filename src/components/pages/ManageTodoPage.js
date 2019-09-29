@@ -13,13 +13,17 @@ function ManageTodoPage(props) {
 
   return (
     <React.Fragment>
-      <div className="content">
-        <h2>{subTitle}</h2>
+      <div className="columns is-mobile">
+        <div className="column">
+          <h3 className="title is-3">{subTitle}</h3>
+        </div>
       </div>
-      <div className="content">
-        <Link to="/">
-          <button className="button">Back</button>
-        </Link>
+      <div className="columns is-mobile">
+        <div className="column">
+          <Link to="/">
+            <button className="button">Back</button>
+          </Link>
+        </div>
       </div>
       <ManageTodo {...props} />
     </React.Fragment>
