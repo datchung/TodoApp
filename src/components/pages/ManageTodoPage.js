@@ -8,7 +8,7 @@ function ManageTodoPage(props) {
   useEffect(() => {
     const id = props.match.params.id;
     var todoById = props.todos.find(t => t.id === id);
-    setSubTitle(todoById ? "Edit Todo" : "Add Todo");
+    setSubTitle(todoById ? "Edit Todo" : "Create New Todo");
   }, [props.match.params.id]);
 
   return (

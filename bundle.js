@@ -41451,7 +41451,7 @@ function ManageTodoPage(props) {
     var todoById = props.todos.find(function (t) {
       return t.id === id;
     });
-    setSubTitle(todoById ? "Edit Todo" : "Add Todo");
+    setSubTitle(todoById ? "Edit Todo" : "Create New Todo");
   }, [props.match.params.id]);
 
   return _react2.default.createElement(
