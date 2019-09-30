@@ -41560,7 +41560,7 @@ function TodoListPage(props) {
           _react2.default.createElement(
             'button',
             { className: 'button is-primary' },
-            'Add Todo'
+            'Create New Todo'
           )
         )
       )

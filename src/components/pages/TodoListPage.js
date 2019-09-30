@@ -10,7 +10,7 @@ function TodoListPage(props) {
       <div className="columns is-mobile">
         <div className="column content">
         <Link to="./todo/manage">
-          <button className="button is-primary">Add Todo</button>
+          <button className="button is-primary">Create New Todo</button>
         </Link>
         </div>
       </div>
