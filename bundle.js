@@ -41493,7 +41493,7 @@ function ManageTodoPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageTodoPage);
 
-},{"../smart/ManageTodo":78,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
+},{"../smart/ManageTodo":80,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41541,6 +41541,10 @@ var _TodoCount = require('../smart/TodoCount');
 
 var _TodoCount2 = _interopRequireDefault(_TodoCount);
 
+var _FilterSort = require('../smart/FilterSort');
+
+var _FilterSort2 = _interopRequireDefault(_FilterSort);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoListPage(props) {
@@ -41548,6 +41552,7 @@ function TodoListPage(props) {
     _react2.default.Fragment,
     null,
     _react2.default.createElement(_TodoCount2.default, props),
+    _react2.default.createElement(_FilterSort2.default, null),
     _react2.default.createElement(
       'div',
       { className: 'card' },
@@ -41571,7 +41576,92 @@ function TodoListPage(props) {
 
 exports.default = TodoListPage;
 
-},{"../smart/TodoCount":80,"../smart/TodoList":81,"react":50,"react-router-dom":44}],74:[function(require,module,exports){
+},{"../smart/FilterSort":79,"../smart/TodoCount":82,"../smart/TodoList":83,"react":50,"react-router-dom":44}],74:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FilterSortSimple(props) {
+  return _react2.default.createElement(
+    _react2.default.Fragment,
+    null,
+    _react2.default.createElement(
+      "div",
+      { className: "columns is-mobile" },
+      _react2.default.createElement(
+        "div",
+        { className: "column has-text-right" },
+        _react2.default.createElement(
+          "div",
+          { className: "select" },
+          _react2.default.createElement(
+            "select",
+            { onChange: props.onFilter },
+            _react2.default.createElement(
+              "option",
+              { value: "" },
+              "Filter"
+            ),
+            _react2.default.createElement(
+              "option",
+              { value: "all" },
+              "All"
+            ),
+            _react2.default.createElement(
+              "option",
+              { value: "incomplete" },
+              "Incomplete"
+            ),
+            _react2.default.createElement(
+              "option",
+              { value: "complete" },
+              "Complete"
+            )
+          )
+        )
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "column is-narrow" },
+        _react2.default.createElement(
+          "div",
+          { className: "select" },
+          _react2.default.createElement(
+            "select",
+            { onChange: props.onSort },
+            _react2.default.createElement(
+              "option",
+              { value: "" },
+              "Sort"
+            ),
+            _react2.default.createElement(
+              "option",
+              { value: "newest" },
+              "Date new to old"
+            ),
+            _react2.default.createElement(
+              "option",
+              { value: "oldest" },
+              "Date old to new"
+            )
+          )
+        )
+      )
+    )
+  );
+}
+
+exports.default = FilterSortSimple;
+
+},{"react":50}],75:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41632,7 +41722,7 @@ function ManageTodoSimple(props) {
 
 exports.default = ManageTodoSimple;
 
-},{"react":50}],75:[function(require,module,exports){
+},{"react":50}],76:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41663,7 +41753,7 @@ function TodoCountSimple(props) {
 
 exports.default = TodoCountSimple;
 
-},{"react":50}],76:[function(require,module,exports){
+},{"react":50}],77:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41711,7 +41801,7 @@ function TodoListSimple(props) {
 
 exports.default = TodoListSimple;
 
-},{"../smart/Todo":79,"react":50}],77:[function(require,module,exports){
+},{"../smart/Todo":81,"react":50}],78:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41773,7 +41863,44 @@ function TodoSimple(props) {
 
 exports.default = TodoSimple;
 
-},{"react":50,"react-router-dom":44}],78:[function(require,module,exports){
+},{"react":50,"react-router-dom":44}],79:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FilterSortSimple = require('../simple/FilterSortSimple');
+
+var _FilterSortSimple2 = _interopRequireDefault(_FilterSortSimple);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FilterSort(props) {
+  function onFilter(e, f, g) {
+    console.info(e);
+    console.info(f);
+    console.info(g);
+  }
+
+  function onSort(e, f, g) {
+    console.info(e);
+    console.info(f);
+    console.info(g);
+  }
+
+  return _react2.default.createElement(_FilterSortSimple2.default, _extends({}, props, { onFilter: onFilter, onSort: onSort }));
+}
+
+exports.default = FilterSort;
+
+},{"../simple/FilterSortSimple":74,"react":50}],80:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41865,7 +41992,7 @@ function ManageTodo(props) {
 
 exports.default = ManageTodo;
 
-},{"../simple/ManageTodoSimple":74,"react":50}],79:[function(require,module,exports){
+},{"../simple/ManageTodoSimple":75,"react":50}],81:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41892,7 +42019,7 @@ function Todo(props) {
 
 exports.default = Todo;
 
-},{"../simple/TodoSimple":77,"react":50}],80:[function(require,module,exports){
+},{"../simple/TodoSimple":78,"react":50}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41930,7 +42057,7 @@ function TodoCount(props) {
 
 exports.default = TodoCount;
 
-},{"../simple/TodoCountSimple":75,"react":50}],81:[function(require,module,exports){
+},{"../simple/TodoCountSimple":76,"react":50}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41953,7 +42080,7 @@ function TodoList(props) {
 
 exports.default = TodoList;
 
-},{"../simple/TodoListSimple":76,"react":50}],82:[function(require,module,exports){
+},{"../simple/TodoListSimple":77,"react":50}],84:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41992,7 +42119,7 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":70,"../data/TodoActions":84,"../data/TodoStore":88,"flux/utils":19}],83:[function(require,module,exports){
+},{"../components/pages/AppPage":70,"../data/TodoActions":86,"../data/TodoStore":90,"flux/utils":19}],85:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42007,7 +42134,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],84:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42053,7 +42180,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"./TodoActionTypes":83,"./TodoDispatcher":85}],85:[function(require,module,exports){
+},{"./TodoActionTypes":85,"./TodoDispatcher":87}],87:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42064,7 +42191,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":10}],86:[function(require,module,exports){
+},{"flux":10}],88:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42101,7 +42228,7 @@ var TodoPersistence = function () {
 
 exports.default = TodoPersistence;
 
-},{}],87:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42122,7 +42249,7 @@ var TodoRecord = _immutable2.default.Record({
 
 exports.default = TodoRecord;
 
-},{"immutable":25}],88:[function(require,module,exports){
+},{"immutable":25}],90:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42261,7 +42388,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./TodoActionTypes":83,"./TodoDispatcher":85,"./TodoPersistence":86,"./TodoRecord":87,"flux/utils":19,"uuid":62}],89:[function(require,module,exports){
+},{"./TodoActionTypes":85,"./TodoDispatcher":87,"./TodoPersistence":88,"./TodoRecord":89,"flux/utils":19,"uuid":62}],91:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -42284,4 +42411,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _AppContainer2.default })
 ), document.getElementById("appContainer"));
 
-},{"./containers/AppContainer":82,"react":50,"react-dom":38,"react-router-dom":44}]},{},[89]);
+},{"./containers/AppContainer":84,"react":50,"react-dom":38,"react-router-dom":44}]},{},[91]);
