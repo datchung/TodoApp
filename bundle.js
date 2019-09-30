@@ -41560,7 +41560,7 @@ function TodoListPage(props) {
           _react2.default.createElement(
             'button',
             { className: 'button is-primary' },
-            'Add'
+            'Add Todo'
           )
         )
       )
@@ -41689,12 +41689,21 @@ function TodoListSimple(props) {
     [].concat(_toConsumableArray(props.todos.values())).reverse().map(function (todo) {
       return _react2.default.createElement(
         'div',
-        { key: todo.id },
-        _react2.default.createElement(_Todo2.default, {
-          todo: todo,
-          onToggleTodo: props.onToggleTodo,
-          onDeleteTodo: props.onDeleteTodo
-        })
+        {
+          key: todo.id,
+          className: 'card'
+        },
+        _react2.default.createElement(
+          'div',
+          {
+            className: 'card-content'
+          },
+          _react2.default.createElement(_Todo2.default, {
+            todo: todo,
+            onToggleTodo: props.onToggleTodo,
+            onDeleteTodo: props.onDeleteTodo
+          })
+        )
       );
     })
   );
@@ -41908,6 +41917,10 @@ function TodoCount(props) {
   var remaining = props.todos.filter(function (todo) {
     return !todo.isComplete;
   }).length;
+  if (remaining === 0) {
+    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: 'Congrats. You completed all your todos!' });
+  }
+
   var total = props.todos.length;
   var todoPhrase = total > 1 ? 'todos' : 'todo';
   var phrase = remaining + ' of ' + total + ' ' + todoPhrase + ' remaining';
