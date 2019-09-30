@@ -7,11 +7,11 @@ function TodoListPage(props) {
   return (
     <React.Fragment>
       <TodoCount {...props} />
-      <div className="columns is-mobile">
-        <div className="column content">
-        <Link to="./todo/manage">
-          <button className="button is-primary">Create New Todo</button>
-        </Link>
+      <div className="card">
+        <div className="card-content">
+          <Link to="./todo/manage">
+            <button className="button is-primary is-fullwidth">Create New Todo</button>
+          </Link>
         </div>
       </div>
       <TodoList {...props} />

@@ -41550,16 +41550,16 @@ function TodoListPage(props) {
     _react2.default.createElement(_TodoCount2.default, props),
     _react2.default.createElement(
       'div',
-      { className: 'columns is-mobile' },
+      { className: 'card' },
       _react2.default.createElement(
         'div',
-        { className: 'column content' },
+        { className: 'card-content' },
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: './todo/manage' },
           _react2.default.createElement(
             'button',
-            { className: 'button is-primary' },
+            { className: 'button is-primary is-fullwidth' },
             'Create New Todo'
           )
         )
