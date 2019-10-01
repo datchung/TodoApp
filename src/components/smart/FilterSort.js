@@ -1,21 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FilterSortSimple from '../simple/FilterSortSimple';
 
 function FilterSort(props) {
-  function onFilter(e, f, g) {
-    console.info(e);
-    console.info(f);
-    console.info(g);
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [selectedSort, setSelectedSort] = useState("");
+
+  function onFilter(event) {
+    setSelectedFilter(event.target.value);
   }
 
-  function onSort(e, f, g) {
-    console.info(e);
-    console.info(f);
-    console.info(g);
+  function onSort(event) {
+    setSelectedSort(event.target.value);
   }
 
   return (
-    <FilterSortSimple {...props} onFilter={onFilter} onSort={onSort} />
+    <FilterSortSimple 
+      {...props} 
+      selectedFilter={selectedFilter}
+      selectedSort={selectedSort}
+      onFilter={onFilter} 
+      onSort={onSort} 
+      />
   );
 }
 

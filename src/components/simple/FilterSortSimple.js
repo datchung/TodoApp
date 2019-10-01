@@ -6,8 +6,11 @@ function FilterSortSimple(props) {
       <div className="columns is-mobile">
         <div className="column has-text-right">
           <div className="select">
-            <select onChange={props.onFilter}>
-              <option value="">Filter</option>
+            <select
+              value={props.selectedFilter}
+              onChange={props.onFilter}
+              >
+              <option value="" disabled>Filter</option>
               <option value="all">All</option>
               <option value="incomplete">Incomplete</option>
               <option value="complete">Complete</option>
@@ -16,8 +19,11 @@ function FilterSortSimple(props) {
         </div>
         <div className="column is-narrow">
           <div className="select">
-            <select onChange={props.onSort}>
-              <option value="">Sort</option>
+            <select
+              value={props.selectedSort}
+              onChange={props.onSort}
+              >
+              <option value="" disabled>Sort</option>
               <option value="newest">Date new to old</option>
               <option value="oldest">Date old to new</option>
             </select>
