@@ -41613,72 +41613,93 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function FilterSortSimple(props) {
   return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
+    "div",
+    { className: "columns is-mobile" },
+    _react2.default.createElement("div", { className: "column" }),
     _react2.default.createElement(
       "div",
-      { className: "columns is-mobile" },
+      { className: "column is-narrow" },
       _react2.default.createElement(
         "div",
-        { className: "column has-text-right" },
+        { className: "field has-addons" },
         _react2.default.createElement(
           "div",
-          { className: "select" },
+          { className: "control" },
           _react2.default.createElement(
-            "select",
-            {
-              value: props.selectedFilter,
-              onChange: props.onFilter
-            },
+            "div",
+            { className: "inline-label" },
+            "Filter"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "control" },
+          _react2.default.createElement(
+            "div",
+            { className: "select" },
             _react2.default.createElement(
-              "option",
-              { value: "", disabled: true },
-              "Filter"
-            ),
-            _react2.default.createElement(
-              "option",
-              { value: "all" },
-              "All"
-            ),
-            _react2.default.createElement(
-              "option",
-              { value: "notDone" },
-              "Not Done"
-            ),
-            _react2.default.createElement(
-              "option",
-              { value: "done" },
-              "Done"
+              "select",
+              {
+                value: props.selectedFilter,
+                onChange: props.onFilter
+              },
+              _react2.default.createElement(
+                "option",
+                { value: "all" },
+                "All"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "notDone" },
+                "Not Done"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "done" },
+                "Done"
+              )
             )
           )
         )
-      ),
+      )
+    ),
+    _react2.default.createElement(
+      "div",
+      { className: "column is-narrow" },
       _react2.default.createElement(
         "div",
-        { className: "column is-narrow" },
+        { className: "field has-addons" },
         _react2.default.createElement(
           "div",
-          { className: "select" },
+          { className: "control" },
           _react2.default.createElement(
-            "select",
-            {
-              value: props.selectedSort,
-              onChange: props.onSort
-            },
+            "div",
+            { className: "inline-label" },
+            "Sort"
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "control" },
+          _react2.default.createElement(
+            "div",
+            { className: "select" },
             _react2.default.createElement(
-              "option",
-              { value: "", disabled: true },
-              "Sort"
-            ),
-            _react2.default.createElement(
-              "option",
-              { value: "newestFirst" },
-              "Date new to old"
-            ),
-            _react2.default.createElement(
-              "option",
-              { value: "oldestFirst" },
-              "Date old to new"
+              "select",
+              {
+                value: props.selectedSort,
+                onChange: props.onSort
+              },
+              _react2.default.createElement(
+                "option",
+                { value: "newestFirst" },
+                "Date new to old"
+              ),
+              _react2.default.createElement(
+                "option",
+                { value: "oldestFirst" },
+                "Date old to new"
+              )
             )
           )
         )
@@ -42270,8 +42291,6 @@ var TodoPersistence = function () {
   }
 
   function getSavedTodos() {
-    // if(typeof Android !== 'undefined') console.info('1');
-
     var defaultTodos = [];
 
     var todosString = localStorage[_getTodosStorageKey()];
