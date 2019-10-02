@@ -6,7 +6,9 @@ function ManageTodo(props) {
   const [todo, setTodo] = useState({
     id: null,
     text: "",
-    isComplete: false
+    isComplete: false,
+    dateCreated: 0,
+    dateModified: 0,
   });
   const [isEdit, setIsEdit] = useState(false);
 
@@ -19,7 +21,9 @@ function ManageTodo(props) {
     setTodo({
       id: todoById.id,
       text: todoById.text,
-      isComplete: todoById.isComplete
+      isComplete: todoById.isComplete,
+      dateCreated: todoById.dateCreated,
+      dateModified: todoById.dateModified
     });
   }, [props.match.params.id]);
 

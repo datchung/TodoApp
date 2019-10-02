@@ -21,6 +21,7 @@ function TodoList(props) {
     }
 
     setTodos(todos);
+    console.info(todos);
   }, [props.todos, props.selectedFilter, props.selectedSort]);
 
   return (

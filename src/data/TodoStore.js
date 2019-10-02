@@ -25,12 +25,15 @@ class TodoStore extends ReduceStore {
         if (!action.text) {
           return state;
         }
+        var dateCreated = + new Date();
         var modifiedState = [
           ...state, 
           new Todo({
             id: uuid(),
             text: action.text,
             isComplete: false,
+            dateCreated: dateCreated,
+            dateModified: dateCreated
           })
         ];
 
@@ -47,7 +50,9 @@ class TodoStore extends ReduceStore {
             return new Todo({
               id: s.id,
               text: action.todo.text,
-              isComplete: s.isComplete
+              isComplete: s.isComplete,
+              dateCreated: s.dateCreated,
+              dateModified: + new Date()
             });
           });
   
@@ -72,7 +77,9 @@ class TodoStore extends ReduceStore {
           return new Todo({
             id: s.id,
             text: s.text,
-            isComplete: !s.isComplete
+            isComplete: !s.isComplete,
+            dateCreated: s.dateCreated,
+            dateModified: + new Date()
           });
         });
 

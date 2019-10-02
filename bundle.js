@@ -41959,7 +41959,9 @@ function ManageTodo(props) {
   var _useState3 = (0, _react.useState)({
     id: null,
     text: "",
-    isComplete: false
+    isComplete: false,
+    dateCreated: 0,
+    dateModified: 0
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       todo = _useState4[0],
@@ -41981,7 +41983,9 @@ function ManageTodo(props) {
     setTodo({
       id: todoById.id,
       text: todoById.text,
-      isComplete: todoById.isComplete
+      isComplete: todoById.isComplete,
+      dateCreated: todoById.dateCreated,
+      dateModified: todoById.dateModified
     });
   }, [props.match.params.id]);
 
@@ -42132,6 +42136,7 @@ function TodoList(props) {
     }
 
     setTodos(todos);
+    console.info(todos);
   }, [props.todos, props.selectedFilter, props.selectedSort]);
 
   return _react2.default.createElement(_TodoListSimple2.default, {
@@ -42307,7 +42312,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var TodoRecord = _immutable2.default.Record({
   id: '',
   isComplete: false,
-  text: ''
+  text: '',
+  dateCreated: 0,
+  dateModified: 0
 });
 
 exports.default = TodoRecord;
@@ -42381,10 +42388,13 @@ var TodoStore = function (_ReduceStore) {
           if (!action.text) {
             return state;
           }
+          var dateCreated = +new Date();
           var modifiedState = [].concat(_toConsumableArray(state), [new _TodoRecord2.default({
             id: (0, _uuid2.default)(),
             text: action.text,
-            isComplete: false
+            isComplete: false,
+            dateCreated: dateCreated,
+            dateModified: dateCreated
           })]);
 
           _TodoPersistence2.default.saveTodos(modifiedState);
@@ -42402,7 +42412,9 @@ var TodoStore = function (_ReduceStore) {
             return new _TodoRecord2.default({
               id: s.id,
               text: action.todo.text,
-              isComplete: s.isComplete
+              isComplete: s.isComplete,
+              dateCreated: s.dateCreated,
+              dateModified: +new Date()
             });
           });
 
@@ -42433,7 +42445,9 @@ var TodoStore = function (_ReduceStore) {
             return new _TodoRecord2.default({
               id: s.id,
               text: s.text,
-              isComplete: !s.isComplete
+              isComplete: !s.isComplete,
+              dateCreated: s.dateCreated,
+              dateModified: +new Date()
             });
           });
 
