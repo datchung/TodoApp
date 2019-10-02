@@ -13,14 +13,12 @@ function TodoList(props) {
       case 'done':
         todos = todos.filter(todo => todo.isComplete);
         break;
-      default:
-        if(props.selectedSort !== 'oldestFirst')
-          todos = [...todos];
-        break;
     }
 
-    if(props.selectedSort !== 'oldestFirst')
+    if(props.selectedSort !== 'oldestFirst') {
+      if(todos === props.todos) todos = [...todos];
       todos = todos.reverse();
+    }
 
     setTodos(todos);
   }, [props.todos, props.selectedFilter, props.selectedSort]);

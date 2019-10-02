@@ -42124,12 +42124,12 @@ function TodoList(props) {
           return todo.isComplete;
         });
         break;
-      default:
-        if (props.selectedSort !== 'oldestFirst') todos = [].concat(_toConsumableArray(todos));
-        break;
     }
 
-    if (props.selectedSort !== 'oldestFirst') todos = todos.reverse();
+    if (props.selectedSort !== 'oldestFirst') {
+      if (todos === props.todos) todos = [].concat(_toConsumableArray(todos));
+      todos = todos.reverse();
+    }
 
     setTodos(todos);
   }, [props.todos, props.selectedFilter, props.selectedSort]);
