@@ -12,8 +12,8 @@ function FilterSortSimple(props) {
               >
               <option value="" disabled>Filter</option>
               <option value="all">All</option>
-              <option value="incomplete">Incomplete</option>
-              <option value="complete">Complete</option>
+              <option value="notDone">Not Done</option>
+              <option value="done">Done</option>
             </select>
           </div>
         </div>
@@ -24,8 +24,8 @@ function FilterSortSimple(props) {
               onChange={props.onSort}
               >
               <option value="" disabled>Sort</option>
-              <option value="newest">Date new to old</option>
-              <option value="oldest">Date old to new</option>
+              <option value="newestFirst">Date new to old</option>
+              <option value="oldestFirst">Date old to new</option>
             </select>
           </div>
         </div>

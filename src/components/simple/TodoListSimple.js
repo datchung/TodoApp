@@ -4,7 +4,7 @@ import Todo from '../smart/Todo';
 function TodoListSimple(props) {
   return (
     <React.Fragment>
-      {[...props.todos.values()].reverse().map(todo => (
+      {props.todos.map(todo => (
         <div
           key={todo.id}
           className="card"
