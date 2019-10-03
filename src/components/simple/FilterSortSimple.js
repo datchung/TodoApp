@@ -6,7 +6,7 @@ function FilterSortSimple(props) {
       <div className="columns is-mobile">
         <div className="column"></div>
         <div className="column is-narrow">
-          <div className="field">
+          {/* <div className="field">
             <label className="label">Show</label>
             <div className="control">
               <div className="select">
@@ -35,9 +35,9 @@ function FilterSortSimple(props) {
                 </select>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          {/* <div className="field is-horizontal">
+          <div className="field is-horizontal">
             <div className="field-label is-normal">
               <label className="label">Show</label>
             </div>
@@ -57,9 +57,10 @@ function FilterSortSimple(props) {
                 </div>
               </div>
             </div>
-          </div> */}
-
-          {/* <div className="field is-horizontal">
+          </div>
+        </div>
+        <div className="column is-narrow">
+          <div className="field is-horizontal">
             <div className="field-label is-normal">
               <label className="label">Sort</label>
             </div>
@@ -78,7 +79,7 @@ function FilterSortSimple(props) {
                 </div>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </React.Fragment>
