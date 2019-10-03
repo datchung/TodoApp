@@ -2,8 +2,9 @@ import React from 'react';
 
 function ExpandableSimple(props) {
   var defaultTemplate = (
-    <div className="columns">
-      <div className="column">
+    <div className="columns is-mobile">
+      <div className="column"></div>
+      <div className="column is-narrow">
         <a
           className="button"
           onClick={()=>props.onToggleIsExpanded()}

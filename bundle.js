@@ -41614,10 +41614,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function ExpandableSimple(props) {
   var defaultTemplate = _react2.default.createElement(
     "div",
-    { className: "columns" },
+    { className: "columns is-mobile" },
+    _react2.default.createElement("div", { className: "column" }),
     _react2.default.createElement(
       "div",
-      { className: "column" },
+      { className: "column is-narrow" },
       _react2.default.createElement(
         "a",
         {
@@ -41662,56 +41663,45 @@ function FilterSortSimple(props) {
     null,
     _react2.default.createElement(
       "div",
-      { className: "columns" },
+      { className: "columns is-mobile" },
+      _react2.default.createElement("div", { className: "column" }),
       _react2.default.createElement(
         "div",
-        { className: "column" },
+        { className: "column is-narrow" },
         _react2.default.createElement(
           "div",
-          { className: "field is-horizontal" },
+          { className: "field" },
           _react2.default.createElement(
-            "div",
-            { className: "field-label is-normal" },
-            _react2.default.createElement(
-              "label",
-              { className: "label" },
-              "Show"
-            )
+            "label",
+            { className: "label" },
+            "Show"
           ),
           _react2.default.createElement(
             "div",
-            { className: "field-body" },
+            { className: "control" },
             _react2.default.createElement(
               "div",
-              { className: "field is-narrow" },
+              { className: "select" },
               _react2.default.createElement(
-                "div",
-                { className: "control" },
+                "select",
+                {
+                  value: props.selectedFilter,
+                  onChange: props.onFilter
+                },
                 _react2.default.createElement(
-                  "div",
-                  { className: "select" },
-                  _react2.default.createElement(
-                    "select",
-                    {
-                      value: props.selectedFilter,
-                      onChange: props.onFilter
-                    },
-                    _react2.default.createElement(
-                      "option",
-                      { value: "all" },
-                      "All"
-                    ),
-                    _react2.default.createElement(
-                      "option",
-                      { value: "notDone" },
-                      "Not Done"
-                    ),
-                    _react2.default.createElement(
-                      "option",
-                      { value: "done" },
-                      "Done"
-                    )
-                  )
+                  "option",
+                  { value: "all" },
+                  "All"
+                ),
+                _react2.default.createElement(
+                  "option",
+                  { value: "notDone" },
+                  "Not Done"
+                ),
+                _react2.default.createElement(
+                  "option",
+                  { value: "done" },
+                  "Done"
                 )
               )
             )
@@ -41719,45 +41709,33 @@ function FilterSortSimple(props) {
         ),
         _react2.default.createElement(
           "div",
-          { className: "field is-horizontal" },
+          { className: "field" },
           _react2.default.createElement(
-            "div",
-            { className: "field-label is-normal" },
-            _react2.default.createElement(
-              "label",
-              { className: "label" },
-              "Sort"
-            )
+            "label",
+            { className: "label" },
+            "Sort"
           ),
           _react2.default.createElement(
             "div",
-            { className: "field-body" },
+            { className: "control" },
             _react2.default.createElement(
               "div",
-              { className: "field is-narrow" },
+              { className: "select" },
               _react2.default.createElement(
-                "div",
-                { className: "control" },
+                "select",
+                {
+                  value: props.selectedSort,
+                  onChange: props.onSort
+                },
                 _react2.default.createElement(
-                  "div",
-                  { className: "select" },
-                  _react2.default.createElement(
-                    "select",
-                    {
-                      value: props.selectedSort,
-                      onChange: props.onSort
-                    },
-                    _react2.default.createElement(
-                      "option",
-                      { value: "newestFirst" },
-                      "Date new to old"
-                    ),
-                    _react2.default.createElement(
-                      "option",
-                      { value: "oldestFirst" },
-                      "Date old to new"
-                    )
-                  )
+                  "option",
+                  { value: "newestFirst" },
+                  "Date new to old"
+                ),
+                _react2.default.createElement(
+                  "option",
+                  { value: "oldestFirst" },
+                  "Date old to new"
                 )
               )
             )
