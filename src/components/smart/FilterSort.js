@@ -1,4 +1,5 @@
 import React from 'react';
+import Expandable from './Expandable';
 import FilterSortSimple from '../simple/FilterSortSimple';
 
 function FilterSort(props) {
@@ -11,13 +12,15 @@ function FilterSort(props) {
   }
 
   return (
-    <FilterSortSimple 
-      {...props} 
-      selectedFilter={props.selectedFilter}
-      selectedSort={props.selectedSort}
-      onFilter={onFilter} 
-      onSort={onSort} 
-      />
+    <Expandable placeHolder="Filter">
+      <FilterSortSimple 
+        {...props} 
+        selectedFilter={props.selectedFilter}
+        selectedSort={props.selectedSort}
+        onFilter={onFilter} 
+        onSort={onSort} 
+        />
+    </Expandable>
   );
 }
 

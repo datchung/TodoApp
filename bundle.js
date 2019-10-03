@@ -41493,7 +41493,7 @@ function ManageTodoPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageTodoPage);
 
-},{"../smart/ManageTodo":80,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
+},{"../smart/ManageTodo":82,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41598,7 +41598,51 @@ function TodoListPage(props) {
 
 exports.default = TodoListPage;
 
-},{"../smart/FilterSort":79,"../smart/TodoCount":82,"../smart/TodoList":83,"react":50,"react-router-dom":44}],74:[function(require,module,exports){
+},{"../smart/FilterSort":81,"../smart/TodoCount":84,"../smart/TodoList":85,"react":50,"react-router-dom":44}],74:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ExpandableSimple(props) {
+  var defaultTemplate = _react2.default.createElement(
+    "div",
+    { className: "columns" },
+    _react2.default.createElement(
+      "div",
+      { className: "column" },
+      _react2.default.createElement(
+        "a",
+        {
+          onClick: function onClick() {
+            return props.onToggleIsExpanded();
+          }
+        },
+        props.placeHolder
+      )
+    )
+  );
+
+  if (!props.isExpanded) return defaultTemplate;
+
+  return _react2.default.createElement(
+    _react2.default.Fragment,
+    null,
+    defaultTemplate,
+    props.children
+  );
+}
+
+exports.default = ExpandableSimple;
+
+},{"react":50}],75:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41613,92 +41657,107 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function FilterSortSimple(props) {
   return _react2.default.createElement(
-    "div",
-    { className: "columns is-mobile" },
-    _react2.default.createElement("div", { className: "column" }),
+    _react2.default.Fragment,
+    null,
     _react2.default.createElement(
       "div",
-      { className: "column is-narrow" },
+      { className: "columns" },
       _react2.default.createElement(
         "div",
-        { className: "field has-addons" },
+        { className: "column" },
         _react2.default.createElement(
           "div",
-          { className: "control" },
+          { className: "field is-horizontal" },
           _react2.default.createElement(
             "div",
-            { className: "inline-label" },
-            "Filter"
-          )
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "control" },
-          _react2.default.createElement(
-            "div",
-            { className: "select" },
+            { className: "field-label is-normal" },
             _react2.default.createElement(
-              "select",
-              {
-                value: props.selectedFilter,
-                onChange: props.onFilter
-              },
+              "label",
+              { className: "label" },
+              "Show"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "field-body" },
+            _react2.default.createElement(
+              "div",
+              { className: "field is-narrow" },
               _react2.default.createElement(
-                "option",
-                { value: "all" },
-                "All"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "notDone" },
-                "Not Done"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "done" },
-                "Done"
+                "div",
+                { className: "control" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "select" },
+                  _react2.default.createElement(
+                    "select",
+                    {
+                      value: props.selectedFilter,
+                      onChange: props.onFilter
+                    },
+                    _react2.default.createElement(
+                      "option",
+                      { value: "all" },
+                      "All"
+                    ),
+                    _react2.default.createElement(
+                      "option",
+                      { value: "notDone" },
+                      "Not Done"
+                    ),
+                    _react2.default.createElement(
+                      "option",
+                      { value: "done" },
+                      "Done"
+                    )
+                  )
+                )
               )
             )
           )
-        )
-      )
-    ),
-    _react2.default.createElement(
-      "div",
-      { className: "column is-narrow" },
-      _react2.default.createElement(
-        "div",
-        { className: "field has-addons" },
-        _react2.default.createElement(
-          "div",
-          { className: "control" },
-          _react2.default.createElement(
-            "div",
-            { className: "inline-label" },
-            "Sort"
-          )
         ),
         _react2.default.createElement(
           "div",
-          { className: "control" },
+          { className: "field is-horizontal" },
           _react2.default.createElement(
             "div",
-            { className: "select" },
+            { className: "field-label is-normal" },
             _react2.default.createElement(
-              "select",
-              {
-                value: props.selectedSort,
-                onChange: props.onSort
-              },
+              "label",
+              { className: "label" },
+              "Sort"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "field-body" },
+            _react2.default.createElement(
+              "div",
+              { className: "field is-narrow" },
               _react2.default.createElement(
-                "option",
-                { value: "newestFirst" },
-                "Date new to old"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "oldestFirst" },
-                "Date old to new"
+                "div",
+                { className: "control" },
+                _react2.default.createElement(
+                  "div",
+                  { className: "select" },
+                  _react2.default.createElement(
+                    "select",
+                    {
+                      value: props.selectedSort,
+                      onChange: props.onSort
+                    },
+                    _react2.default.createElement(
+                      "option",
+                      { value: "newestFirst" },
+                      "Date new to old"
+                    ),
+                    _react2.default.createElement(
+                      "option",
+                      { value: "oldestFirst" },
+                      "Date old to new"
+                    )
+                  )
+                )
               )
             )
           )
@@ -41710,7 +41769,7 @@ function FilterSortSimple(props) {
 
 exports.default = FilterSortSimple;
 
-},{"react":50}],75:[function(require,module,exports){
+},{"react":50}],76:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41771,7 +41830,7 @@ function ManageTodoSimple(props) {
 
 exports.default = ManageTodoSimple;
 
-},{"react":50}],76:[function(require,module,exports){
+},{"react":50}],77:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41802,7 +41861,7 @@ function TodoCountSimple(props) {
 
 exports.default = TodoCountSimple;
 
-},{"react":50}],77:[function(require,module,exports){
+},{"react":50}],78:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41848,7 +41907,7 @@ function TodoListSimple(props) {
 
 exports.default = TodoListSimple;
 
-},{"../smart/Todo":81,"react":50}],78:[function(require,module,exports){
+},{"../smart/Todo":83,"react":50}],79:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41910,7 +41969,50 @@ function TodoSimple(props) {
 
 exports.default = TodoSimple;
 
-},{"react":50,"react-router-dom":44}],79:[function(require,module,exports){
+},{"react":50,"react-router-dom":44}],80:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ExpandableSimple = require('../simple/ExpandableSimple');
+
+var _ExpandableSimple2 = _interopRequireDefault(_ExpandableSimple);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Expandable(props) {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isExpanded = _useState2[0],
+      setIsExpanded = _useState2[1];
+
+  function onToggleIsExpanded() {
+    setIsExpanded(!isExpanded);
+  }
+
+  return _react2.default.createElement(
+    _ExpandableSimple2.default,
+    _extends({}, props, {
+      isExpanded: isExpanded,
+      onToggleIsExpanded: onToggleIsExpanded
+    }),
+    props.children
+  );
+}
+
+exports.default = Expandable;
+
+},{"../simple/ExpandableSimple":74,"react":50}],81:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41922,6 +42024,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _Expandable = require('./Expandable');
+
+var _Expandable2 = _interopRequireDefault(_Expandable);
 
 var _FilterSortSimple = require('../simple/FilterSortSimple');
 
@@ -41938,17 +42044,21 @@ function FilterSort(props) {
     props.setSelectedSort(event.target.value);
   }
 
-  return _react2.default.createElement(_FilterSortSimple2.default, _extends({}, props, {
-    selectedFilter: props.selectedFilter,
-    selectedSort: props.selectedSort,
-    onFilter: onFilter,
-    onSort: onSort
-  }));
+  return _react2.default.createElement(
+    _Expandable2.default,
+    { placeHolder: 'Filter' },
+    _react2.default.createElement(_FilterSortSimple2.default, _extends({}, props, {
+      selectedFilter: props.selectedFilter,
+      selectedSort: props.selectedSort,
+      onFilter: onFilter,
+      onSort: onSort
+    }))
+  );
 }
 
 exports.default = FilterSort;
 
-},{"../simple/FilterSortSimple":74,"react":50}],80:[function(require,module,exports){
+},{"../simple/FilterSortSimple":75,"./Expandable":80,"react":50}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42044,7 +42154,7 @@ function ManageTodo(props) {
 
 exports.default = ManageTodo;
 
-},{"../simple/ManageTodoSimple":75,"react":50}],81:[function(require,module,exports){
+},{"../simple/ManageTodoSimple":76,"react":50}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42071,7 +42181,7 @@ function Todo(props) {
 
 exports.default = Todo;
 
-},{"../simple/TodoSimple":78,"react":50}],82:[function(require,module,exports){
+},{"../simple/TodoSimple":79,"react":50}],84:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42109,7 +42219,7 @@ function TodoCount(props) {
 
 exports.default = TodoCount;
 
-},{"../simple/TodoCountSimple":76,"react":50}],83:[function(require,module,exports){
+},{"../simple/TodoCountSimple":77,"react":50}],85:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42168,7 +42278,7 @@ function TodoList(props) {
 
 exports.default = TodoList;
 
-},{"../simple/TodoListSimple":77,"react":50}],84:[function(require,module,exports){
+},{"../simple/TodoListSimple":78,"react":50}],86:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42207,7 +42317,7 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":70,"../data/TodoActions":86,"../data/TodoStore":90,"flux/utils":19}],85:[function(require,module,exports){
+},{"../components/pages/AppPage":70,"../data/TodoActions":88,"../data/TodoStore":92,"flux/utils":19}],87:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42222,7 +42332,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],86:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42268,7 +42378,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"./TodoActionTypes":85,"./TodoDispatcher":87}],87:[function(require,module,exports){
+},{"./TodoActionTypes":87,"./TodoDispatcher":89}],89:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42279,7 +42389,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":10}],88:[function(require,module,exports){
+},{"flux":10}],90:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42314,7 +42424,7 @@ var TodoPersistence = function () {
 
 exports.default = TodoPersistence;
 
-},{}],89:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42337,7 +42447,7 @@ var TodoRecord = _immutable2.default.Record({
 
 exports.default = TodoRecord;
 
-},{"immutable":25}],90:[function(require,module,exports){
+},{"immutable":25}],92:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42483,7 +42593,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./TodoActionTypes":85,"./TodoDispatcher":87,"./TodoPersistence":88,"./TodoRecord":89,"flux/utils":19,"uuid":62}],91:[function(require,module,exports){
+},{"./TodoActionTypes":87,"./TodoDispatcher":89,"./TodoPersistence":90,"./TodoRecord":91,"flux/utils":19,"uuid":62}],93:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -42506,4 +42616,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _AppContainer2.default })
 ), document.getElementById("appContainer"));
 
-},{"./containers/AppContainer":84,"react":50,"react-dom":38,"react-router-dom":44}]},{},[91]);
+},{"./containers/AppContainer":86,"react":50,"react-dom":38,"react-router-dom":44}]},{},[93]);
