@@ -15,7 +15,7 @@ function ManageTodoPage(props) {
     <React.Fragment>
       <div className="columns is-mobile">
         <div className="column">
-          <h3 className="title is-3">{subTitle}</h3>
+          <h4 className="title is-4">{subTitle}</h4>
         </div>
       </div>
       <div className="columns is-mobile">

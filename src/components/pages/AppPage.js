@@ -7,9 +7,9 @@ import NotFoundPage from './NotFoundPage';
 function AppPage(props) {
   return (
     <React.Fragment>
-      <div className="columns is-mobile">
+      <div className="columns is-mobile has-background-light">
         <div className="column">
-          <h1 className="title is-1">Todo List</h1>
+          <h5 className="title is-5">Todo List</h5>
         </div>
       </div>
       <Switch>

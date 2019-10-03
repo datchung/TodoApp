@@ -41389,13 +41389,13 @@ function AppPage(props) {
     null,
     _react2.default.createElement(
       'div',
-      { className: 'columns is-mobile' },
+      { className: 'columns is-mobile has-background-light' },
       _react2.default.createElement(
         'div',
         { className: 'column' },
         _react2.default.createElement(
-          'h1',
-          { className: 'title is-1' },
+          'h5',
+          { className: 'title is-5' },
           'Todo List'
         )
       )
@@ -41464,8 +41464,8 @@ function ManageTodoPage(props) {
         'div',
         { className: 'column' },
         _react2.default.createElement(
-          'h3',
-          { className: 'title is-3' },
+          'h4',
+          { className: 'title is-4' },
           subTitle
         )
       )
