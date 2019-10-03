@@ -5,6 +5,7 @@ function ExpandableSimple(props) {
     <div className="columns">
       <div className="column">
         <a
+          className="button"
           onClick={()=>props.onToggleIsExpanded()}
           >
           {props.placeHolder}

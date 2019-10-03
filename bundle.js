@@ -41621,6 +41621,7 @@ function ExpandableSimple(props) {
       _react2.default.createElement(
         "a",
         {
+          className: "button",
           onClick: function onClick() {
             return props.onToggleIsExpanded();
           }
