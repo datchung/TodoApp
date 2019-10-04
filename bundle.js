@@ -41493,7 +41493,7 @@ function ManageTodoPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageTodoPage);
 
-},{"../smart/ManageTodo":82,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
+},{"../smart/ManageTodo":80,"react":50,"react-router-dom":44}],72:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41562,15 +41562,18 @@ function TodoListPage(props) {
       selectedSort = _useState4[0],
       setSelectedSort = _useState4[1];
 
+  (0, _react.useEffect)(function () {
+    setSelectedFilter(props.filterSort.filter);
+    setSelectedSort(props.filterSort.sort);
+  }, [props.filterSort]);
+
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
     _react2.default.createElement(_TodoCount2.default, props),
     _react2.default.createElement(_FilterSort2.default, _extends({}, props, {
       selectedFilter: selectedFilter,
-      setSelectedFilter: setSelectedFilter,
-      selectedSort: selectedSort,
-      setSelectedSort: setSelectedSort
+      selectedSort: selectedSort
     })),
     _react2.default.createElement(
       'div',
@@ -41598,53 +41601,7 @@ function TodoListPage(props) {
 
 exports.default = TodoListPage;
 
-},{"../smart/FilterSort":81,"../smart/TodoCount":84,"../smart/TodoList":85,"react":50,"react-router-dom":44}],74:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ExpandableSimple(props) {
-  var defaultTemplate = _react2.default.createElement(
-    "div",
-    { className: "columns is-mobile" },
-    _react2.default.createElement("div", { className: "column" }),
-    _react2.default.createElement(
-      "div",
-      { className: "column is-narrow" },
-      _react2.default.createElement(
-        "a",
-        {
-          className: "button",
-          onClick: function onClick() {
-            return props.onToggleIsExpanded();
-          }
-        },
-        props.placeHolder
-      )
-    )
-  );
-
-  if (!props.isExpanded) return defaultTemplate;
-
-  return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
-    defaultTemplate,
-    props.children
-  );
-}
-
-exports.default = ExpandableSimple;
-
-},{"react":50}],75:[function(require,module,exports){
+},{"../smart/FilterSort":79,"../smart/TodoCount":82,"../smart/TodoList":83,"react":50,"react-router-dom":44}],74:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41664,7 +41621,6 @@ function FilterSortSimple(props) {
     _react2.default.createElement(
       "div",
       { className: "columns is-mobile" },
-      _react2.default.createElement("div", { className: "column" }),
       _react2.default.createElement(
         "div",
         { className: "column is-narrow" },
@@ -41676,7 +41632,7 @@ function FilterSortSimple(props) {
             { className: "field-label is-normal" },
             _react2.default.createElement(
               "label",
-              { className: "label" },
+              { className: "label has-text-weight-normal" },
               "Show"
             )
           ),
@@ -41731,7 +41687,7 @@ function FilterSortSimple(props) {
             { className: "field-label is-normal" },
             _react2.default.createElement(
               "label",
-              { className: "label" },
+              { className: "label has-text-weight-normal" },
               "Sort"
             )
           ),
@@ -41776,7 +41732,7 @@ function FilterSortSimple(props) {
 
 exports.default = FilterSortSimple;
 
-},{"react":50}],76:[function(require,module,exports){
+},{"react":50}],75:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41837,7 +41793,7 @@ function ManageTodoSimple(props) {
 
 exports.default = ManageTodoSimple;
 
-},{"react":50}],77:[function(require,module,exports){
+},{"react":50}],76:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -41868,7 +41824,7 @@ function TodoCountSimple(props) {
 
 exports.default = TodoCountSimple;
 
-},{"react":50}],78:[function(require,module,exports){
+},{"react":50}],77:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41914,7 +41870,7 @@ function TodoListSimple(props) {
 
 exports.default = TodoListSimple;
 
-},{"../smart/Todo":83,"react":50}],79:[function(require,module,exports){
+},{"../smart/Todo":81,"react":50}],78:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41950,7 +41906,11 @@ function TodoSimple(props) {
       _react2.default.createElement(
         _reactRouterDom.Link,
         { to: "./todo/" + props.todo.id },
-        _react2.default.createElement(
+        props.todo.isComplete ? _react2.default.createElement(
+          'del',
+          null,
+          props.todo.text
+        ) : _react2.default.createElement(
           'p',
           null,
           props.todo.text
@@ -41976,7 +41936,7 @@ function TodoSimple(props) {
 
 exports.default = TodoSimple;
 
-},{"react":50,"react-router-dom":44}],80:[function(require,module,exports){
+},{"react":50,"react-router-dom":44}],79:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41984,57 +41944,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+// import Expandable from './Expandable';
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ExpandableSimple = require('../simple/ExpandableSimple');
-
-var _ExpandableSimple2 = _interopRequireDefault(_ExpandableSimple);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Expandable(props) {
-  var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isExpanded = _useState2[0],
-      setIsExpanded = _useState2[1];
-
-  function onToggleIsExpanded() {
-    setIsExpanded(!isExpanded);
-  }
-
-  return _react2.default.createElement(
-    _ExpandableSimple2.default,
-    _extends({}, props, {
-      isExpanded: isExpanded,
-      onToggleIsExpanded: onToggleIsExpanded
-    }),
-    props.children
-  );
-}
-
-exports.default = Expandable;
-
-},{"../simple/ExpandableSimple":74,"react":50}],81:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _Expandable = require('./Expandable');
-
-var _Expandable2 = _interopRequireDefault(_Expandable);
 
 var _FilterSortSimple = require('../simple/FilterSortSimple');
 
@@ -42044,28 +41959,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function FilterSort(props) {
   function onFilter(event) {
-    props.setSelectedFilter(event.target.value);
+    props.onSetFilter(event.target.value);
   }
 
   function onSort(event) {
-    props.setSelectedSort(event.target.value);
+    props.onSetSort(event.target.value);
   }
 
-  return _react2.default.createElement(
-    _Expandable2.default,
-    { placeHolder: 'Filter' },
+  return (
+    // <Expandable placeHolder="Filter">
     _react2.default.createElement(_FilterSortSimple2.default, _extends({}, props, {
       selectedFilter: props.selectedFilter,
       selectedSort: props.selectedSort,
       onFilter: onFilter,
       onSort: onSort
     }))
+    // </Expandable>
+
   );
 }
 
 exports.default = FilterSort;
 
-},{"../simple/FilterSortSimple":75,"./Expandable":80,"react":50}],82:[function(require,module,exports){
+},{"../simple/FilterSortSimple":74,"react":50}],80:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42161,7 +42077,7 @@ function ManageTodo(props) {
 
 exports.default = ManageTodo;
 
-},{"../simple/ManageTodoSimple":76,"react":50}],83:[function(require,module,exports){
+},{"../simple/ManageTodoSimple":75,"react":50}],81:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42188,7 +42104,7 @@ function Todo(props) {
 
 exports.default = Todo;
 
-},{"../simple/TodoSimple":79,"react":50}],84:[function(require,module,exports){
+},{"../simple/TodoSimple":78,"react":50}],82:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42226,7 +42142,7 @@ function TodoCount(props) {
 
 exports.default = TodoCount;
 
-},{"../simple/TodoCountSimple":77,"react":50}],85:[function(require,module,exports){
+},{"../simple/TodoCountSimple":76,"react":50}],83:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42285,7 +42201,7 @@ function TodoList(props) {
 
 exports.default = TodoList;
 
-},{"../simple/TodoListSimple":78,"react":50}],86:[function(require,module,exports){
+},{"../simple/TodoListSimple":77,"react":50}],84:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42298,18 +42214,26 @@ var _AppPage2 = _interopRequireDefault(_AppPage);
 
 var _utils = require('flux/utils');
 
-var _TodoStore = require('../data/TodoStore');
+var _TodoStore = require('../data/Todo/TodoStore');
 
 var _TodoStore2 = _interopRequireDefault(_TodoStore);
 
-var _TodoActions = require('../data/TodoActions');
+var _TodoActions = require('../data/Todo/TodoActions');
 
 var _TodoActions2 = _interopRequireDefault(_TodoActions);
+
+var _FilterSortStore = require('../data/FilterSort/FilterSortStore');
+
+var _FilterSortStore2 = _interopRequireDefault(_FilterSortStore);
+
+var _FilterSortActions = require('../data/FilterSort/FilterSortActions');
+
+var _FilterSortActions2 = _interopRequireDefault(_FilterSortActions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getStores() {
-  return [_TodoStore2.default];
+  return [_TodoStore2.default, _FilterSortStore2.default];
 }
 
 function getState() {
@@ -42318,13 +42242,199 @@ function getState() {
     onAddTodo: _TodoActions2.default.addTodo,
     onUpdateTodo: _TodoActions2.default.updateTodo,
     onDeleteTodo: _TodoActions2.default.deleteTodo,
-    onToggleTodo: _TodoActions2.default.toggleTodo
+    onToggleTodo: _TodoActions2.default.toggleTodo,
+
+    filterSort: _FilterSortStore2.default.getState(),
+    onSetFilter: _FilterSortActions2.default.setFilter,
+    onSetSort: _FilterSortActions2.default.setSort
   };
 }
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":70,"../data/TodoActions":88,"../data/TodoStore":92,"flux/utils":19}],87:[function(require,module,exports){
+},{"../components/pages/AppPage":70,"../data/FilterSort/FilterSortActions":87,"../data/FilterSort/FilterSortStore":89,"../data/Todo/TodoActions":91,"../data/Todo/TodoStore":94,"flux/utils":19}],85:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _flux = require('flux');
+
+exports.default = new _flux.Dispatcher();
+
+},{"flux":10}],86:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ActionTypes = {
+  SET_FILTER: 'SET_FILTER',
+  SET_SORT: 'SET_SORT'
+};
+
+exports.default = ActionTypes;
+
+},{}],87:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _FilterSortActionTypes = require('./FilterSortActionTypes');
+
+var _FilterSortActionTypes2 = _interopRequireDefault(_FilterSortActionTypes);
+
+var _Dispatcher = require('../Dispatcher');
+
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Actions = {
+  setFilter: function setFilter(filter) {
+    _Dispatcher2.default.dispatch({
+      type: _FilterSortActionTypes2.default.SET_FILTER,
+      filter: filter
+    });
+  },
+  setSort: function setSort(sort) {
+    _Dispatcher2.default.dispatch({
+      type: _FilterSortActionTypes2.default.SET_SORT,
+      sort: sort
+    });
+  }
+};
+
+exports.default = Actions;
+
+},{"../Dispatcher":85,"./FilterSortActionTypes":86}],88:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var FilterSortPersistence = function () {
+  function _getStorageKey() {
+    return "TodoList_FilterSort";
+  }
+
+  function getSavedState() {
+    var defaultState = {
+      fitler: 'all',
+      sort: 'newestFirst'
+    };
+
+    var savedString = localStorage[_getStorageKey()];
+    if (!savedString) return defaultState;
+
+    var savedObject = JSON.parse(savedString);
+    if (!savedObject) return defaultState;
+
+    return savedObject;
+  }
+
+  function saveState(state) {
+    localStorage[_getStorageKey()] = JSON.stringify(state);
+  }
+
+  return {
+    getSavedState: getSavedState,
+    saveState: saveState
+  };
+}();
+
+exports.default = FilterSortPersistence;
+
+},{}],89:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _utils = require('flux/utils');
+
+var _FilterSortActionTypes = require('./FilterSortActionTypes');
+
+var _FilterSortActionTypes2 = _interopRequireDefault(_FilterSortActionTypes);
+
+var _Dispatcher = require('../Dispatcher');
+
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
+
+var _FilterSortPersistence = require('./FilterSortPersistence');
+
+var _FilterSortPersistence2 = _interopRequireDefault(_FilterSortPersistence);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FilterSortStore = function (_ReduceStore) {
+  _inherits(FilterSortStore, _ReduceStore);
+
+  function FilterSortStore() {
+    _classCallCheck(this, FilterSortStore);
+
+    return _possibleConstructorReturn(this, (FilterSortStore.__proto__ || Object.getPrototypeOf(FilterSortStore)).call(this, _Dispatcher2.default));
+  }
+
+  _createClass(FilterSortStore, [{
+    key: 'getInitialState',
+    value: function getInitialState() {
+      return _FilterSortPersistence2.default.getSavedState();
+    }
+  }, {
+    key: 'reduce',
+    value: function reduce(state, action) {
+      switch (action.type) {
+        case _FilterSortActionTypes2.default.SET_FILTER:
+          if (!action.filter) {
+            return state;
+          }
+
+          var modifiedState = _extends({}, state, {
+            filter: action.filter
+          });
+
+          _FilterSortPersistence2.default.saveState(modifiedState);
+          return modifiedState;
+
+        case _FilterSortActionTypes2.default.SET_SORT:
+          if (!action.sort) {
+            return state;
+          }
+
+          var modifiedState = _extends({}, state, {
+            sort: action.sort
+          });
+
+          _FilterSortPersistence2.default.saveState(modifiedState);
+          return modifiedState;
+
+        default:
+          return state;
+      }
+    }
+  }]);
+
+  return FilterSortStore;
+}(_utils.ReduceStore);
+
+exports.default = new FilterSortStore();
+
+},{"../Dispatcher":85,"./FilterSortActionTypes":86,"./FilterSortPersistence":88,"flux/utils":19}],90:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42339,7 +42449,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],88:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42350,33 +42460,33 @@ var _TodoActionTypes = require('./TodoActionTypes');
 
 var _TodoActionTypes2 = _interopRequireDefault(_TodoActionTypes);
 
-var _TodoDispatcher = require('./TodoDispatcher');
+var _Dispatcher = require('../Dispatcher');
 
-var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Actions = {
   addTodo: function addTodo(text) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.ADD_TODO,
       text: text
     });
   },
   updateTodo: function updateTodo(todo) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.UPDATE_TODO,
       todo: todo
     });
   },
   deleteTodo: function deleteTodo(id) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.DELETE_TODO,
       id: id
     });
   },
   toggleTodo: function toggleTodo(id) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.TOGGLE_TODO,
       id: id
     });
@@ -42385,18 +42495,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"./TodoActionTypes":87,"./TodoDispatcher":89}],89:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _flux = require('flux');
-
-exports.default = new _flux.Dispatcher();
-
-},{"flux":10}],90:[function(require,module,exports){
+},{"../Dispatcher":85,"./TodoActionTypes":90}],92:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42431,7 +42530,7 @@ var TodoPersistence = function () {
 
 exports.default = TodoPersistence;
 
-},{}],91:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42454,7 +42553,7 @@ var TodoRecord = _immutable2.default.Record({
 
 exports.default = TodoRecord;
 
-},{"immutable":25}],92:[function(require,module,exports){
+},{"immutable":25}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42473,9 +42572,9 @@ var _TodoActionTypes = require('./TodoActionTypes');
 
 var _TodoActionTypes2 = _interopRequireDefault(_TodoActionTypes);
 
-var _TodoDispatcher = require('./TodoDispatcher');
+var _Dispatcher = require('../Dispatcher');
 
-var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
 
 var _TodoRecord = require('./TodoRecord');
 
@@ -42501,15 +42600,10 @@ var TodoStore = function (_ReduceStore) {
   function TodoStore() {
     _classCallCheck(this, TodoStore);
 
-    return _possibleConstructorReturn(this, (TodoStore.__proto__ || Object.getPrototypeOf(TodoStore)).call(this, _TodoDispatcher2.default));
+    return _possibleConstructorReturn(this, (TodoStore.__proto__ || Object.getPrototypeOf(TodoStore)).call(this, _Dispatcher2.default));
   }
 
   _createClass(TodoStore, [{
-    key: 'getTodosStorageKey',
-    value: function getTodosStorageKey() {
-      return "TodoList_Todos";
-    }
-  }, {
     key: 'getInitialState',
     value: function getInitialState() {
       return _TodoPersistence2.default.getSavedTodos();
@@ -42600,7 +42694,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./TodoActionTypes":87,"./TodoDispatcher":89,"./TodoPersistence":90,"./TodoRecord":91,"flux/utils":19,"uuid":62}],93:[function(require,module,exports){
+},{"../Dispatcher":85,"./TodoActionTypes":90,"./TodoPersistence":92,"./TodoRecord":93,"flux/utils":19,"uuid":62}],95:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -42623,4 +42717,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _AppContainer2.default })
 ), document.getElementById("appContainer"));
 
-},{"./containers/AppContainer":86,"react":50,"react-dom":38,"react-router-dom":44}]},{},[93]);
+},{"./containers/AppContainer":84,"react":50,"react-dom":38,"react-router-dom":44}]},{},[95]);
