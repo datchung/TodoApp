@@ -41906,7 +41906,11 @@ function TodoSimple(props) {
       _react2.default.createElement(
         _reactRouterDom.Link,
         { to: "./todo/" + props.todo.id },
-        _react2.default.createElement(
+        props.todo.isComplete ? _react2.default.createElement(
+          'del',
+          null,
+          props.todo.text
+        ) : _react2.default.createElement(
           'p',
           null,
           props.todo.text

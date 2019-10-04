@@ -13,7 +13,9 @@ function TodoSimple(props) {
       </div>
       <div className="column">
         <Link to={"./todo/" + props.todo.id}>
-          <p>{props.todo.text}</p>
+          {props.todo.isComplete
+            ? <del>{props.todo.text}</del>
+            : <p>{props.todo.text}</p>}
         </Link>
       </div>
       <div className="column is-narrow">
