@@ -1,17 +1,13 @@
 import { ReduceStore } from 'flux/utils';
 import uuid from 'uuid';
 import TodoActionTypes from './TodoActionTypes';
-import TodoDispatcher from './TodoDispatcher';
+import Dispatcher from '../Dispatcher';
 import Todo from './TodoRecord';
 import TodoPersistence from './TodoPersistence';
 
 class TodoStore extends ReduceStore {
   constructor() {
-    super(TodoDispatcher);
-  }
-
-  getTodosStorageKey() {
-    return "TodoList_Todos";
+    super(Dispatcher);
   }
 
   getInitialState() {

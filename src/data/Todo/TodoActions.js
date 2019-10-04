@@ -1,5 +1,5 @@
 import TodoActionTypes from './TodoActionTypes';
-import TodoDispatcher from './TodoDispatcher';
+import TodoDispatcher from '../Dispatcher';
 
 const Actions = {
   addTodo(text) {

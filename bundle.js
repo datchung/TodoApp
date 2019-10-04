@@ -41562,15 +41562,18 @@ function TodoListPage(props) {
       selectedSort = _useState4[0],
       setSelectedSort = _useState4[1];
 
+  (0, _react.useEffect)(function () {
+    setSelectedFilter(props.filterSort.filter);
+    setSelectedSort(props.filterSort.sort);
+  }, [props.filterSort]);
+
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
     _react2.default.createElement(_TodoCount2.default, props),
     _react2.default.createElement(_FilterSort2.default, _extends({}, props, {
       selectedFilter: selectedFilter,
-      setSelectedFilter: setSelectedFilter,
-      selectedSort: selectedSort,
-      setSelectedSort: setSelectedSort
+      selectedSort: selectedSort
     })),
     _react2.default.createElement(
       'div',
@@ -41952,11 +41955,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function FilterSort(props) {
   function onFilter(event) {
-    props.setSelectedFilter(event.target.value);
+    props.onSetFilter(event.target.value);
   }
 
   function onSort(event) {
-    props.setSelectedSort(event.target.value);
+    props.onSetSort(event.target.value);
   }
 
   return (
@@ -42215,10 +42218,18 @@ var _TodoActions = require('../data/Todo/TodoActions');
 
 var _TodoActions2 = _interopRequireDefault(_TodoActions);
 
+var _FilterSortStore = require('../data/FilterSort/FilterSortStore');
+
+var _FilterSortStore2 = _interopRequireDefault(_FilterSortStore);
+
+var _FilterSortActions = require('../data/FilterSort/FilterSortActions');
+
+var _FilterSortActions2 = _interopRequireDefault(_FilterSortActions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getStores() {
-  return [_TodoStore2.default];
+  return [_TodoStore2.default, _FilterSortStore2.default];
 }
 
 function getState() {
@@ -42227,13 +42238,199 @@ function getState() {
     onAddTodo: _TodoActions2.default.addTodo,
     onUpdateTodo: _TodoActions2.default.updateTodo,
     onDeleteTodo: _TodoActions2.default.deleteTodo,
-    onToggleTodo: _TodoActions2.default.toggleTodo
+    onToggleTodo: _TodoActions2.default.toggleTodo,
+
+    filterSort: _FilterSortStore2.default.getState(),
+    onSetFilter: _FilterSortActions2.default.setFilter,
+    onSetSort: _FilterSortActions2.default.setSort
   };
 }
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":70,"../data/Todo/TodoActions":86,"../data/Todo/TodoStore":90,"flux/utils":19}],85:[function(require,module,exports){
+},{"../components/pages/AppPage":70,"../data/FilterSort/FilterSortActions":87,"../data/FilterSort/FilterSortStore":89,"../data/Todo/TodoActions":91,"../data/Todo/TodoStore":94,"flux/utils":19}],85:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _flux = require('flux');
+
+exports.default = new _flux.Dispatcher();
+
+},{"flux":10}],86:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ActionTypes = {
+  SET_FILTER: 'SET_FILTER',
+  SET_SORT: 'SET_SORT'
+};
+
+exports.default = ActionTypes;
+
+},{}],87:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _FilterSortActionTypes = require('./FilterSortActionTypes');
+
+var _FilterSortActionTypes2 = _interopRequireDefault(_FilterSortActionTypes);
+
+var _Dispatcher = require('../Dispatcher');
+
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Actions = {
+  setFilter: function setFilter(filter) {
+    _Dispatcher2.default.dispatch({
+      type: _FilterSortActionTypes2.default.SET_FILTER,
+      filter: filter
+    });
+  },
+  setSort: function setSort(sort) {
+    _Dispatcher2.default.dispatch({
+      type: _FilterSortActionTypes2.default.SET_SORT,
+      sort: sort
+    });
+  }
+};
+
+exports.default = Actions;
+
+},{"../Dispatcher":85,"./FilterSortActionTypes":86}],88:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var FilterSortPersistence = function () {
+  function _getStorageKey() {
+    return "TodoList_FilterSort";
+  }
+
+  function getSavedState() {
+    var defaultState = {
+      fitler: 'all',
+      sort: 'newestFirst'
+    };
+
+    var savedString = localStorage[_getStorageKey()];
+    if (!savedString) return defaultState;
+
+    var savedObject = JSON.parse(savedString);
+    if (!savedObject) return defaultState;
+
+    return savedObject;
+  }
+
+  function saveState(state) {
+    localStorage[_getStorageKey()] = JSON.stringify(state);
+  }
+
+  return {
+    getSavedState: getSavedState,
+    saveState: saveState
+  };
+}();
+
+exports.default = FilterSortPersistence;
+
+},{}],89:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _utils = require('flux/utils');
+
+var _FilterSortActionTypes = require('./FilterSortActionTypes');
+
+var _FilterSortActionTypes2 = _interopRequireDefault(_FilterSortActionTypes);
+
+var _Dispatcher = require('../Dispatcher');
+
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
+
+var _FilterSortPersistence = require('./FilterSortPersistence');
+
+var _FilterSortPersistence2 = _interopRequireDefault(_FilterSortPersistence);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FilterSortStore = function (_ReduceStore) {
+  _inherits(FilterSortStore, _ReduceStore);
+
+  function FilterSortStore() {
+    _classCallCheck(this, FilterSortStore);
+
+    return _possibleConstructorReturn(this, (FilterSortStore.__proto__ || Object.getPrototypeOf(FilterSortStore)).call(this, _Dispatcher2.default));
+  }
+
+  _createClass(FilterSortStore, [{
+    key: 'getInitialState',
+    value: function getInitialState() {
+      return _FilterSortPersistence2.default.getSavedState();
+    }
+  }, {
+    key: 'reduce',
+    value: function reduce(state, action) {
+      switch (action.type) {
+        case _FilterSortActionTypes2.default.SET_FILTER:
+          if (!action.filter) {
+            return state;
+          }
+
+          var modifiedState = _extends({}, state, {
+            filter: action.filter
+          });
+
+          _FilterSortPersistence2.default.saveState(modifiedState);
+          return modifiedState;
+
+        case _FilterSortActionTypes2.default.SET_SORT:
+          if (!action.sort) {
+            return state;
+          }
+
+          var modifiedState = _extends({}, state, {
+            sort: action.sort
+          });
+
+          _FilterSortPersistence2.default.saveState(modifiedState);
+          return modifiedState;
+
+        default:
+          return state;
+      }
+    }
+  }]);
+
+  return FilterSortStore;
+}(_utils.ReduceStore);
+
+exports.default = new FilterSortStore();
+
+},{"../Dispatcher":85,"./FilterSortActionTypes":86,"./FilterSortPersistence":88,"flux/utils":19}],90:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42248,7 +42445,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],86:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42259,33 +42456,33 @@ var _TodoActionTypes = require('./TodoActionTypes');
 
 var _TodoActionTypes2 = _interopRequireDefault(_TodoActionTypes);
 
-var _TodoDispatcher = require('./TodoDispatcher');
+var _Dispatcher = require('../Dispatcher');
 
-var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Actions = {
   addTodo: function addTodo(text) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.ADD_TODO,
       text: text
     });
   },
   updateTodo: function updateTodo(todo) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.UPDATE_TODO,
       todo: todo
     });
   },
   deleteTodo: function deleteTodo(id) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.DELETE_TODO,
       id: id
     });
   },
   toggleTodo: function toggleTodo(id) {
-    _TodoDispatcher2.default.dispatch({
+    _Dispatcher2.default.dispatch({
       type: _TodoActionTypes2.default.TOGGLE_TODO,
       id: id
     });
@@ -42294,18 +42491,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"./TodoActionTypes":85,"./TodoDispatcher":87}],87:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _flux = require('flux');
-
-exports.default = new _flux.Dispatcher();
-
-},{"flux":10}],88:[function(require,module,exports){
+},{"../Dispatcher":85,"./TodoActionTypes":90}],92:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42340,7 +42526,7 @@ var TodoPersistence = function () {
 
 exports.default = TodoPersistence;
 
-},{}],89:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42363,7 +42549,7 @@ var TodoRecord = _immutable2.default.Record({
 
 exports.default = TodoRecord;
 
-},{"immutable":25}],90:[function(require,module,exports){
+},{"immutable":25}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42382,9 +42568,9 @@ var _TodoActionTypes = require('./TodoActionTypes');
 
 var _TodoActionTypes2 = _interopRequireDefault(_TodoActionTypes);
 
-var _TodoDispatcher = require('./TodoDispatcher');
+var _Dispatcher = require('../Dispatcher');
 
-var _TodoDispatcher2 = _interopRequireDefault(_TodoDispatcher);
+var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
 
 var _TodoRecord = require('./TodoRecord');
 
@@ -42410,15 +42596,10 @@ var TodoStore = function (_ReduceStore) {
   function TodoStore() {
     _classCallCheck(this, TodoStore);
 
-    return _possibleConstructorReturn(this, (TodoStore.__proto__ || Object.getPrototypeOf(TodoStore)).call(this, _TodoDispatcher2.default));
+    return _possibleConstructorReturn(this, (TodoStore.__proto__ || Object.getPrototypeOf(TodoStore)).call(this, _Dispatcher2.default));
   }
 
   _createClass(TodoStore, [{
-    key: 'getTodosStorageKey',
-    value: function getTodosStorageKey() {
-      return "TodoList_Todos";
-    }
-  }, {
     key: 'getInitialState',
     value: function getInitialState() {
       return _TodoPersistence2.default.getSavedTodos();
@@ -42509,7 +42690,7 @@ var TodoStore = function (_ReduceStore) {
 
 exports.default = new TodoStore();
 
-},{"./TodoActionTypes":85,"./TodoDispatcher":87,"./TodoPersistence":88,"./TodoRecord":89,"flux/utils":19,"uuid":62}],91:[function(require,module,exports){
+},{"../Dispatcher":85,"./TodoActionTypes":90,"./TodoPersistence":92,"./TodoRecord":93,"flux/utils":19,"uuid":62}],95:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -42532,4 +42713,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _AppContainer2.default })
 ), document.getElementById("appContainer"));
 
-},{"./containers/AppContainer":84,"react":50,"react-dom":38,"react-router-dom":44}]},{},[91]);
+},{"./containers/AppContainer":84,"react":50,"react-dom":38,"react-router-dom":44}]},{},[95]);

@@ -4,11 +4,11 @@ import FilterSortSimple from '../simple/FilterSortSimple';
 
 function FilterSort(props) {
   function onFilter(event) {
-    props.setSelectedFilter(event.target.value);
+    props.onSetFilter(event.target.value);
   }
 
   function onSort(event) {
-    props.setSelectedSort(event.target.value);
+    props.onSetSort(event.target.value);
   }
 
   return (

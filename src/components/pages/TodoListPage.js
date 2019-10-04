@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import TodoList from '../smart/TodoList';
 import TodoCount from '../smart/TodoCount';
@@ -8,15 +8,18 @@ function TodoListPage(props) {
   const [selectedFilter, setSelectedFilter] = useState("");
   const [selectedSort, setSelectedSort] = useState("");
 
+  useEffect(() => {
+    setSelectedFilter(props.filterSort.filter);
+    setSelectedSort(props.filterSort.sort);
+  }, [props.filterSort]);
+
   return (
     <React.Fragment>
       <TodoCount {...props} />
       <FilterSort
         {...props}
         selectedFilter={selectedFilter}
-        setSelectedFilter={setSelectedFilter}
         selectedSort={selectedSort}
-        setSelectedSort={setSelectedSort}
         />
       <div className="card">
         <div className="card-content">

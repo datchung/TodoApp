@@ -1,11 +1,14 @@
 import AppPage from '../components/pages/AppPage';
 import { Container } from 'flux/utils';
 import TodoStore from '../data/Todo/TodoStore';
-import TodoActions from '../data/Todo/TodoActions'
+import TodoActions from '../data/Todo/TodoActions';
+import FilterSortStore from '../data/FilterSort/FilterSortStore';
+import FilterSortActions from '../data/FilterSort/FilterSortActions';
 
 function getStores() {
   return [
     TodoStore,
+    FilterSortStore,
   ];
 }
 
@@ -16,6 +19,10 @@ function getState() {
     onUpdateTodo: TodoActions.updateTodo,
     onDeleteTodo: TodoActions.deleteTodo,
     onToggleTodo: TodoActions.toggleTodo,
+
+    filterSort: FilterSortStore.getState(),
+    onSetFilter: FilterSortActions.setFilter,
+    onSetSort: FilterSortActions.setSort,
   };
 }
 
