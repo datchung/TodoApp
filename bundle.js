@@ -42207,11 +42207,11 @@ var _AppPage2 = _interopRequireDefault(_AppPage);
 
 var _utils = require('flux/utils');
 
-var _TodoStore = require('../data/TodoStore');
+var _TodoStore = require('../data/Todo/TodoStore');
 
 var _TodoStore2 = _interopRequireDefault(_TodoStore);
 
-var _TodoActions = require('../data/TodoActions');
+var _TodoActions = require('../data/Todo/TodoActions');
 
 var _TodoActions2 = _interopRequireDefault(_TodoActions);
 
@@ -42233,7 +42233,7 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../components/pages/AppPage":70,"../data/TodoActions":86,"../data/TodoStore":90,"flux/utils":19}],85:[function(require,module,exports){
+},{"../components/pages/AppPage":70,"../data/Todo/TodoActions":86,"../data/Todo/TodoStore":90,"flux/utils":19}],85:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

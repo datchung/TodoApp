@@ -1,7 +1,7 @@
 import AppPage from '../components/pages/AppPage';
 import { Container } from 'flux/utils';
-import TodoStore from '../data/TodoStore';
-import TodoActions from '../data/TodoActions'
+import TodoStore from '../data/Todo/TodoStore';
+import TodoActions from '../data/Todo/TodoActions'
 
 function getStores() {
   return [
