@@ -8,7 +8,7 @@ function FilterSortSimple(props) {
         <div className="column is-narrow">
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label">Show</label>
+              <label className="label has-text-weight-normal">Show</label>
             </div>
             <div className="field-body">
               <div className="field is-narrow">
@@ -31,7 +31,7 @@ function FilterSortSimple(props) {
         <div className="column is-narrow">
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label">Sort</label>
+              <label className="label has-text-weight-normal">Sort</label>
             </div>
             <div className="field-body">
               <div className="field is-narrow">
