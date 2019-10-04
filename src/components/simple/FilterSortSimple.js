@@ -4,7 +4,7 @@ function FilterSortSimple(props) {
   return (
     <React.Fragment>
       <div className="columns is-mobile">
-        <div className="column"></div>
+        {/* <div className="column"></div> */}
         <div className="column is-narrow">
           <div className="field is-horizontal">
             <div className="field-label is-normal">
