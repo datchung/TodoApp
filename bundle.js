@@ -41394,9 +41394,14 @@ function AppPage(props) {
         'div',
         { className: 'column' },
         _react2.default.createElement(
-          'h5',
-          { className: 'title is-5' },
-          'Todo List'
+          'span',
+          { className: 'icon' },
+          _react2.default.createElement('i', { className: 'fas fa-tasks fa-lg has-text-primary' })
+        ),
+        _react2.default.createElement(
+          'span',
+          { className: 'is-size-4' },
+          ' Todo List'
         )
       )
     ),

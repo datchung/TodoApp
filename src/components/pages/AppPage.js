@@ -9,7 +9,10 @@ function AppPage(props) {
     <React.Fragment>
       <div className="columns is-mobile has-background-light">
         <div className="column">
-          <h5 className="title is-5">Todo List</h5>
+          <span className="icon">
+            <i className="fas fa-tasks fa-lg has-text-primary"></i>
+          </span>
+          <span className="is-size-4"> Todo List</span>
         </div>
       </div>
       <Switch>
