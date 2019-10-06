@@ -41393,14 +41393,10 @@ function AppPage(props) {
       _react2.default.createElement(
         'div',
         { className: 'column' },
+        _react2.default.createElement('img', { src: 'images/checked.svg', width: '20' }),
         _react2.default.createElement(
           'span',
-          { className: 'icon' },
-          _react2.default.createElement('i', { className: 'fas fa-tasks fa-lg has-text-primary' })
-        ),
-        _react2.default.createElement(
-          'span',
-          { className: 'is-size-4' },
+          { className: 'title is-4' },
           ' Todo List'
         )
       )
