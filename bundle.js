@@ -41393,10 +41393,11 @@ function AppPage(props) {
       _react2.default.createElement(
         'div',
         { className: 'column' },
+        _react2.default.createElement('img', { src: 'images/checked.svg', width: '20' }),
         _react2.default.createElement(
-          'h5',
-          { className: 'title is-5' },
-          'Todo List'
+          'span',
+          { className: 'title is-4' },
+          ' Todo List'
         )
       )
     ),
