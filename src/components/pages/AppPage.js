@@ -10,7 +10,7 @@ function AppPage(props) {
       <div className="columns is-mobile has-background-light">
         <div className="column">
           <img src="images/checked.svg" width="20" />
-          <span className="title is-4"> Todo List</span>
+          <span className="title is-4"> Minimalist Todo List</span>
         </div>
       </div>
       <Switch>

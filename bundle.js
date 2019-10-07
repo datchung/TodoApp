@@ -41397,7 +41397,7 @@ function AppPage(props) {
         _react2.default.createElement(
           'span',
           { className: 'title is-4' },
-          ' Todo List'
+          ' Minimalist Todo List'
         )
       )
     ),
@@ -42605,6 +42605,11 @@ var TodoStore = function (_ReduceStore) {
   }
 
   _createClass(TodoStore, [{
+    key: '_getMaxTodos',
+    value: function _getMaxTodos() {
+      return 50;
+    }
+  }, {
     key: 'getInitialState',
     value: function getInitialState() {
       return _TodoPersistence2.default.getSavedTodos();
