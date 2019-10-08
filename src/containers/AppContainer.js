@@ -1,5 +1,6 @@
 import AppPage from '../components/pages/AppPage';
 import { Container } from 'flux/utils';
+// import i18next from 'i18next';
 import TodoStore from '../data/Todo/TodoStore';
 import TodoActions from '../data/Todo/TodoActions';
 import FilterSortStore from '../data/FilterSort/FilterSortStore';
@@ -22,7 +23,7 @@ function getState() {
 
     filterSort: FilterSortStore.getState(),
     onSetFilter: FilterSortActions.setFilter,
-    onSetSort: FilterSortActions.setSort,
+    onSetSort: FilterSortActions.setSort
   };
 }
 

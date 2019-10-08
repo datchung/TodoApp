@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Translate from '../../i18n';
 import TodoListPage from './TodoListPage';
 import ManageTodoPage from './ManageTodoPage';
 import NotFoundPage from './NotFoundPage';
@@ -10,7 +11,7 @@ function AppPage(props) {
       <div className="columns is-mobile has-background-light">
         <div className="column">
           <img src="images/checked.svg" width="20" />
-          <span className="title is-4"> Minimalist Todo List</span>
+          <span className="title is-4">{Translate.t("title")}</span>
         </div>
       </div>
       <Switch>
