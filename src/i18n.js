@@ -18,4 +18,22 @@ i18n
   //   fallbackLng: 'en',
   // });
 
+var i18nOptions = {
+  fallbackLng: 'en',
+  debug: true,
+  resources: {
+    "en": {
+      translation: {
+        "title": " Minimalist Todo List"
+      }
+    },
+    "fr": {
+      translation: {
+        "title": " Title in fr"
+      }
+    }
+  }
+};
+
+export {i18nOptions};
 export default i18n;

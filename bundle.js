@@ -45462,6 +45462,7 @@ exports.default = new TodoStore();
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.i18nOptions = undefined;
 
 var _i18next = require('i18next');
 
@@ -45490,6 +45491,24 @@ _i18next2.default
 // });
 
 //import Backend from 'i18next-xhr-backend';
+var i18nOptions = {
+  fallbackLng: 'en',
+  debug: true,
+  resources: {
+    "en": {
+      translation: {
+        "title": " Minimalist Todo List"
+      }
+    },
+    "fr": {
+      translation: {
+        "title": " Title in fr"
+      }
+    }
+  }
+};
+
+exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
 },{"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
@@ -45513,22 +45532,7 @@ var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_i18n2.default.init({
-  fallbackLng: 'en',
-  debug: true,
-  resources: {
-    "en": {
-      translation: {
-        "title": " Minimalist Todo List"
-      }
-    },
-    "fr": {
-      translation: {
-        "title": " Title in fr"
-      }
-    }
-  }
-}).then(function (t) {
+_i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   (0, _reactDom.render)(_react2.default.createElement(
     _reactRouterDom.HashRouter,
     null,
