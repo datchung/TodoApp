@@ -44199,6 +44199,10 @@ var _ManageTodo = require('../smart/ManageTodo');
 
 var _ManageTodo2 = _interopRequireDefault(_ManageTodo);
 
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ManageTodoPage(props) {
@@ -44212,7 +44216,7 @@ function ManageTodoPage(props) {
     var todoById = props.todos.find(function (t) {
       return t.id === id;
     });
-    setSubTitle(todoById ? "Edit Todo" : "Create New Todo");
+    setSubTitle(todoById ? _i18n2.default.t("editTodo") : _i18n2.default.t("createTodo"));
   }, [props.match.params.id]);
 
   return _react2.default.createElement(
@@ -44243,7 +44247,7 @@ function ManageTodoPage(props) {
           _react2.default.createElement(
             'button',
             { className: 'button' },
-            'Back'
+            _i18n2.default.t("back")
           )
         )
       )
@@ -44254,34 +44258,38 @@ function ManageTodoPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageTodoPage);
 
-},{"../smart/ManageTodo":100,"react":70,"react-router-dom":64}],92:[function(require,module,exports){
-"use strict";
+},{"../../localization/i18n":115,"../smart/ManageTodo":100,"react":70,"react-router-dom":64}],92:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function NotFoundPage() {
   return _react2.default.createElement(
-    "div",
-    { className: "content" },
+    'div',
+    { className: 'content' },
     _react2.default.createElement(
-      "p",
+      'p',
       null,
-      "Not found"
+      _i18n2.default.t("notFound")
     )
   );
 }
 
 exports.default = NotFoundPage;
 
-},{"react":70}],93:[function(require,module,exports){
+},{"../../localization/i18n":115,"react":70}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44309,6 +44317,10 @@ var _TodoCount2 = _interopRequireDefault(_TodoCount);
 var _FilterSort = require('../smart/FilterSort');
 
 var _FilterSort2 = _interopRequireDefault(_FilterSort);
+
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44348,7 +44360,7 @@ function TodoListPage(props) {
           _react2.default.createElement(
             'button',
             { className: 'button is-primary is-fullwidth' },
-            'Create New Todo'
+            _i18n2.default.t("createTodo")
           )
         )
       )
@@ -44362,16 +44374,20 @@ function TodoListPage(props) {
 
 exports.default = TodoListPage;
 
-},{"../smart/FilterSort":99,"../smart/TodoCount":102,"../smart/TodoList":103,"react":70,"react-router-dom":64}],94:[function(require,module,exports){
-"use strict";
+},{"../../localization/i18n":115,"../smart/FilterSort":99,"../smart/TodoCount":102,"../smart/TodoList":103,"react":70,"react-router-dom":64}],94:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44380,55 +44396,55 @@ function FilterSortSimple(props) {
     _react2.default.Fragment,
     null,
     _react2.default.createElement(
-      "div",
-      { className: "columns is-mobile" },
+      'div',
+      { className: 'columns is-mobile' },
       _react2.default.createElement(
-        "div",
-        { className: "column is-narrow" },
+        'div',
+        { className: 'column is-narrow' },
         _react2.default.createElement(
-          "div",
-          { className: "field is-horizontal" },
+          'div',
+          { className: 'field is-horizontal' },
           _react2.default.createElement(
-            "div",
-            { className: "field-label is-normal" },
+            'div',
+            { className: 'field-label is-normal' },
             _react2.default.createElement(
-              "label",
-              { className: "label has-text-weight-normal" },
-              "Show"
+              'label',
+              { className: 'label has-text-weight-normal' },
+              _i18n2.default.t("filter")
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "field-body" },
+            'div',
+            { className: 'field-body' },
             _react2.default.createElement(
-              "div",
-              { className: "field is-narrow" },
+              'div',
+              { className: 'field is-narrow' },
               _react2.default.createElement(
-                "div",
-                { className: "control" },
+                'div',
+                { className: 'control' },
                 _react2.default.createElement(
-                  "div",
-                  { className: "select" },
+                  'div',
+                  { className: 'select' },
                   _react2.default.createElement(
-                    "select",
+                    'select',
                     {
                       value: props.selectedFilter,
                       onChange: props.onFilter
                     },
                     _react2.default.createElement(
-                      "option",
-                      { value: "all" },
-                      "All"
+                      'option',
+                      { value: 'all' },
+                      _i18n2.default.t("all")
                     ),
                     _react2.default.createElement(
-                      "option",
-                      { value: "notDone" },
-                      "Not Done"
+                      'option',
+                      { value: 'notDone' },
+                      _i18n2.default.t("notDone")
                     ),
                     _react2.default.createElement(
-                      "option",
-                      { value: "done" },
-                      "Done"
+                      'option',
+                      { value: 'done' },
+                      _i18n2.default.t("done")
                     )
                   )
                 )
@@ -44438,47 +44454,47 @@ function FilterSortSimple(props) {
         )
       ),
       _react2.default.createElement(
-        "div",
-        { className: "column is-narrow" },
+        'div',
+        { className: 'column is-narrow' },
         _react2.default.createElement(
-          "div",
-          { className: "field is-horizontal" },
+          'div',
+          { className: 'field is-horizontal' },
           _react2.default.createElement(
-            "div",
-            { className: "field-label is-normal" },
+            'div',
+            { className: 'field-label is-normal' },
             _react2.default.createElement(
-              "label",
-              { className: "label has-text-weight-normal" },
-              "Sort"
+              'label',
+              { className: 'label has-text-weight-normal' },
+              _i18n2.default.t("sort")
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "field-body" },
+            'div',
+            { className: 'field-body' },
             _react2.default.createElement(
-              "div",
-              { className: "field is-narrow" },
+              'div',
+              { className: 'field is-narrow' },
               _react2.default.createElement(
-                "div",
-                { className: "control" },
+                'div',
+                { className: 'control' },
                 _react2.default.createElement(
-                  "div",
-                  { className: "select" },
+                  'div',
+                  { className: 'select' },
                   _react2.default.createElement(
-                    "select",
+                    'select',
                     {
                       value: props.selectedSort,
                       onChange: props.onSort
                     },
                     _react2.default.createElement(
-                      "option",
-                      { value: "newestFirst" },
-                      "Date new to old"
+                      'option',
+                      { value: 'newestFirst' },
+                      _i18n2.default.t("newestFirst")
                     ),
                     _react2.default.createElement(
-                      "option",
-                      { value: "oldestFirst" },
-                      "Date old to new"
+                      'option',
+                      { value: 'oldestFirst' },
+                      _i18n2.default.t("oldestFirst")
                     )
                   )
                 )
@@ -44493,57 +44509,61 @@ function FilterSortSimple(props) {
 
 exports.default = FilterSortSimple;
 
-},{"react":70}],95:[function(require,module,exports){
-"use strict";
+},{"../../localization/i18n":115,"react":70}],95:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ManageTodoSimple(props) {
   return _react2.default.createElement(
-    "div",
-    { className: "columns is-mobile" },
+    'div',
+    { className: 'columns is-mobile' },
     _react2.default.createElement(
-      "div",
-      { className: "column" },
+      'div',
+      { className: 'column' },
       _react2.default.createElement(
-        "form",
+        'form',
         { onSubmit: props.onSubmit },
         _react2.default.createElement(
-          "div",
-          { className: "field" },
+          'div',
+          { className: 'field' },
           _react2.default.createElement(
-            "div",
-            { className: "control" },
-            _react2.default.createElement("input", {
-              type: "Text",
-              name: "text",
+            'div',
+            { className: 'control' },
+            _react2.default.createElement('input', {
+              type: 'Text',
+              name: 'text',
               value: props.todo.text || "",
               onChange: props.onChange,
-              className: "input"
+              className: 'input'
             })
           )
         ),
         _react2.default.createElement(
-          "div",
-          { className: "field" },
+          'div',
+          { className: 'field' },
           _react2.default.createElement(
-            "div",
-            { className: "control" },
+            'div',
+            { className: 'control' },
             _react2.default.createElement(
-              "button",
+              'button',
               {
-                type: "submit",
-                className: "button is-primary"
+                type: 'submit',
+                className: 'button is-primary'
               },
-              "Save"
+              _i18n2.default.t("save")
             )
           )
         )
@@ -44554,7 +44574,7 @@ function ManageTodoSimple(props) {
 
 exports.default = ManageTodoSimple;
 
-},{"react":70}],96:[function(require,module,exports){
+},{"../../localization/i18n":115,"react":70}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44644,6 +44664,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = require('react-router-dom');
 
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoSimple(props) {
@@ -44689,7 +44713,7 @@ function TodoSimple(props) {
           },
           className: 'button is-small'
         },
-        'Delete'
+        _i18n2.default.t("delete")
       )
     )
   );
@@ -44697,7 +44721,7 @@ function TodoSimple(props) {
 
 exports.default = TodoSimple;
 
-},{"react":70,"react-router-dom":64}],99:[function(require,module,exports){
+},{"../../localization/i18n":115,"react":70,"react-router-dom":64}],99:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44761,6 +44785,10 @@ var _ManageTodoSimple = require('../simple/ManageTodoSimple');
 
 var _ManageTodoSimple2 = _interopRequireDefault(_ManageTodoSimple);
 
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -44813,7 +44841,7 @@ function ManageTodo(props) {
   function formIsValid() {
     var _errors = {};
 
-    if (!todo.text) _errors.text = "Text is required";
+    if (!todo.text) _errors.text = _i18n2.default.t("textRequired");
     setErrors(_errors);
 
     return Object.keys(_errors).length === 0;
@@ -44838,7 +44866,7 @@ function ManageTodo(props) {
 
 exports.default = ManageTodo;
 
-},{"../simple/ManageTodoSimple":95,"react":70}],101:[function(require,module,exports){
+},{"../../localization/i18n":115,"../simple/ManageTodoSimple":95,"react":70}],101:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44880,30 +44908,34 @@ var _TodoCountSimple = require('../simple/TodoCountSimple');
 
 var _TodoCountSimple2 = _interopRequireDefault(_TodoCountSimple);
 
+var _i18n = require('../../localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function TodoCount(props) {
   if (props.todos.length === 0) {
-    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: 'You have no todos. Click the button below to add.' });
+    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: _i18n2.default.t("noTodos") });
   }
 
   var remaining = props.todos.filter(function (todo) {
     return !todo.isComplete;
   }).length;
   if (remaining === 0) {
-    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: 'Congrats. You completed all your todos!' });
+    return _react2.default.createElement(_TodoCountSimple2.default, { phrase: _i18n2.default.t("allDone") });
   }
 
   var total = props.todos.length;
   var todoPhrase = total > 1 ? 'todos' : 'todo';
-  var phrase = remaining + ' of ' + total + ' ' + todoPhrase + ' remaining';
+  var phrase = String.format(_i18n2.default.t("todoRemaining"), remaining, total, todoPhrase);
 
   return _react2.default.createElement(_TodoCountSimple2.default, { phrase: phrase });
 }
 
 exports.default = TodoCount;
 
-},{"../simple/TodoCountSimple":96,"react":70}],103:[function(require,module,exports){
+},{"../../localization/i18n":115,"../simple/TodoCountSimple":96,"react":70}],103:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45506,7 +45538,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  "title": " Minimalist Todo List"
+  "title": " Minimalist Todo List",
+  "editTodo": "Edit Todo",
+  "createTodo": "Create New Todo",
+  "back": "Back",
+  "notFound": "Not found",
+  "filter": "Filter",
+  "all": "All",
+  "notDone": "Not Done",
+  "done": "Done",
+  "sort": "Sort",
+  "newestFirst": "Date New to Old",
+  "oldestFirst": "Date Old to New",
+  "save": "Save",
+  "delete": "Delete",
+  "textRequired": "Text is required",
+  "noTodos": "You have no todos. Click the button below to add.",
+  "allDone": "Congrats. You completed all your todos!",
+  "todoRemaining": "{0} of {1} {2} remaining"
 };
 
 },{}],117:[function(require,module,exports){
@@ -45516,7 +45565,24 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  "title": "Minimalist Todo List fr"
+  "title": " Liste de Tâches Minimaliste",
+  "editTodo": "Modifier la Tâche",
+  "createTodo": "Créer Une Tâche",
+  "back": "Retour",
+  "notFound": "Introuvable",
+  "filter": "Filtre",
+  "all": "Toute",
+  "notDone": "Pas terminé",
+  "done": "Terminé",
+  "sort": "Trier",
+  "newestFirst": "Date Nouveau à Ancien",
+  "oldestFirst": "Date Ancienne à Nouvelle",
+  "save": "Enregistrement",
+  "delete": "Supprimer",
+  "textRequired": "Texte requis",
+  "noTodos": "You have no todos. Click the button below to add.",
+  "allDone": "Congrats. You completed all your todos!",
+  "todoRemaining": "{0} of {1} {2} remaining"
 };
 
 },{}],118:[function(require,module,exports){
@@ -45539,6 +45605,15 @@ var _i18n = require('./localization/i18n');
 var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+if (!String.format) {
+  String.format = function (format) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    return format.replace(/{(\d+)}/g, function (match, number) {
+      return typeof args[number] != 'undefined' ? args[number] : match;
+    });
+  };
+}
 
 _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   (0, _reactDom.render)(_react2.default.createElement(

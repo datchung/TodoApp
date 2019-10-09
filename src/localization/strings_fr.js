@@ -1,3 +1,20 @@
 export default {
-  "title": "Minimalist Todo List fr"
+  "title": " Liste de Tâches Minimaliste",
+  "editTodo": "Modifier la Tâche",
+  "createTodo": "Créer Une Tâche",
+  "back": "Retour",
+  "notFound": "Introuvable",
+  "filter": "Filtre",
+  "all": "Toute",
+  "notDone": "Pas terminé",
+  "done": "Terminé",
+  "sort": "Trier",
+  "newestFirst": "Date Nouveau à Ancien",
+  "oldestFirst": "Date Ancienne à Nouvelle",
+  "save": "Enregistrement",
+  "delete": "Supprimer",
+  "textRequired": "Texte requis",
+  "noTodos": "You have no todos. Click the button below to add.",
+  "allDone": "Congrats. You completed all your todos!",
+  "todoRemaining": "{0} of {1} {2} remaining",
 };

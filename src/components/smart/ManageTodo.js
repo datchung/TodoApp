@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AddTodoSimple from '../simple/ManageTodoSimple';
+import ManageTodoSimple from '../simple/ManageTodoSimple';
+import T from '../../localization/i18n';
 
 function ManageTodo(props) {
   const [errors, setErrors] = useState({});
@@ -37,7 +38,7 @@ function ManageTodo(props) {
   function formIsValid() {
     const _errors = {};
 
-    if (!todo.text) _errors.text = "Text is required";
+    if (!todo.text) _errors.text = T.t("textRequired");
     setErrors(_errors);
     
     return Object.keys(_errors).length === 0;
@@ -56,7 +57,7 @@ function ManageTodo(props) {
   }
 
   return (
-    <AddTodoSimple
+    <ManageTodoSimple
       errors={errors}
       todo={todo}
       onChange={onChange}

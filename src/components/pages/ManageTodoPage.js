@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, withRouter} from 'react-router-dom'
 import ManageTodo from '../smart/ManageTodo';
+import T from '../../localization/i18n';
 
 function ManageTodoPage(props) {
   const [subTitle, setSubTitle] = useState("");
@@ -8,7 +9,7 @@ function ManageTodoPage(props) {
   useEffect(() => {
     const id = props.match.params.id;
     var todoById = props.todos.find(t => t.id === id);
-    setSubTitle(todoById ? "Edit Todo" : "Create New Todo");
+    setSubTitle(todoById ? T.t("editTodo") : T.t("createTodo"));
   }, [props.match.params.id]);
 
   return (
@@ -21,7 +22,7 @@ function ManageTodoPage(props) {
       <div className="columns is-mobile">
         <div className="column">
           <Link to="/">
-            <button className="button">Back</button>
+            <button className="button">{T.t("back")}</button>
           </Link>
         </div>
       </div>

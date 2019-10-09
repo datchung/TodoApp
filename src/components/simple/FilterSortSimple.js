@@ -1,4 +1,5 @@
 import React from 'react';
+import T from '../../localization/i18n';
 
 function FilterSortSimple(props) {
   return (
@@ -8,7 +9,7 @@ function FilterSortSimple(props) {
         <div className="column is-narrow">
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label has-text-weight-normal">Show</label>
+              <label className="label has-text-weight-normal">{T.t("filter")}</label>
             </div>
             <div className="field-body">
               <div className="field is-narrow">
@@ -18,9 +19,9 @@ function FilterSortSimple(props) {
                       value={props.selectedFilter}
                       onChange={props.onFilter}
                       >
-                      <option value="all">All</option>
-                      <option value="notDone">Not Done</option>
-                      <option value="done">Done</option>
+                      <option value="all">{T.t("all")}</option>
+                      <option value="notDone">{T.t("notDone")}</option>
+                      <option value="done">{T.t("done")}</option>
                     </select>
                   </div>
                 </div>
@@ -31,7 +32,7 @@ function FilterSortSimple(props) {
         <div className="column is-narrow">
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label has-text-weight-normal">Sort</label>
+              <label className="label has-text-weight-normal">{T.t("sort")}</label>
             </div>
             <div className="field-body">
               <div className="field is-narrow">
@@ -41,8 +42,8 @@ function FilterSortSimple(props) {
                       value={props.selectedSort}
                       onChange={props.onSort}
                       >
-                      <option value="newestFirst">Date new to old</option>
-                      <option value="oldestFirst">Date old to new</option>
+                      <option value="newestFirst">{T.t("newestFirst")}</option>
+                      <option value="oldestFirst">{T.t("oldestFirst")}</option>
                     </select>
                   </div>
                 </div>

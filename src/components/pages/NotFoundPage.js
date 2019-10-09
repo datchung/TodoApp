@@ -1,9 +1,10 @@
 import React from 'react';
+import T from '../../localization/i18n';
 
 function NotFoundPage() {
   return (
     <div className="content">
-      <p>Not found</p>
+      <p>{T.t("notFound")}</p>
     </div>
   );
 }

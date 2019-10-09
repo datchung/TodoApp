@@ -1,4 +1,5 @@
 import React from 'react';
+import T from '../../localization/i18n';
 
 function ManageTodoSimple(props) {
   return (
@@ -23,7 +24,7 @@ function ManageTodoSimple(props) {
                 type="submit"
                 className="button is-primary"
                 >
-                Save
+                {T.t("save")}
               </button>
             </div>
           </div>

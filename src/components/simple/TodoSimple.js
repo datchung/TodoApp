@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import T from '../../localization/i18n';
 
 function TodoSimple(props) {
   return (
@@ -23,7 +24,7 @@ function TodoSimple(props) {
           onClick={() => props.onDeleteTodo(props.todo.id)}
           className="button is-small"
           >
-          Delete
+          {T.t("delete")}
         </button>
       </div>
     </div>
