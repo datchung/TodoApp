@@ -14,7 +14,9 @@ export default {
   "save": "Enregistrement",
   "delete": "Supprimer",
   "textRequired": "Texte requis",
-  "noTodos": "You have no todos. Click the button below to add.",
-  "allDone": "Congrats. You completed all your todos!",
-  "todoRemaining": "{0} of {1} {2} remaining",
+  "noTodos": "Aucune tâche. Cliquez sur le bouton ci-dessous pour ajouter.",
+  "allDone": "Toutes nos félicitations. Vous avez terminé toutes vos tâches!",
+  "todoRemaining": "{0} sur {1} {2} restant.",
+  "todo": "tâche",
+  "todos": "les tâches",
 };

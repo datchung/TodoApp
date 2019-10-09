@@ -17,4 +17,6 @@ export default {
   "noTodos": "You have no todos. Click the button below to add.",
   "allDone": "Congrats. You completed all your todos!",
   "todoRemaining": "{0} of {1} {2} remaining",
+  "todo": "todo",
+  "todos": "todos",
 };

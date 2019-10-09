@@ -17,7 +17,7 @@ function TodoCount(props) {
   }
 
   const total = props.todos.length;
-  const todoPhrase = total > 1 ? 'todos' : 'todo';
+  const todoPhrase = total > 1 ? T.t("todos") : T.t("todo");
   const phrase=String.format(T.t("todoRemaining"), remaining, total, todoPhrase);
 
   return (

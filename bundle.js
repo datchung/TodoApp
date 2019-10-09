@@ -44927,7 +44927,7 @@ function TodoCount(props) {
   }
 
   var total = props.todos.length;
-  var todoPhrase = total > 1 ? 'todos' : 'todo';
+  var todoPhrase = total > 1 ? _i18n2.default.t("todos") : _i18n2.default.t("todo");
   var phrase = String.format(_i18n2.default.t("todoRemaining"), remaining, total, todoPhrase);
 
   return _react2.default.createElement(_TodoCountSimple2.default, { phrase: phrase });
@@ -45555,7 +45555,9 @@ exports.default = {
   "textRequired": "Text is required",
   "noTodos": "You have no todos. Click the button below to add.",
   "allDone": "Congrats. You completed all your todos!",
-  "todoRemaining": "{0} of {1} {2} remaining"
+  "todoRemaining": "{0} of {1} {2} remaining",
+  "todo": "todo",
+  "todos": "todos"
 };
 
 },{}],117:[function(require,module,exports){
@@ -45580,9 +45582,11 @@ exports.default = {
   "save": "Enregistrement",
   "delete": "Supprimer",
   "textRequired": "Texte requis",
-  "noTodos": "You have no todos. Click the button below to add.",
-  "allDone": "Congrats. You completed all your todos!",
-  "todoRemaining": "{0} of {1} {2} remaining"
+  "noTodos": "Aucune tâche. Cliquez sur le bouton ci-dessous pour ajouter.",
+  "allDone": "Toutes nos félicitations. Vous avez terminé toutes vos tâches!",
+  "todoRemaining": "{0} sur {1} {2} restant.",
+  "todo": "tâche",
+  "todos": "les tâches"
 };
 
 },{}],118:[function(require,module,exports){
