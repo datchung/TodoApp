@@ -45482,31 +45482,8 @@ var _strings_fr2 = _interopRequireDefault(_strings_fr);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_i18next2.default
-// load translation using xhr -> see /public/locales
-// learn more: https://github.com/i18next/i18next-xhr-backend
-// .use(Backend)
-// detect user language
-// learn more: https://github.com/i18next/i18next-browser-languageDetector
-.use(_i18nextBrowserLanguagedetector2.default);
-// pass the i18n instance to the react-i18next components.
-// Alternative use the I18nextProvider: https://react.i18next.com/components/i18nextprovider
-//.use(reactI18nextModule);
-// init i18next
-// for all options read: https://www.i18next.com/overview/configuration-options
-// .init({
-//   fallbackLng: 'en',
-// });
+_i18next2.default.use(_i18nextBrowserLanguagedetector2.default);
 
-// var backendOptions = {
-//   loadPath: 'localization/{{lng}}/strings.json',
-//   allowMultiLoading: false,
-//   crossDomain: false,
-//   withCredentials: false,
-//   overrideMimeType: false
-// };
-
-// import Backend from 'i18next-xhr-backend';
 var i18nOptions = {
   fallbackLng: 'en',
   resources: {
