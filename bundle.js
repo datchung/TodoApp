@@ -44125,7 +44125,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = require('react-router-dom');
 
-var _i18n = require('../../i18n');
+var _i18n = require('../../localization/i18n');
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
@@ -44180,7 +44180,7 @@ function AppPage(props) {
 
 exports.default = AppPage;
 
-},{"../../i18n":115,"./ManageTodoPage":91,"./NotFoundPage":92,"./TodoListPage":93,"react":70,"react-router-dom":64}],91:[function(require,module,exports){
+},{"../../localization/i18n":115,"./ManageTodoPage":91,"./NotFoundPage":92,"./TodoListPage":93,"react":70,"react-router-dom":64}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45522,7 +45522,27 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"./strings_en":117,"./strings_fr":118,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
+},{"./strings_en":116,"./strings_fr":117,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  "title": " Minimalist Todo List"
+};
+
+},{}],117:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  "title": "Minimalist Todo List fr"
+};
+
+},{}],118:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -45537,7 +45557,7 @@ var _AppContainer = require('./containers/AppContainer');
 
 var _AppContainer2 = _interopRequireDefault(_AppContainer);
 
-var _i18n = require('./i18n');
+var _i18n = require('./localization/i18n');
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
@@ -45551,24 +45571,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":104,"./i18n":115,"react":70,"react-dom":58,"react-router-dom":64}],117:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  "title": " Minimalist Todo List"
-};
-
-},{}],118:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  "title": "Minimalist Todo List fr"
-};
-
-},{}]},{},[116]);
+},{"./containers/AppContainer":104,"./localization/i18n":115,"react":70,"react-dom":58,"react-router-dom":64}]},{},[118]);

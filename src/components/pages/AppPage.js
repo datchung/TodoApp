@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Translate from '../../i18n';
+import Translate from '../../localization/i18n';
 import TodoListPage from './TodoListPage';
 import ManageTodoPage from './ManageTodoPage';
 import NotFoundPage from './NotFoundPage';
