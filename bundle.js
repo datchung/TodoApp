@@ -45520,6 +45520,10 @@ var _strings_fr = require('./strings_fr');
 
 var _strings_fr2 = _interopRequireDefault(_strings_fr);
 
+var _strings_pt = require('./strings_pt');
+
+var _strings_pt2 = _interopRequireDefault(_strings_pt);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _i18next2.default.use(_i18nextBrowserLanguagedetector2.default);
@@ -45538,6 +45542,9 @@ var i18nOptions = {
     },
     "fr": {
       translation: _strings_fr2.default
+    },
+    "pt": {
+      translation: _strings_pt2.default
     }
   }
 };
@@ -45545,7 +45552,7 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"./strings_cn":116,"./strings_en":117,"./strings_es":118,"./strings_fr":119,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
+},{"./strings_cn":116,"./strings_en":117,"./strings_es":118,"./strings_fr":119,"./strings_pt":120,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45662,6 +45669,35 @@ exports.default = {
 };
 
 },{}],120:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  "title": " Lista de Tarefas Minimalista",
+  "editTodo": "Editar Tarefa",
+  "createTodo": "Criar Nova Tarefa",
+  "back": "Anterior",
+  "notFound": "Não Encontrado",
+  "filter": "Filtrar",
+  "all": "All",
+  "notDone": "Incompleto",
+  "done": "Completo",
+  "sort": "Classificar",
+  "newestFirst": "Novo para Antigo",
+  "oldestFirst": "Antigo para Novo",
+  "save": "Save",
+  "delete": "Excluir",
+  "textRequired": "O texto é obrigatório",
+  "noTodos": "Sem tarefas. Clique no botão abaixo para adicionar.",
+  "allDone": "Parabéns. Todas as tarefas concluídas!",
+  "todoRemaining": "{0} de {1} {2}",
+  "todo": "tarefa restante",
+  "todos": "tarefas restantes"
+};
+
+},{}],121:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -45699,4 +45735,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":104,"./localization/i18n":115,"react":70,"react-dom":58,"react-router-dom":64}]},{},[120]);
+},{"./containers/AppContainer":104,"./localization/i18n":115,"react":70,"react-dom":58,"react-router-dom":64}]},{},[121]);
