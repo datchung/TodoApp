@@ -1,11 +1,13 @@
 import i18n from 'i18next';
-//import Backend from 'i18next-xhr-backend';
+// import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import enTranslation from './strings_en';
+import frTranslation from './strings_fr';
 
 i18n
   // load translation using xhr -> see /public/locales
   // learn more: https://github.com/i18next/i18next-xhr-backend
-  //.use(Backend)
+  // .use(Backend)
   // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector);
@@ -18,19 +20,22 @@ i18n
   //   fallbackLng: 'en',
   // });
 
+// var backendOptions = {
+//   loadPath: 'localization/{{lng}}/strings.json',
+//   allowMultiLoading: false,
+//   crossDomain: false,
+//   withCredentials: false,
+//   overrideMimeType: false
+// };
+
 var i18nOptions = {
   fallbackLng: 'en',
-  debug: true,
   resources: {
     "en": {
-      translation: {
-        "title": " Minimalist Todo List"
-      }
+      translation: enTranslation
     },
     "fr": {
-      translation: {
-        "title": " Title in fr"
-      }
+      translation: frTranslation
     }
   }
 };

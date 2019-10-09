@@ -45472,12 +45472,20 @@ var _i18nextBrowserLanguagedetector = require('i18next-browser-languagedetector'
 
 var _i18nextBrowserLanguagedetector2 = _interopRequireDefault(_i18nextBrowserLanguagedetector);
 
+var _strings_en = require('./strings_en');
+
+var _strings_en2 = _interopRequireDefault(_strings_en);
+
+var _strings_fr = require('./strings_fr');
+
+var _strings_fr2 = _interopRequireDefault(_strings_fr);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _i18next2.default
 // load translation using xhr -> see /public/locales
 // learn more: https://github.com/i18next/i18next-xhr-backend
-//.use(Backend)
+// .use(Backend)
 // detect user language
 // learn more: https://github.com/i18next/i18next-browser-languageDetector
 .use(_i18nextBrowserLanguagedetector2.default);
@@ -45490,20 +45498,23 @@ _i18next2.default
 //   fallbackLng: 'en',
 // });
 
-//import Backend from 'i18next-xhr-backend';
+// var backendOptions = {
+//   loadPath: 'localization/{{lng}}/strings.json',
+//   allowMultiLoading: false,
+//   crossDomain: false,
+//   withCredentials: false,
+//   overrideMimeType: false
+// };
+
+// import Backend from 'i18next-xhr-backend';
 var i18nOptions = {
   fallbackLng: 'en',
-  debug: true,
   resources: {
     "en": {
-      translation: {
-        "title": " Minimalist Todo List"
-      }
+      translation: _strings_en2.default
     },
     "fr": {
-      translation: {
-        "title": " Title in fr"
-      }
+      translation: _strings_fr2.default
     }
   }
 };
@@ -45511,7 +45522,7 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
+},{"./strings_en":117,"./strings_fr":118,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -45540,4 +45551,24 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":104,"./i18n":115,"react":70,"react-dom":58,"react-router-dom":64}]},{},[116]);
+},{"./containers/AppContainer":104,"./i18n":115,"react":70,"react-dom":58,"react-router-dom":64}],117:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  "title": " Minimalist Todo List"
+};
+
+},{}],118:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  "title": "Minimalist Todo List fr"
+};
+
+},{}]},{},[116]);
