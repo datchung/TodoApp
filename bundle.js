@@ -45524,6 +45524,10 @@ var _strings_pt = require('./strings_pt');
 
 var _strings_pt2 = _interopRequireDefault(_strings_pt);
 
+var _strings_ru = require('./strings_ru');
+
+var _strings_ru2 = _interopRequireDefault(_strings_ru);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _i18next2.default.use(_i18nextBrowserLanguagedetector2.default);
@@ -45545,6 +45549,9 @@ var i18nOptions = {
     },
     "pt": {
       translation: _strings_pt2.default
+    },
+    "ru": {
+      translation: _strings_ru2.default
     }
   }
 };
@@ -45552,7 +45559,7 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"./strings_cn":116,"./strings_en":117,"./strings_es":118,"./strings_fr":119,"./strings_pt":120,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
+},{"./strings_cn":116,"./strings_en":117,"./strings_es":118,"./strings_fr":119,"./strings_pt":120,"./strings_ru":121,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45698,6 +45705,35 @@ exports.default = {
 };
 
 },{}],121:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  "title": " Минималистский список задач",
+  "editTodo": "Изменить задачу",
+  "createTodo": "Создать новую задачу",
+  "back": "Назад",
+  "notFound": "Не найдено",
+  "filter": "Фильтр",
+  "all": "все",
+  "notDone": "неполный",
+  "done": "полный",
+  "sort": "сортировка",
+  "newestFirst": "Новое в старое",
+  "oldestFirst": "Старый в новый",
+  "save": "Сохранить",
+  "delete": "удаление",
+  "textRequired": "Текст обязателен",
+  "noTodos": "Нет задач. Нажмите кнопку ниже, чтобы добавить.",
+  "allDone": "Поздравляю. Все задачи выполнены!",
+  "todoRemaining": "{0} из {1} {2} осталось",
+  "todo": "задача",
+  "todos": "задачи"
+};
+
+},{}],122:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -45735,4 +45771,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":104,"./localization/i18n":115,"react":70,"react-dom":58,"react-router-dom":64}]},{},[121]);
+},{"./containers/AppContainer":104,"./localization/i18n":115,"react":70,"react-dom":58,"react-router-dom":64}]},{},[122]);

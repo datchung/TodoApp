@@ -5,6 +5,7 @@ import cnTranslation from './strings_cn';
 import esTranslation from './strings_es';
 import frTranslation from './strings_fr';
 import ptTranslation from './strings_pt';
+import ruTranslation from './strings_ru';
 
 i18n
   .use(LanguageDetector);
@@ -26,6 +27,9 @@ var i18nOptions = {
     },
     "pt": {
       translation: ptTranslation
+    },
+    "ru": {
+      translation: ruTranslation
     }
   }
 };
