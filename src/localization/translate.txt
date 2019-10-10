@@ -32,3 +32,25 @@ tasks
 Clean the house
 Wash car
 Study for test
+
+
+Simplified Todo and Task List. Stripped down to the minimum and core features.
+
+
+Less is more.
+
+Minimal in every way:
+
+Stripped down to the core features of a todo list/task list/checklist.
+
+No unnecessary permissions required.
+
+Small app size.
+
+Simple and lightweight user interface.
+
+
+Icon made by Roundicons from www.flaticon.com
+https://www.flaticon.com/authors/roundicons
+
+Graphics from https://gallery.manypixels.co
