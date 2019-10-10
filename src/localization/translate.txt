@@ -34,7 +34,7 @@ Wash car
 Study for test
 
 
-Simplified Todo and Task List. Stripped down to the minimum and core features.
+Simplified task list. Stripped down to the minimum and core features.
 
 
 Less is more.
