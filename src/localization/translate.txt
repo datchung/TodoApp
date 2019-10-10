@@ -28,3 +28,7 @@ All tasks completed.
 
 task
 tasks
+
+Clean the house
+Wash car
+Study for test
