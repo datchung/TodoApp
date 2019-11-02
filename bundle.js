@@ -44542,12 +44542,12 @@ function ManageTodoSimple(props) {
           _react2.default.createElement(
             'div',
             { className: 'control' },
-            _react2.default.createElement('input', {
-              type: 'Text',
+            _react2.default.createElement('textarea', {
+              className: 'textarea',
+              rows: '5',
               name: 'text',
               value: props.todo.text || "",
-              onChange: props.onChange,
-              className: 'input'
+              onChange: props.onChange
             })
           )
         ),

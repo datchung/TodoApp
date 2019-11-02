@@ -8,12 +8,12 @@ function ManageTodoSimple(props) {
         <form onSubmit={props.onSubmit}>
           <div className="field">
             <div className="control">
-              <input 
-                type="Text"
+              <textarea
+                className="textarea"
+                rows="5"
                 name="text"
                 value={props.todo.text || ""}
                 onChange={props.onChange}
-                className="input"
                 />
             </div>
           </div>
